@@ -3,171 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plato School | Global Pre-Med Program</title>
+    <title>Plato School | Global Pre-Med Strategic Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap');
-        body { font-family: 'Noto Sans KR', 'Noto Sans SC', 'Noto Sans JP', sans-serif; }
-        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; scroll-behavior: smooth; }
+        .hero-section { background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; }
+        .data-card { transition: transform 0.3s ease; }
+        .data-card:hover { transform: translateY(-10px); }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="bg-white">
 
-    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-20 items-center">
-            <div class="text-2xl font-black text-blue-900 tracking-tighter">PLATO SCHOOL</div>
-            
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between h-20 items-center">
+            <div class="text-2xl font-black text-blue-900">PLATO SCHOOL</div>
             <div class="flex items-center space-x-2">
-                <button onclick="setLanguage('ko')" class="px-2 py-1 text-sm border rounded hover:bg-gray-100">KR</button>
-                <button onclick="setLanguage('zh')" class="px-2 py-1 text-sm border rounded hover:bg-gray-100">中文</button>
-                <button onclick="setLanguage('en')" class="px-2 py-1 text-sm border rounded hover:bg-gray-100">EN</button>
-                <button onclick="setLanguage('ja')" class="px-2 py-1 text-sm border rounded hover:bg-gray-100">JP</button>
+                <button onclick="setLanguage('ko')" class="px-3 py-1 text-xs font-bold border rounded-full hover:bg-blue-900 hover:text-white transition">KR</button>
+                <button onclick="setLanguage('zh')" class="px-3 py-1 text-xs font-bold border rounded-full hover:bg-blue-900 hover:text-white transition">中文</button>
+                <button onclick="setLanguage('en')" class="px-3 py-1 text-xs font-bold border rounded-full hover:bg-blue-900 hover:text-white transition">EN</button>
+                <button onclick="setLanguage('ja')" class="px-3 py-1 text-xs font-bold border rounded-full hover:bg-blue-900 hover:text-white transition">JP</button>
             </div>
         </div>
     </nav>
 
-    <header class="hero-gradient h-screen flex items-center justify-center text-white text-center pt-16">
-        <div class="max-w-5xl px-4">
-            <h1 id="hero-title" class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                미국 의대의 꿈, 서울에서 가장 전략적으로 시작하십시오.
+    <section class="hero-section h-[90vh] flex items-center justify-center text-white text-center px-6">
+        <div class="max-w-5xl">
+            <div id="hero-alert" class="inline-block bg-red-600 text-white px-4 py-1 rounded-full text-sm font-bold mb-6 animate-pulse">
+                Current Alert: FX 1,500 KRW / High Visa Rejection Rates
+            </div>
+            <h1 id="hero-title" class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                고환율과 비자 장벽의 시대,<br>미국 의대 진학의 해법은 '서울'에 있습니다.
             </h1>
-            <p id="hero-sub" class="text-lg md:text-2xl mb-10 text-gray-200">
-                환율 1,500원 시대, 미국 본토 유학 대비 50% 비용 절감. <br>샌프란시스코 비영리 법인 기반의 혁신적 프리메드.
+            <p id="hero-sub" class="text-xl md:text-2xl mb-10 text-gray-300">
+                샌프란시스코 비영리 재단 학위 + 서울 캠퍼스 안전성 + 50% 비용 절감
             </p>
             <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#apply" id="btn-guide" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-bold transition shadow-lg">입학 가이드북 신청</a>
-                <a href="#" id="btn-consult" class="bg-white/10 hover:bg-white/20 text-white border border-white px-8 py-4 rounded-full text-lg font-bold backdrop-blur-sm transition">1:1 실시간 상담</a>
-            </div>
-        </div>
-    </header>
-
-    <section class="py-20 bg-gray-50 text-center">
-        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-12">
-            <div class="p-8">
-                <div class="text-blue-600 text-5xl mb-6"><i class="fas fa-dollar-sign"></i></div>
-                <h3 id="card-1-title" class="text-2xl font-bold mb-4">환율 장벽 극복</h3>
-                <p id="card-1-desc" class="text-gray-600 leading-relaxed text-lg">연간 $25,000-$30,000의 학비. 미국 사립대 대비 압도적인 경제성.</p>
-            </div>
-            <div class="p-8">
-                <div class="text-blue-600 text-5xl mb-6"><i class="fas fa-certificate"></i></div>
-                <h3 id="card-2-title" class="text-2xl font-bold mb-4">미국 정식 학위</h3>
-                <p id="card-2-desc" class="text-gray-400 leading-relaxed text-lg">SF 비영리 법인 수여 학위. WASC(WSCUC) 인가 절차 진행 중.</p>
-            </div>
-            <div class="p-8">
-                <div class="text-blue-600 text-5xl mb-6"><i class="fas fa-shield-alt"></i></div>
-                <h3 id="card-3-title" class="text-2xl font-bold mb-4">안전한 서울 캠퍼스</h3>
-                <p id="card-3-desc" class="text-gray-600 leading-relaxed text-lg">최첨단 의료 인프라와 안전이 보장된 한국에서의 몰입 교육.</p>
+                <a href="#data" class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full font-bold text-lg transition">실제 데이터 확인하기</a>
+                <a href="#apply" class="bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-lg transition">상담 신청하기</a>
             </div>
         </div>
     </section>
 
-    <section id="apply" class="py-20 bg-blue-900 text-white">
-        <div class="max-w-xl mx-auto px-4 text-center">
-            <h2 id="form-title" class="text-3xl font-bold mb-4">입학 및 상담 신청</h2>
-            <p id="form-sub" class="mb-8 text-blue-100">글로벌 프리메드 과정에 대한 상세 정보를 보내드립니다.</p>
-            <form class="space-y-4 text-left">
-                <input type="text" id="ph-name" placeholder="성함 (Name)" class="w-full px-4 py-3 rounded-lg text-gray-900">
-                <input type="text" id="ph-contact" placeholder="연락처 (WeChat / Line / Phone)" class="w-full px-4 py-3 rounded-lg text-gray-900">
-                <button type="button" id="btn-submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-4 rounded-lg font-bold text-xl">신청하기</button>
+    <section id="data" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 id="data-title" class="text-3xl md:text-5xl font-black text-center mb-16 text-blue-900">왜 지금 한국에서 시작해야 하는가?</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="data-card bg-white p-8 rounded-3xl shadow-xl border-t-4 border-blue-600">
+                    <h3 class="text-gray-500 font-bold mb-2">US Physician Shortage</h3>
+                    <div class="text-4xl font-black text-blue-900 mb-4">~124,000명</div>
+                    <p id="data-1-text" class="text-gray-600">2034년까지 예상되는 미국 의사 부족 인원(AAMC 데이터). 미국 의대 입학은 이제 국가적 과제이며, 외국인 의사 수급은 필수적입니다.</p>
+                </div>
+
+                <div class="data-card bg-white p-8 rounded-3xl shadow-xl border-t-4 border-red-500">
+                    <h3 class="text-gray-500 font-bold mb-2">Visa & Safety Risks</h3>
+                    <div id="data-2-val" class="text-4xl font-black text-red-600 mb-4">35% Rejection</div>
+                    <p id="data-2-text" class="text-gray-600">중국 학생 비자 거절율 급증 및 미국 내 증오 범죄 증가. 한국은 전 세계 안전 지수 최상위권이며 비자 발급이 매우 안정적입니다.</p>
+                </div>
+
+                <div class="data-card bg-white p-8 rounded-3xl shadow-xl border-t-4 border-green-500">
+                    <h3 class="text-gray-500 font-bold mb-2">Cost Savings (FX 1,500)</h3>
+                    <div class="text-4xl font-black text-green-600 mb-4">연간 7,000만원+</div>
+                    <p id="data-3-text" class="text-gray-600">환율 1,500원 기준, 미국 현지 유학비는 연간 1.5억 원을 상회합니다. 플라토 스쿨은 학비 $25k~$30k로 부모님의 부담을 절반으로 줄입니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-blue-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h2 id="sol-title" class="text-4xl font-black mb-8 leading-tight">4년간 서울에서 준비하는<br>미국 학위의 압도적 가치</h2>
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-blue-600 p-2 rounded-lg mr-4 mt-1"><i class="fas fa-check"></i></div>
+                        <p id="sol-1" class="text-lg">샌프란시스코 비영리 법인 발급 정식 미국 학술 학위</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-blue-600 p-2 rounded-lg mr-4 mt-1"><i class="fas fa-check"></i></div>
+                        <p id="sol-2" class="text-lg">WASC(WSCUC) 인가 절차를 통한 학문적 공신력 확보</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-blue-600 p-2 rounded-lg mr-4 mt-1"><i class="fas fa-check"></i></div>
+                        <p id="sol-3" class="text-lg">트럼프 행정부의 차별적 이민 정책으로부터 안전한 보호막</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 md:pl-16">
+                <div class="bg-white/10 p-8 rounded-3xl backdrop-blur-md border border-white/20">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="border-b border-white/20">
+                                <th class="pb-4">Category</th>
+                                <th class="pb-4">US Campus</th>
+                                <th class="pb-4 text-blue-400">Plato School</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr class="border-b border-white/10">
+                                <td class="py-4">Tuition</td>
+                                <td>$60,000+</td>
+                                <td class="text-blue-400">$25,000</td>
+                            </tr>
+                            <tr class="border-b border-white/10">
+                                <td class="py-4">Visa Risk</td>
+                                <td class="text-red-400">Very High</td>
+                                <td class="text-blue-400">Stable</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4">Safety</td>
+                                <td>Uncertain</td>
+                                <td class="text-blue-400">World Top Tier</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apply" class="py-24 text-center">
+        <div class="max-w-2xl mx-auto px-6">
+            <h2 id="apply-title" class="text-3xl font-black mb-4">지금 전략적인 상담을 시작하세요</h2>
+            <p id="apply-sub" class="text-gray-600 mb-10">중국, 일본, 동남아시아 유학생을 위한 특별 쿼터가 운영됩니다.</p>
+            <form class="grid gap-4">
+                <input type="text" id="ph-name" placeholder="Name" class="p-4 bg-gray-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-600">
+                <input type="text" id="ph-contact" placeholder="WeChat ID / WhatsApp / Contact" class="p-4 bg-gray-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-600">
+                <button class="bg-blue-900 text-white p-5 rounded-xl font-bold text-xl hover:bg-black transition">입학 자료 요청하기</button>
             </form>
         </div>
     </section>
 
-    <footer class="py-10 text-center text-gray-400 text-xs">
-        <p>© 2026 PLATO SCHOOL SF FOUNDATION. ALL RIGHTS RESERVED.</p>
-    </footer>
-
     <script>
         const translations = {
             ko: {
-                heroTitle: "미국 의대의 꿈, 서울에서 가장 전략적으로 시작하십시오.",
-                heroSub: "환율 1,500원 시대, 미국 본토 유학 대비 50% 비용 절감. 샌프란시스코 비영리 법인 기반의 혁신적 프리메드.",
-                btnGuide: "입학 가이드북 신청",
-                btnConsult: "1:1 실시간 상담",
-                card1Title: "환율 장벽 극복",
-                card1Desc: "연간 $25,000-$30,000의 학비. 미국 사립대 대비 압도적인 경제성.",
-                card2Title: "미국 정식 학위",
-                card2Desc: "SF 비영리 법인 수여 학위. WASC(WSCUC) 인가 절차 진행 중.",
-                card3Title: "안전한 서울 캠퍼스",
-                card3Desc: "최첨단 의료 인프라와 안전이 보장된 한국에서의 몰입 교육.",
-                formTitle: "입학 및 상담 신청",
-                formSub: "글로벌 프리메드 과정에 대한 상세 정보를 보내드립니다.",
-                phName: "성함 (Name)",
-                phContact: "연락처 (WeChat / Line / Phone)",
-                btnSubmit: "신청하기"
+                heroTitle: "고환율과 비자 장벽의 시대,\n미국 의대 진학의 해법은 '서울'에 있습니다.",
+                heroSub: "샌프란시스코 비영리 재단 학위 + 서울 캠퍼스 안전성 + 50% 비용 절감",
+                dataTitle: "왜 지금 한국에서 시작해야 하는가?",
+                data1: "2034년까지 예상되는 미국 의사 부족 인원(AAMC 데이터). 미국 의대 입학은 이제 국가적 과제이며, 외국인 의사 수급은 필수적입니다.",
+                data2Val: "비자 거절율 급증",
+                data2: "중국 학생 비자 거절율 급증 및 미국 내 정치적 불안. 한국은 전 세계 안전 지수 최상위권이며 비자 발급이 매우 안정적입니다.",
+                data3: "환율 1,500원 기준, 미국 현지 유학비는 연간 1.5억 원을 상회합니다. 플라토 스쿨은 학비를 절반으로 줄입니다.",
+                solTitle: "4년간 서울에서 준비하는\n미국 학위의 압도적 가치",
+                sol1: "샌프란시스코 비영리 법인 발급 정식 미국 학술 학위",
+                sol2: "WASC(WSCUC) 인가 절차를 통한 학문적 공신력 확보",
+                sol3: "정치적 불확실성과 인종차별로부터 안전한 교육 환경",
+                applyTitle: "지금 전략적인 상담을 시작하세요",
+                applySub: "중국, 일본, 동남아시아 유학생을 위한 특별 쿼터 운영"
             },
             zh: {
-                heroTitle: "赴美医科梦想，从首尔开启最优化路径。",
-                heroSub: "1500韩元汇率时代，学费仅为美国本土的50%。旧金山非营利法人创办的创新医学预科课程。",
-                btnGuide: "申请招生指南",
-                btnConsult: "1:1 在线咨询",
-                card1Title: "突破汇率壁垒",
-                card1Desc: "年学费 $25,000-$30,000。相比美国私立大学具有压倒性经济优势。",
-                card2Title: "美国正规学位",
-                card2Desc: "旧金山非营利法人授予学位。WASC(WSCUC) 认证申请中。",
-                card3Title: "安全的首尔校区",
-                card3Desc: "依托韩国尖端医疗基础设施，在安全的环境中专注学习。",
-                formTitle: "入学与咨询申请",
-                formSub: "我们将向您发送全球医学预科课程的详细信息。",
-                phName: "姓名",
-                phContact: "联系方式 (WeChat / Line / 电话)",
-                btnSubmit: "立即申请"
+                heroTitle: "高汇率与签证壁垒时代，\n赴美医学院的最佳路径在“首尔”。",
+                heroSub: "旧金山非营利基金会学位 + 首尔校区安全性 + 节省50%费用",
+                dataTitle: "为什么现在必须在韩国开始？",
+                data1: "根据AAMC数据，到2034年美国医生缺口将达12.4万。进入美国医学院已成为必然趋势。",
+                data2Val: "签证拒签率激增",
+                data2: "中国留学生赴美签证受限及美国国内政治不确定性。韩国作为全球最安全国家之一，签证政策极其稳定。",
+                data3: "按1500汇率计算，美国本土留学年费用超80万人民币。Plato School将费用降低一半。",
+                solTitle: "在首尔学习4年\n获得美国学位的核心价值",
+                sol1: "旧金山非营利法人授予的正规美国学术学位",
+                sol2: "正在进行WASC (WSCUC) 认证，确保学术权威性",
+                sol3: "远离政治不确定性和歧视，提供安全的沉浸式教育环境",
+                applyTitle: "立即开始战略咨询",
+                applySub: "针对中国及亚洲留学生的特别招生名额"
             },
             en: {
-                heroTitle: "Your Path to American Med School Starts in Seoul.",
-                heroSub: "Strategic Pre-Med program based in SF Non-profit. Cut tuition by 50% compared to US-based studies.",
-                btnGuide: "Request Brochure",
-                btnConsult: "1:1 Consultation",
-                card1Title: "Affordable Excellence",
-                card1Desc: "Tuition $25k-$30k per year. Overcome high exchange rate barriers.",
-                card2Title: "US Degree Granted",
-                card2Desc: "Degree by SF Non-profit. WASC(WSCUC) accreditation in progress.",
-                card3Title: "Seoul Campus",
-                card3Desc: "Safety and world-class medical infrastructure in the heart of Asia.",
-                formTitle: "Inquiry & Application",
-                formSub: "Get detailed information about our Global Pre-Med program.",
-                phName: "Full Name",
-                phContact: "Contact (WeChat / Line / Phone)",
-                btnSubmit: "Submit Now"
+                heroTitle: "In an Era of High FX & Visa Barriers,\nSeoul is the Strategic Hub for US Med School.",
+                heroSub: "SF Non-Profit Degree + Seoul Campus Safety + 50% Cost Saving",
+                dataTitle: "Why Start in Korea Now?",
+                data1: "AAMC projects a shortage of 124,000 physicians by 2034. Recruiting international talent is now a US national priority.",
+                data2Val: "High Visa Risks",
+                data2: "Surge in visa rejections for Asian students and political instability in the US. Korea offers a stable visa environment and top-tier safety.",
+                data3: "With FX at 1,500, US-based study exceeds $100k/year. Plato School cuts this burden by 50%.",
+                solTitle: "The Massive Value of\na US Degree Earned in Seoul",
+                sol1: "Official US Academic Degree from SF Non-Profit Org",
+                sol2: "WASC(WSCUC) Accreditation Path for Global Credibility",
+                sol3: "Safe haven from political uncertainty and social discrimination",
+                applyTitle: "Start Your Strategic Consultation",
+                applySub: "Special quotas open for China, Japan, and SE Asian students"
             },
             ja: {
-                heroTitle: "米国医学部への夢、ソウルで最も戦略的に始めましょう。",
-                heroSub: "1,500ウォン為替時代、米本土留学対比で費用を50%節約。サンフランシスコ非営利法人による革新的なプリメド。",
-                btnGuide: "入学ガイドブック申請",
-                btnConsult: "1:1 リアルタイム相談",
-                card1Title: "為替の壁を克服",
-                card1Desc: "年間 $25,000-$30,000の学費。米国の私立大学に比べ圧倒的な経済性。",
-                card2Title: "米国正規学位",
-                card2Desc: "SF非営利法人授与の学位。WASC(WSCUC) 認可手続き進行中。",
-                card3Title: "安全なソウルキャンパス",
-                card3Desc: "最先端の医療インフラと安全が保障された韓国での没入教育。",
-                formTitle: "入学・相談申し込み",
-                formSub: "グローバル・プリメド課程に関する詳細情報をお送りします。",
-                phName: "お名前",
-                phContact: "連絡先 (WeChat / Line / 電話)",
-                btnSubmit: "申し込む"
+                heroTitle: "高為替とビザ障壁の時代、\n米国医学部への解法は「ソウル」にあります。",
+                heroSub: "SF非営利法人学位 + ソウルキャンパスの安全性 + 50%費用削減",
+                dataTitle: "なぜ今、韓国で始めるべきなのか？",
+                data1: "2034年までに12.4万人の医師不足を予測(AAMC)。米国医学部への入学は今や国家的な課題です。",
+                data2Val: "ビザ拒否率の急増",
+                data2: "アジア人学生へのビザ発給制限と米国内の政治的不安。韓国は世界最高水準の治安と安定したビザ環境を提供します。",
+                data3: "為替1,500基準、米本土留学は年1,500万円以上。プラトスクールは費用を半分に抑えます。",
+                solTitle: "ソウルで4年間準備する\n米国学位の圧倒的な価値",
+                sol1: "サンフランシスコ非営利法人発行の正規米国学位",
+                sol2: "WASC(WSCUC)認可手続きによる学問的公信力の確保",
+                sol3: "政治的不確実性と差別から守られた安全な教育環境",
+                applyTitle: "戦略的な相談を今すぐ始めましょう",
+                applySub: "中国、日本、東南アジア留学生のための特別枠を運営"
             }
         };
 
         function setLanguage(lang) {
-            document.getElementById('hero-title').innerText = translations[lang].heroTitle;
-            document.getElementById('hero-sub').innerText = translations[lang].heroSub;
-            document.getElementById('btn-guide').innerText = translations[lang].btnGuide;
-            document.getElementById('btn-consult').innerText = translations[lang].btnConsult;
-            document.getElementById('card-1-title').innerText = translations[lang].card1Title;
-            document.getElementById('card-1-desc').innerText = translations[lang].card1Desc;
-            document.getElementById('card-2-title').innerText = translations[lang].card2Title;
-            document.getElementById('card-2-desc').innerText = translations[lang].card2Desc;
-            document.getElementById('card-3-title').innerText = translations[lang].card3Title;
-            document.getElementById('card-3-desc').innerText = translations[lang].card3Desc;
-            document.getElementById('form-title').innerText = translations[lang].formTitle;
-            document.getElementById('form-sub').innerText = translations[lang].formSub;
-            document.getElementById('ph-name').placeholder = translations[lang].phName;
-            document.getElementById('ph-contact').placeholder = translations[lang].phContact;
-            document.getElementById('btn-submit').innerText = translations[lang].btnSubmit;
-            
-            // HTML lang attribute update
+            const t = translations[lang];
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('hero-sub').innerText = t.heroSub;
+            document.getElementById('data-title').innerText = t.dataTitle;
+            document.getElementById('data-1-text').innerText = t.data1;
+            document.getElementById('data-2-val').innerText = t.data2Val;
+            document.getElementById('data-2-text').innerText = t.data2;
+            document.getElementById('data-3-text').innerText = t.data3;
+            document.getElementById('sol-title').innerText = t.solTitle;
+            document.getElementById('sol-1').innerText = t.sol1;
+            document.getElementById('sol-2').innerText = t.sol2;
+            document.getElementById('sol-3').innerText = t.sol3;
+            document.getElementById('apply-title').innerText = t.applyTitle;
+            document.getElementById('apply-sub').innerText = t.applySub;
             document.documentElement.lang = lang;
         }
     </script>

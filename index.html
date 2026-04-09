@@ -8,67 +8,95 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap');
-        body { font-family: 'Noto Sans KR', sans-serif; scroll-behavior: smooth; }
-        .hero-section { background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; }
+        
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            scroll-behavior: smooth; 
+            word-break: keep-all; /* 단어 단위 줄바꿈 유지 */
+            overflow-x: hidden;
+        }
+
+        .hero-section { 
+            background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(10, 25, 47, 0.88)), 
+                        url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1920&q=80'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+
+        .hero-title {
+            line-height: 1.3;
+            letter-spacing: -0.03em;
+        }
+
         .data-card { transition: all 0.3s ease; }
         .data-card:hover { transform: translateY(-10px); }
-        .lang-btn { transition: all 0.2s; }
-        .lang-btn:hover { background-color: #1e3a8a; color: white; }
+        
+        /* 언어 버튼 스타일링 */
+        .lang-btn { 
+            transition: all 0.2s; 
+            border: 1px solid #e2e8f0;
+        }
+        .lang-btn:hover { background-color: #1e3a8a; color: white; border-color: #1e3a8a; }
+        
+        /* 입력창 포커스 */
+        input:focus { border-color: #2563eb; ring: 2px; ring-color: #bfdbfe; }
     </style>
 </head>
 <body class="bg-white text-slate-900">
 
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b">
         <div class="max-w-7xl mx-auto px-4 flex justify-between h-20 items-center">
-            <div class="text-2xl font-black text-blue-900 tracking-tighter cursor-pointer">PLATO SCHOOL</div>
+            <div class="text-2xl font-black text-blue-900 tracking-tighter">PLATO SCHOOL</div>
             <div class="flex flex-wrap justify-end gap-1 md:gap-2">
-                <button onclick="setLanguage('ko')" class="lang-btn px-2 py-1 text-[10px] md:text-xs font-bold border rounded-full">KR</button>
-                <button onclick="setLanguage('zh')" class="lang-btn px-2 py-1 text-[10px] md:text-xs font-bold border rounded-full">中文</button>
-                <button onclick="setLanguage('en')" class="lang-btn px-2 py-1 text-[10px] md:text-xs font-bold border rounded-full">EN</button>
-                <button onclick="setLanguage('ja')" class="lang-btn px-2 py-1 text-[10px] md:text-xs font-bold border rounded-full">JP</button>
-                <button onclick="setLanguage('th')" class="lang-btn px-2 py-1 text-[10px] md:text-xs font-bold border rounded-full">TH</button>
-                <button onclick="setLanguage('vi')" class="lang-btn px-2 py-1 text-[10px] md:text-xs font-bold border rounded-full">VN</button>
-                <button onclick="setLanguage('id')" class="lang-btn px-2 py-1 text-[10px] md:text-xs font-bold border rounded-full">ID</button>
+                <button onclick="setLanguage('ko')" class="lang-btn px-2.5 py-1 text-[10px] md:text-xs font-bold rounded-full">KR</button>
+                <button onclick="setLanguage('zh')" class="lang-btn px-2.5 py-1 text-[10px] md:text-xs font-bold rounded-full">中文</button>
+                <button onclick="setLanguage('en')" class="lang-btn px-2.5 py-1 text-[10px] md:text-xs font-bold rounded-full">EN</button>
+                <button onclick="setLanguage('ja')" class="lang-btn px-2.5 py-1 text-[10px] md:text-xs font-bold rounded-full">JP</button>
+                <button onclick="setLanguage('th')" class="lang-btn px-2.5 py-1 text-[10px] md:text-xs font-bold rounded-full">TH</button>
+                <button onclick="setLanguage('vi')" class="lang-btn px-2.5 py-1 text-[10px] md:text-xs font-bold rounded-full">VN</button>
+                <button onclick="setLanguage('id')" class="lang-btn px-2.5 py-1 text-[10px] md:text-xs font-bold rounded-full">ID</button>
             </div>
         </div>
     </nav>
 
     <section class="hero-section h-screen flex items-center justify-center text-white text-center px-6">
-        <div class="max-w-5xl">
-            <div id="hero-alert" class="inline-block bg-red-600 text-white px-4 py-1 rounded-full text-sm font-bold mb-6 animate-bounce">
+        <div class="max-w-5xl w-full">
+            <div id="hero-alert" class="inline-block bg-red-600 text-white px-5 py-1 rounded-full text-sm font-bold mb-8 animate-pulse shadow-lg">
                 Alert: FX 1,500 KRW / High Visa Rejection Rates in US
             </div>
-            <h1 id="hero-title" class="text-3xl md:text-6xl font-black mb-6 leading-tight">
-                고환율과 비자 장벽의 시대,<br>미국 의대 진학의 해법은 '서울'에 있습니다.
+            <h1 id="hero-title" class="hero-title text-4xl md:text-6xl font-black mb-8 leading-tight">
+                고환율과 비자 장벽의 시대,<br class="hidden md:block"> 
+                미국 의대 진학의 해법은<br class="md:hidden"> 
+                <span class="text-blue-400">'서울'</span>에 있습니다.
             </h1>
-            <p id="hero-sub" class="text-lg md:text-2xl mb-10 text-gray-300">
+            <p id="hero-sub" class="text-lg md:text-2xl mb-12 text-gray-300 font-medium leading-relaxed">
                 샌프란시스코 비영리 재단 학위 + 서울 캠퍼스 안전성 + 50% 비용 절감
             </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#data" id="btn-data" class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full font-bold text-lg transition shadow-lg">실제 데이터 확인</a>
-                <a href="#apply" id="btn-apply" class="bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-lg transition">상담 신청하기</a>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#data" id="btn-data" class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full font-bold text-lg transition shadow-xl">실제 데이터 확인</a>
+                <a href="#apply" id="btn-apply" class="bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-lg transition shadow-lg">상담 신청하기</a>
             </div>
         </div>
     </section>
 
     <section id="data" class="py-24 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 id="data-title" class="text-3xl md:text-5xl font-black text-center mb-16 text-blue-900">왜 지금 한국에서 시작해야 하는가?</h2>
-            <div class="grid md:grid-cols-3 gap-8">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 id="data-title" class="text-3xl md:text-5xl font-black mb-16 text-blue-900">왜 지금 한국에서 시작해야 하는가?</h2>
+            <div class="grid md:grid-cols-3 gap-8 text-left">
                 <div class="data-card bg-white p-8 rounded-3xl shadow-xl border-t-8 border-blue-600">
-                    <h3 class="text-gray-500 font-bold mb-2">US MD Shortage</h3>
+                    <h3 class="text-gray-500 font-bold mb-2 uppercase text-xs">US MD Shortage</h3>
                     <div class="text-4xl font-black text-blue-900 mb-4">~124,000</div>
                     <p id="d1-text" class="text-gray-600 text-sm leading-relaxed">2034년까지 예상되는 미국 의사 부족 인원. 미국 의대 입학은 이제 국가적 과제이며 외국인 인재 수급은 필수입니다.</p>
                 </div>
                 <div class="data-card bg-white p-8 rounded-3xl shadow-xl border-t-8 border-red-500">
-                    <h3 class="text-gray-500 font-bold mb-2">Visa & Risk</h3>
+                    <h3 class="text-gray-500 font-bold mb-2 uppercase text-xs">Visa & Political Risk</h3>
                     <div id="d2-val" class="text-4xl font-black text-red-600 mb-4">35% Rejection</div>
                     <p id="d2-text" class="text-gray-600 text-sm leading-relaxed">중국/아시아 학생 비자 거절 급증 및 인종차별 리스크. 한국은 안전 지수 최상위이며 비자 발급이 안정적입니다.</p>
                 </div>
                 <div class="data-card bg-white p-8 rounded-3xl shadow-xl border-t-8 border-green-500">
-                    <h3 class="text-gray-500 font-bold mb-2">Cost (FX 1,500)</h3>
+                    <h3 class="text-gray-500 font-bold mb-2 uppercase text-xs">Cost (FX 1,500)</h3>
                     <div id="d3-val" class="text-4xl font-black text-green-600 mb-4">SAVE 50%+</div>
-                    <p id="d3-text" class="text-gray-600 text-sm leading-relaxed">미국 현지 유학비 연 1.5억 시대. 플라토는 학비 $25k~$30k로 경제적 부담을 절반 이하로 줄입니다.</p>
+                    <p id="d3-text" class="text-gray-600 text-sm leading-relaxed">미국 현지 유학비 연 1.5억 시대. 플라토는 학비 $25k~$30k로 부모님의 경제적 부담을 절반 이하로 줄입니다.</p>
                 </div>
             </div>
         </div>
@@ -77,37 +105,37 @@
     <section class="py-24 bg-white px-6">
         <div class="max-w-7xl mx-auto">
             <h2 id="ec-title" class="text-3xl md:text-5xl font-black text-center mb-16 text-blue-900 leading-tight">
-                서울의 최첨단 의료 인프라를<br>당신의 커리어로 만드십시오.
+                서울의 최첨단 의료 인프라를<br class="hidden md:block"> 당신의 커리어로 만드십시오.
             </h2>
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-8">
+                <div class="space-y-6">
                     <div class="flex items-start bg-slate-50 p-6 rounded-2xl">
-                        <div class="bg-blue-600 text-white p-3 rounded-xl mr-5"><i class="fas fa-stethoscope"></i></div>
+                        <div class="bg-blue-600 text-white p-3 rounded-xl mr-5 shadow-lg"><i class="fas fa-user-md"></i></div>
                         <div>
                             <h4 id="ec1-t" class="text-xl font-bold mb-2">강남/경기권 대형 병원 협업 실습</h4>
-                            <p id="ec1-d" class="text-gray-600">세계 최고 수준의 강남 피부과, 성형외과 및 종합병원 Shadowing 기회 제공.</p>
+                            <p id="ec1-d" class="text-gray-600 text-sm">세계 최고 수준의 강남 피부과, 성형외과 및 종합병원 Shadowing 기회 제공.</p>
                         </div>
                     </div>
                     <div class="flex items-start bg-slate-50 p-6 rounded-2xl">
-                        <div class="bg-blue-600 text-white p-3 rounded-xl mr-5"><i class="fas fa-hands-helping"></i></div>
+                        <div class="bg-blue-600 text-white p-3 rounded-xl mr-5 shadow-lg"><i class="fas fa-certificate"></i></div>
                         <div>
                             <h4 id="ec2-t" class="text-xl font-bold mb-2">독보적인 EC & 봉사활동 경력</h4>
-                            <p id="ec2-d" class="text-gray-600">미국 의대 사정관들이 주목하는 한국 내 다양한 의료 봉사 및 체험 활동 인증.</p>
+                            <p id="ec2-d" class="text-gray-600 text-sm">미국 의대 사정관들이 주목하는 한국 내 다양한 의료 봉사 및 체험 활동 인증.</p>
                         </div>
                     </div>
                     <div class="flex items-start bg-slate-50 p-6 rounded-2xl">
-                        <div class="bg-blue-600 text-white p-3 rounded-xl mr-5"><i class="fas fa-laptop-medical"></i></div>
+                        <div class="bg-blue-600 text-white p-3 rounded-xl mr-5 shadow-lg"><i class="fas fa-graduation-cap"></i></div>
                         <div>
                             <h4 id="ec3-t" class="text-xl font-bold mb-2">미국 교수진 & MCAT 완벽 준비</h4>
-                            <p id="ec3-d" class="text-gray-600">미국 교수진의 온/오프라인 수업과 전담 튜터의 MCAT 고득점 밀착 관리.</p>
+                            <p id="ec3-d" class="text-gray-600 text-sm">미국 교수진의 온/오프라인 하이브리드 수업과 전담 튜터의 MCAT 고득점 밀착 관리.</p>
                         </div>
                     </div>
                 </div>
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=800&q=80" class="rounded-3xl shadow-2xl">
-                    <div class="absolute -bottom-6 -right-6 bg-blue-900 text-white p-8 rounded-2xl shadow-2xl">
-                        <p class="text-xs uppercase tracking-widest opacity-70 mb-1">Global Standard</p>
-                        <p id="badge-text" class="text-xl font-bold">Hybrid Pre-Med<br>System</p>
+                    <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=800&q=80" class="rounded-3xl shadow-2xl border-8 border-white">
+                    <div class="absolute -bottom-6 -left-6 bg-blue-900 text-white p-8 rounded-2xl shadow-2xl">
+                        <p class="text-xs uppercase tracking-widest opacity-70 mb-1">Success Strategy</p>
+                        <p id="badge-text" class="text-xl font-bold">4-Year Strategic<br>Hub in Seoul</p>
                     </div>
                 </div>
             </div>
@@ -116,17 +144,17 @@
 
     <section id="apply" class="py-24 bg-blue-900 text-white text-center">
         <div class="max-w-2xl mx-auto px-6">
-            <h2 id="f-title" class="text-3xl font-black mb-4 text-white">전략적 입학 상담 신청</h2>
+            <h2 id="f-title" class="text-3xl font-black mb-4">전략적 입학 상담 신청</h2>
             <p id="f-sub" class="mb-10 text-blue-200">고환율과 정치적 상황에 당신의 꿈을 양보하지 마십시오.</p>
             <form class="grid gap-4 text-left">
-                <input type="text" id="ph-name" placeholder="Full Name" class="p-4 rounded-xl text-slate-900 outline-none">
-                <input type="text" id="ph-contact" placeholder="Contact (WeChat / WhatsApp / Line)" class="p-4 rounded-xl text-slate-900 outline-none">
-                <button id="btn-submit" type="button" class="bg-blue-500 hover:bg-blue-600 text-white p-5 rounded-xl font-bold text-xl transition">입학 자료 요청하기</button>
+                <input type="text" id="ph-name" placeholder="Full Name" class="p-4 rounded-xl text-slate-900 outline-none w-full">
+                <input type="text" id="ph-contact" placeholder="Contact (WeChat / WhatsApp / Line)" class="p-4 rounded-xl text-slate-900 outline-none w-full">
+                <button id="btn-submit" type="button" class="bg-blue-500 hover:bg-blue-600 text-white p-5 rounded-xl font-bold text-xl transition shadow-lg">입학 자료 요청하기</button>
             </form>
         </div>
     </section>
 
-    <footer class="py-10 text-center text-gray-400 text-xs">
+    <footer class="py-10 text-center text-gray-500 text-[10px] md:text-xs">
         <p>© 2026 PLATO SCHOOL SF FOUNDATION. ALL RIGHTS RESERVED.</p>
         <p class="mt-2">Plato School is currently in the process of seeking accreditation from the WSCUC.</p>
     </footer>
@@ -141,7 +169,7 @@
                 d1T: "2034년까지 예상되는 미국 의사 부족 인원. 미국 의대 입학은 이제 국가적 과제이며 외국인 인재 수급은 필수입니다.",
                 d2V: "비자 거절 급증",
                 d2T: "중국/아시아 학생 비자 거절 급증 및 인종차별 리스크. 한국은 안전 지수 최상위이며 비자 발급이 안정적입니다.",
-                d3T: "미국 현지 유학비 연 1.5억 시대. 플라토는 학비 $25k~$30k로 경제적 부담을 절반 이하로 줄입니다.",
+                d3T: "미국 현지 유학비 연 1.5억 시대. 플라토는 학비 $25k~$30k로 부모님의 경제적 부담을 절반 이하로 줄입니다.",
                 ecTitle: "서울의 최첨단 의료 인프라를\n당신의 커리어로 만드십시오.",
                 ec1T: "강남/경기권 대형 병원 협업 실습", ec1D: "세계 최고 수준의 강남 피부과, 성형외과 및 종합병원 Shadowing 기회 제공.",
                 ec2T: "독보적인 EC & 봉사활동 경력", ec2D: "미국 의대 사정관들이 주목하는 한국 내 다양한 의료 봉사 및 체험 활동 인증.",
@@ -156,17 +184,17 @@
                 dTitle: "为什么现在必须在韩国开始？",
                 d1T: "到2034年美国医生缺口将达12.4万。美国急需优秀的亚裔医疗人才。",
                 d2V: "签证拒签率激增",
-                d2T: "中国学生留美签证受限。韩国作为全球最安全国家之一，签证政策极其稳定且无歧视。",
+                d2T: "中国留学生赴美签证受限及美国国内政治不确定性。韩国作为全球最安全国家之一，签证政策极其稳定。",
                 d3T: "按1500汇率计算，赴美留学年费超80万人民币。我们将学费降至一半以下。",
                 ecTitle: "将首尔最尖端的医疗资源，\n转化为您的名校背景。",
                 ec1T: "江南/京畿道知名医院协作实习", ec1D: "在世界顶级的江南皮肤科、整形外科及大型综合医院提供观摩实习机会。",
-                ec2T: "卓越的 EC 及志愿活动背景", ec2D: "策划并认证受美国医学院招生官青睐的韩国医疗志愿服务活动。",
-                ec3T: "美国教授与 MCAT 完美准备", ec3D: "美国教授线上授课 + 韩国导师线下管理，确保 MCAT 高分。",
+                ec2T: "卓越的 EC 及志愿活动背景", ec2D: "策划并认证受美国医学院招生官青睐的韩国医疗志愿服务及社区活动。",
+                ec3T: "美国教授与 MCAT 完美准备", ec3D: "美国教授实时线上授课 + 韩国专业导师线下管理，确保 MCAT 高分。",
                 fTitle: "入学战略咨询", fSub: "不要让汇率或政治局势阻碍您的梦想。",
-                phName: "姓名", phContact: "联系方式 (微信/Line)", btnSubmit: "索取招生简章"
+                phName: "姓名", phContact: "联系方式 (微信/Line/WhatsApp)", btnSubmit: "索取招生简章"
             },
             en: {
-                hTitle: "In an Era of High FX & Visa Barriers,\nSeoul is the Hub for US Med School.",
+                hTitle: "In an Era of High FX & Visa Barriers,\nSeoul is the Strategic Hub for US Med School.",
                 hSub: "SF Non-Profit Degree + Seoul Campus Safety + 50% Cost Saving",
                 btnData: "View Statistics", btnApply: "Apply Now",
                 dTitle: "Why Start in Korea Now?",
@@ -179,23 +207,23 @@
                 ec2T: "Elite EC & Volunteer Experience", ec2D: "Proven medical volunteering in Korea highly valued by US medical schools.",
                 ec3T: "US Faculty & MCAT Prep", ec3D: "Real-time lectures by US professors coupled with intensive tutoring in Seoul.",
                 fTitle: "Strategic Consultation", fSub: "Don't sacrifice your dream for exchange rates or political shifts.",
-                phName: "Full Name", phContact: "Contact (WeChat/WhatsApp)", btnSubmit: "Request Brochure"
+                phName: "Full Name", phContact: "Contact (WeChat/WhatsApp/Line)", btnSubmit: "Request Brochure"
             },
             ja: {
                 hTitle: "高為替とビザ障壁の時代、\n米国医学部への解法は「ソウル」にあります。",
-                hSub: "SF非営利法人学位 + ソウル治安 + 50%費用削減",
+                hSub: "SF非営利法人学位 + ソウルキャンパスの安全性 + 50%費用削減",
                 btnData: "統計データを見る", btnApply: "相談を申し込む",
-                dTitle: "なぜ今、韓国で始めるべきなのか？",
+                dTitle: "왜 지금 한국에서 시작해야 하는가?",
                 d1T: "2034年までに12.4万人の医師不足を予測。米国医学部への入学は国家的な課題です。",
                 d2V: "ビザ拒否率の急増",
                 d2T: "アジア人学生への差別とビザ制限のリスク。韓国は安全で安定した学習環境を提供します。",
-                d3T: "為替1500基準、米本土留学は年1500万円超。プラトは学費を半分以下に抑えます。",
-                ecTitle: "ソウルの最先端医療インフラを\nキャリアの基盤に。",
+                d3T: "為替1,500基準、米本土留学は年1,500万円超。プラトは学費を半分以下に抑えます。",
+                ecTitle: "ソウルの最先端医療インフラを\nあなたのキャリア基盤に。",
                 ec1T: "江南・京畿道の有名病院実習", ec1D: "世界最高水準の江南皮膚科、整形外科でのシャドウイング機会を提供。",
                 ec2T: "卓越したECとボランティア活動", ec2D: "米国の医学部入試で評価される韓国国内の医療奉仕活動を認証。",
                 ec3T: "米国教授陣とMCAT準備", ec3D: "米国教授のオンライン授業とソウルでの対面指導でMCAT高得点を実現。",
                 fTitle: "入学戦略相談", fSub: "為替や政治状況にあなたの夢を譲らないでください。",
-                phName: "氏名", phContact: "連絡先 (Line/WeChat)", btnSubmit: "資料を請求する"
+                phName: "お名前", phContact: "連絡先 (Line/WeChat)", btnSubmit: "資料を請求する"
             },
             th: {
                 hTitle: "ก้าวข้ามกำแพงอัตราแลกเปลี่ยนและวีซ่า\nเส้นทางสู่แพทย์สหรัฐฯ เริ่มต้นที่โซล",
@@ -206,33 +234,33 @@
                 d2V: "วีซ่าถูกปฏิเสธสูง",
                 d2T: "ความเสี่ยงเรื่องการเหยียดเชื้อชาติในสหรัฐฯ โซลปลอดภัยและวีซ่ามีเสถียรภาพมากกว่า",
                 d3T: "ประหยัดค่าใช้จ่ายได้มากกว่า 50% เมื่อเทียบกับการไปเรียนที่สหรัฐฯ โดยตรง",
-                ecTitle: "ใช้โครงสร้างพื้นฐานทางการแพทย์ของโซล\nเป็นฐานอาชีพของคุณ",
-                ec1T: "ฝึกงานในโรงพยาบาลย่านกังนัม", ec1D: "โอกาส Shadowing ในคลินิกศัลยกรรมและโรงพยาบาลชั้นนำในกังนัมและคยองกี",
-                ec2T: "ประสบการณ์ EC และจิตอาสา", ec2D: "กิจกรรมจิตอาสาทางการแพทย์ในเกาหลีที่โรงเรียนแพทย์สหรัฐฯ ให้การยอมรับ",
+                ecTitle: "ใช้โครงสร้างพื้นฐานการแพทย์ของโซล\nสร้างรากฐานอาชีพของคุณ",
+                ec1T: "ฝึกงานในโรงพยาบาลย่านกังนัม", ec1D: "โอกาส Shadowing ในคลินิกและโรงพยาบาลชั้นนำในกังนัมและคยองกี",
+                ec2T: "ประสบการณ์ EC และจิตอาสา", ec2D: "กิจกรรมจิตอาสาทางการแพทย์ในเกาหลีที่โรงเรียนแพทย์สหรัฐฯ ยอมรับ",
                 ec3T: "อาจารย์จากสหรัฐฯ และ MCAT", ec3D: "เรียนออนไลน์กับอาจารย์สหรัฐฯ พร้อมติวเตอร์ออฟไลน์ในโซลเพื่อคะแนน MCAT",
-                fTitle: "ปรึกษาการเข้าเรียน", fSub: "อย่าให้การเมืองหรืออัตราแลกเปลี่ยนมาขัดขวางความฝัน",
+                fTitle: "ปรึกษาการเข้าเรียน", fSub: "อย่าปล่อยให้อัตราแลกเปลี่ยนมาขวางความฝัน",
                 phName: "ชื่อ-นามสกุล", phContact: "ช่องทางติดต่อ (Line/WeChat)", btnSubmit: "ขอรับโบรชัวร์"
             },
             vi: {
                 hTitle: "Vượt qua rào cản tỷ giá và Visa,\nLộ trình trở thành bác sĩ Mỹ tại Seoul",
                 hSub: "Bằng Mỹ từ SF + An toàn tại Seoul + Tiết kiệm 50% chi phí",
-                btnData: "Xem dữ liệu thực tế", btnApply: "Đăng ký tư vấn",
+                btnData: "Xem dữ liệu", btnApply: "Đăng ký tư vấn",
                 dTitle: "Tại sao nên bắt đầu tại Hàn Quốc?",
-                d1T: "Mỹ thiếu 124.000 bác sĩ vào năm 2034. Việc tuyển dụng nhân tài quốc tế là ưu tiên hàng đầu.",
+                d1T: "Mỹ thiếu 124.000 bác sĩ vào năm 2034. Việc tuyển dụng nhân tài quốc tế là ưu tiên.",
                 d2V: "Rủi ro Visa cao",
                 d2T: "Tỷ lệ từ chối Visa Mỹ tăng cao. Seoul đảm bảo môi trường học tập ổn định và an toàn.",
-                d3T: "Tiết kiệm hơn 50% chi phí so với du học trực tiếp tại Mỹ với tỷ giá 1.500.",
+                d3T: "Tiết kiệm hơn 50% chi phí so với du học trực tiếp tại Mỹ.",
                 ecTitle: "Biến hạ tầng y tế Seoul\nthành nền tảng sự nghiệp của bạn",
                 ec1T: "Thực tập tại Gangnam & Gyeonggi", ec1D: "Cơ hội shadowing tại các bệnh viện da liễu và thẩm mỹ hàng đầu thế giới.",
                 ec2T: "Hồ sơ EC & Tình nguyện xuất sắc", ec2D: "Chứng nhận các hoạt động tình nguyện y tế tại Hàn Quốc được Mỹ đánh giá cao.",
-                ec3T: "Giảng viên Mỹ & Luyện thi MCAT", ec3D: "Học trực tuyến với giáo sư Mỹ kết hợp gia sư trực tiếp tại Seoul cho MCAT.",
-                fTitle: "Tư vấn tuyển sinh", fSub: "Đừng để tỷ giá hay chính trị cản trở ước mơ của bạn.",
-                phName: "Họ và tên", phContact: "Liên hệ (WhatsApp/Zalo)", btnSubmit: "Nhận tài liệu"
+                ec3T: "Giảng viên Mỹ & Luyện thi MCAT", ec3D: "Học trực tuyến với giáo sư Mỹ kết hợp gia sư trực tiếp tại Seoul.",
+                fTitle: "Tư vấn tuyển sinh", fSub: "Đừng để tỷ giá hay chính trị cản trở ước mơ.",
+                phName: "Họ và tên", phContact: "Liên hệ (WhatsApp/Zalo/WeChat)", btnSubmit: "Nhận tài liệu"
             },
             id: {
                 hTitle: "Melampaui Hambatan Kurs & Visa,\nSolusi Menjadi Dokter AS di Seoul",
                 hSub: "Gelar AS dari Yayasan SF + Keamanan Seoul + Hemat Biaya 50%",
-                btnData: "Lihat Data", btnApply: "Konsultasi Sekarang",
+                btnData: "Lihat Data", btnApply: "Konsultasi",
                 dTitle: "Mengapa Mulai di Korea Sekarang?",
                 d1T: "Kekurangan 124.000 dokter di AS pada 2034. Perekrutan talenta internasional sangat penting.",
                 d2V: "Risiko Visa Tinggi",
@@ -243,13 +271,14 @@
                 ec2T: "Pengalaman EC & Relawan Elit", ec2D: "Kegiatan relawan medis di Korea yang diakui oleh sekolah kedokteran AS.",
                 ec3T: "Fakultas AS & Persiapan MCAT", ec3D: "Kuliah online real-time dari profesor AS dan bimbingan offline di Seoul.",
                 fTitle: "Konsultasi Strategis", fSub: "Jangan korbankan impian Anda demi nilai tukar atau politik.",
-                phName: "Nama Lengkap", phContact: "Kontak (WhatsApp/WeChat)", btnSubmit: "Minta Brosur"
+                phName: "Nama Lengkap", phContact: "Kontak (WhatsApp/WeChat/Line)", btnSubmit: "Minta Brosur"
             }
         };
 
         function setLanguage(lang) {
             const t = dict[lang];
-            document.getElementById('hero-title').innerText = t.hTitle;
+            // 히어로 제목의 \n을 <br>로 변환하여 적용
+            document.getElementById('hero-title').innerHTML = t.hTitle.replace(/\n/g, '<br class="hidden md:block"> ');
             document.getElementById('hero-sub').innerText = t.hSub;
             document.getElementById('btn-data').innerText = t.btnData;
             document.getElementById('btn-apply').innerText = t.btnApply;
@@ -258,7 +287,7 @@
             document.getElementById('d2-val').innerText = t.d2V;
             document.getElementById('d2-text').innerText = t.d2T;
             document.getElementById('d3-text').innerText = t.d3T;
-            document.getElementById('ec-title').innerText = t.ecTitle;
+            document.getElementById('ec-title').innerHTML = t.ecTitle.replace(/\n/g, '<br class="hidden md:block"> ');
             document.getElementById('ec1-t').innerText = t.ec1T;
             document.getElementById('ec1-d').innerText = t.ec1D;
             document.getElementById('ec2-t').innerText = t.ec2T;

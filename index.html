@@ -3,32 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plato School | Global Pre-Med Strategic Hub</title>
+    <title>Plato School | Global Pre-Med Strategic Hub — Seoul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* (기존 스타일 유지) */
-        :root { --navy: #0a1628; --blue: #1a56db; --gold: #c9a84c; --white: #f8f9ff; --gray: #8892a0; }
-        body { font-family: sans-serif; background: var(--white); margin: 0; }
-        nav { position: fixed; top: 0; width: 100%; height: 70px; background: var(--navy); display: flex; justify-content: space-between; align-items: center; padding: 0 20px; z-index: 1000; color: white; }
-        .lang-btn { background: transparent; border: 1px solid white; color: white; padding: 5px 10px; cursor: pointer; margin-left: 5px; border-radius: 4px; }
-        .lang-btn.active { background: var(--gold); border-color: var(--gold); color: var(--navy); }
-        section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
-        .section-title { font-size: 2rem; margin-bottom: 30px; text-align: center; }
-        /* FAQ Style */
-        .faq-item { background: white; border: 1px solid #ddd; margin-bottom: 10px; border-radius: 8px; overflow: hidden; }
-        .faq-q { padding: 20px; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        .faq-a { padding: 0 20px 20px; color: #666; display: none; border-top: 1px solid #eee; padding-top: 15px; }
+        :root {
+            --navy: #0a1628;
+            --navy-mid: #0f2248;
+            --blue: #1a56db;
+            --blue-light: #3b82f6;
+            --gold: #c9a84c;
+            --gold-light: #f0d27a;
+            --white: #f8f9ff;
+            --gray: #8892a0;
+            --slate: #e8edf4;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--white); color: var(--navy); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* NAV */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,22,40,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.2); display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 72px; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--white); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: var(--gold); }
+        .logo-badge { font-family: 'Pretendard', sans-serif; font-size: 9px; font-weight: 700; background: var(--gold); color: var(--navy); padding: 2px 6px; border-radius: 3px; letter-spacing: 0.1em; }
+        .lang-switcher { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+        .lang-btn { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.65); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Pretendard', sans-serif; }
+        .lang-btn:hover, .lang-btn.active { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+
+        /* ALERT */
+        .alert-banner { background: linear-gradient(90deg, #7f1d1d, #991b1b, #7f1d1d); color: #fecaca; text-align: center; padding: 12px 2rem; font-size: 13px; font-weight: 600; letter-spacing: 0.03em; }
+        .alert-banner strong { color: #fff; }
+
+        /* HERO */
+        .hero { min-height: 100vh; background: linear-gradient(160deg, rgba(10,22,40,0.97) 0%, rgba(15,34,72,0.95) 50%, rgba(26,86,219,0.15) 100%), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1920&q=80') center/cover; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 2rem 80px; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(26,86,219,0.12) 0%, transparent 60%), radial-gradient(ellipse at 70% 20%, rgba(201,168,76,0.08) 0%, transparent 50%); }
+        .hero::after { content: 'PLATO'; position: absolute; font-family: 'DM Serif Display', serif; font-size: 28vw; font-weight: 400; color: rgba(255,255,255,0.022); top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.4); color: var(--gold-light); padding: 8px 20px; border-radius: 40px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2rem; position: relative; animation: fadeSlideDown 0.8s ease forwards; }
+        .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: blink 1.5s ease-in-out infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+        .hero-title { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 5.5vw, 4.2rem); color: var(--white); line-height: 1.22; margin-bottom: 1.5rem; position: relative; animation: fadeSlideUp 0.9s ease 0.2s both; }
+        .hero-title em { font-style: italic; color: var(--gold-light); }
+        .hero-sub { color: rgba(200,215,235,0.85); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.7; max-width: 640px; margin: 0 auto 2.5rem; font-weight: 400; animation: fadeSlideUp 0.9s ease 0.4s both; }
+        .hero-sub strong { color: var(--gold-light); font-weight: 700; }
+        .hero-stats { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; animation: fadeSlideUp 0.9s ease 0.5s both; }
+        .stat-pill { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); padding: 12px 22px; border-radius: 12px; text-align: center; }
+        .stat-pill .num { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--gold-light); display: block; line-height: 1; }
+        .stat-pill .lbl { font-size: 11px; color: rgba(255,255,255,0.5); display: block; margin-top: 4px; letter-spacing: 0.06em; text-transform: uppercase; }
+        .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeSlideUp 0.9s ease 0.6s both; }
+        .btn-primary { background: var(--gold); color: var(--navy); padding: 16px 36px; border-radius: 8px; font-size: 15px; font-weight: 800; text-decoration: none; transition: all 0.25s; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,168,76,0.45); }
+        .btn-secondary { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.3); padding: 16px 36px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: all 0.25s; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+        @keyframes fadeSlideDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeSlideUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+        /* SECTIONS */
+        section { padding: 96px 2rem; }
+        .section-label { font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; display: block; }
+        .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; margin-bottom: 1.2rem; color: var(--navy); }
+        .section-title em { font-style: italic; color: var(--blue); }
+        .section-desc { color: var(--gray); font-size: 1rem; line-height: 1.8; max-width: 580px; }
+        .max-container { max-width: 1180px; margin: 0 auto; }
+
+        /* URGENCY */
+        .urgency-section { background: var(--navy); color: var(--white); }
+        .urgency-section .section-title { color: var(--white); }
+        .urgency-section .section-desc { color: rgba(255,255,255,0.55); }
+        .urgency-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .urgency-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px; position: relative; overflow: hidden; transition: transform 0.3s, border-color 0.3s; }
+        .urgency-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.3); }
+        .urgency-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); }
+        .urgency-card .icon { font-size: 1.6rem; margin-bottom: 1rem; }
+        .urgency-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+        .urgency-card p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+        .urgency-card .big-num { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--gold-light); display: block; margin-bottom: 4px; }
+
+        /* ABOUT */
+        .about-section { background: #f0f4fa; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 4rem; }
+        .about-img { position: relative; }
+        .about-img img { width: 100%; border-radius: 20px; box-shadow: 0 30px 80px rgba(10,22,40,0.18); }
+        .badge-overlay { position: absolute; bottom: -20px; right: -20px; background: var(--navy); color: var(--white); padding: 20px 24px; border-radius: 14px; box-shadow: 0 12px 40px rgba(10,22,40,0.3); text-align: center; }
+        .badge-overlay .big { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--gold-light); }
+        .badge-overlay .sm { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; }
+        .about-points { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+        .about-point { display: flex; align-items: flex-start; gap: 14px; background: var(--white); padding: 18px 20px; border-radius: 12px; box-shadow: 0 2px 12px rgba(10,22,40,0.06); transition: transform 0.2s; }
+        .about-point:hover { transform: translateX(4px); }
+        .about-point .icon { background: var(--blue); color: white; width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+        .about-point h5 { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+        .about-point p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+        /* CAMPUS */
+        .campus-section { background: var(--white); }
+        .campus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+        .campus-card { background: var(--navy); border-radius: 20px; overflow: hidden; box-shadow: 0 16px 48px rgba(10,22,40,0.15); transition: transform 0.3s; }
+        .campus-card:hover { transform: translateY(-6px); }
+        .campus-img { height: 240px; background-size: cover; background-position: center; position: relative; }
+        .campus-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(10,22,40,0.9)); }
+        .campus-badge { position: absolute; top: 16px; left: 16px; background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px; z-index: 2; letter-spacing: 0.06em; }
+        .campus-body { padding: 24px; color: var(--white); }
+        .campus-body h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 8px; }
+        .campus-body p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 16px; }
+        .campus-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .campus-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.75); font-size: 11px; padding: 4px 10px; border-radius: 6px; }
+
+        /* ACTIVITIES */
+        .activities-section { background: #f0f4fa; }
+        .activities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .activity-card { background: var(--white); border-radius: 16px; padding: 28px; border: 1px solid rgba(10,22,40,0.07); transition: all 0.3s; position: relative; overflow: hidden; }
+        .activity-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--blue-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+        .activity-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(10,22,40,0.1); }
+        .activity-card:hover::before { transform: scaleX(1); }
+        .activity-icon { width: 50px; height: 50px; background: linear-gradient(135deg, var(--blue), #3b82f6); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; margin-bottom: 1rem; }
+        .activity-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+        .activity-card p { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+        /* COST */
+        .cost-section { background: var(--navy); color: var(--white); }
+        .cost-section .section-title { color: var(--white); }
+        .cost-comparison { display: grid; grid-template-columns: 1fr 60px 1fr; align-items: center; gap: 1rem; margin-top: 3rem; }
+        .cost-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 36px; }
+        .cost-card.highlight { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.35); }
+        .cost-card h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+        .cost-card.highlight h3 { color: var(--gold); }
+        .cost-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .cost-row:last-child { border-bottom: none; }
+        .cost-row .label { font-size: 13px; color: rgba(255,255,255,0.6); }
+        .cost-row .val { font-weight: 700; font-size: 15px; }
+        .cost-row .val.cross { text-decoration: line-through; color: rgba(255,100,100,0.7); }
+        .cost-row .val.save { color: var(--gold-light); }
+        .cost-total { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.15); }
+        .cost-total .total-num { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--gold-light); display: block; }
+        .cost-total .total-label { font-size: 12px; color: rgba(255,255,255,0.45); }
+        .vs-circle { width: 50px; height: 50px; background: rgba(255,255,255,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-weight: 800; font-size: 13px; margin: 0 auto; }
+
+        /* TIMELINE */
+        .timeline-section { background: var(--white); }
+        .timeline { position: relative; margin-top: 3rem; padding-left: 40px; }
+        .timeline::before { content: ''; position: absolute; left: 14px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--blue), var(--gold)); }
+        .tl-item { position: relative; margin-bottom: 2.5rem; }
+        .tl-dot { position: absolute; left: -32px; top: 4px; width: 16px; height: 16px; background: var(--blue); border: 3px solid var(--white); border-radius: 50%; box-shadow: 0 0 0 3px var(--blue); }
+        .tl-year { font-size: 12px; font-weight: 800; color: var(--blue); letter-spacing: 0.1em; margin-bottom: 4px; }
+        .tl-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+        .tl-desc { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+        /* FAQ */
+        .faq-section { background: #f0f4fa; }
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; }
+        .faq-item { background: var(--white); border-radius: 14px; border: 1px solid rgba(10,22,40,0.07); overflow: hidden; transition: box-shadow 0.2s; }
+        .faq-item:hover { box-shadow: 0 8px 24px rgba(10,22,40,0.09); }
+        .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 20px 22px; cursor: pointer; font-size: 14px; font-weight: 700; color: var(--navy); gap: 12px; }
+        .faq-icon { width: 24px; height: 24px; background: var(--blue); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: white; font-size: 11px; transition: transform 0.3s, background 0.3s; }
+        .faq-a { display: none; padding: 0 22px 20px; font-size: 13px; color: var(--gray); line-height: 1.8; border-top: 1px solid rgba(10,22,40,0.07); padding-top: 16px; }
         .faq-item.open .faq-a { display: block; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold); }
+
+        /* APPLY */
+        .apply-section { background: var(--navy); color: var(--white); text-align: center; }
+        .apply-section .section-title { color: var(--white); }
+        .apply-form { max-width: 560px; margin: 3rem auto 0; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+        .form-input { width: 100%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: var(--white); padding: 15px 18px; border-radius: 10px; font-size: 14px; outline: none; font-family: 'Pretendard', sans-serif; transition: border-color 0.2s; }
+        .form-input::placeholder { color: rgba(255,255,255,0.35); }
+        .form-input:focus { border-color: var(--gold); }
+        .form-select { width: 100%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.85); padding: 15px 18px; border-radius: 10px; font-size: 14px; outline: none; font-family: 'Pretendard', sans-serif; margin-bottom: 1rem; cursor: pointer; appearance: none; }
+        .form-select option { background: #0f2248; }
+        .btn-submit { width: 100%; background: var(--gold); color: var(--navy); padding: 17px; border-radius: 10px; font-size: 16px; font-weight: 800; border: none; cursor: pointer; font-family: 'Pretendard', sans-serif; transition: all 0.25s; box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+        .btn-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+        .form-note { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 12px; }
+
+        /* FOOTER */
+        footer { background: #050d1a; color: rgba(255,255,255,0.35); padding: 40px 2rem; text-align: center; font-size: 12px; }
+        .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+        .footer-note { font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 8px; line-height: 1.7; }
+
+        /* REVEAL */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .about-grid, .campus-grid, .faq-grid { grid-template-columns: 1fr; }
+            .activities-grid { grid-template-columns: 1fr 1fr; }
+            .cost-comparison { grid-template-columns: 1fr; }
+            .vs-circle { display: none; }
+            .form-row { grid-template-columns: 1fr; }
+            .badge-overlay { position: relative; bottom: auto; right: auto; margin-top: 1rem; display: inline-block; }
+        }
+        @media (max-width: 600px) {
+            .activities-grid { grid-template-columns: 1fr; }
+            nav { padding: 0 1rem; }
+        }
     </style>
 </head>
 <body>
 
+<div class="alert-banner">
+    <strong>⚠ 긴급 알림:</strong> 달러 환율 1,500원 돌파 · 미국 F-1 비자 거절률 급등 · 트럼프 2기 유학 규제 강화
+</div>
+
 <nav>
-    <div class="logo">Plato School</div>
+    <div class="logo"><span>Plato</span> School <span class="logo-badge">SF · SEOUL</span></div>
     <div class="lang-switcher">
         <button class="lang-btn active" onclick="setLang('ko',this)">KR</button>
+        <button class="lang-btn" onclick="setLang('zh',this)">中文</button>
         <button class="lang-btn" onclick="setLang('en',this)">EN</button>
-        <button class="lang-btn" onclick="setLang('zh',this)">ZH</button>
         <button class="lang-btn" onclick="setLang('ja',this)">JP</button>
         <button class="lang-btn" onclick="setLang('th',this)">TH</button>
         <button class="lang-btn" onclick="setLang('vi',this)">VN</button>
@@ -36,113 +216,412 @@
     </div>
 </nav>
 
-<section id="faq-section">
-    <h2 class="section-title" id="faq-title">자주 묻는 질문</h2>
-    <div id="faq-container">
-        </div>
+<!-- HERO -->
+<section class="hero">
+    <div id="hero-badge" class="hero-badge">2023년 SF 비영리 재단 설립 · 서울 오피스 & 경기 캠퍼스 · WSCUC 인가 추진 중</div>
+    <h1 id="hero-title" class="hero-title">고환율과 비자 장벽의 시대,<br>미국 의대 진학의 전략적 해법은<br><em>'서울'</em>에 있습니다.</h1>
+    <p id="hero-sub" class="hero-sub"><strong>2023년 설립된 SF 비영리 재단 학위</strong> + 서울 오피스 &amp; 경기 캠퍼스 + <strong>미국 대비 50% 비용 절감</strong></p>
+    <div class="hero-stats">
+        <div class="stat-pill"><span class="num">50%↓</span><span class="lbl" id="stat1">비용 절감</span></div>
+        <div class="stat-pill"><span class="num">2023</span><span class="lbl" id="stat2">SF 재단 설립</span></div>
+        <div class="stat-pill"><span class="num">₩1,500</span><span class="lbl" id="stat3">달러 환율</span></div>
+        <div class="stat-pill"><span class="num">2곳</span><span class="lbl" id="stat4">서울+경기 캠퍼스</span></div>
+    </div>
+    <div class="hero-cta">
+        <a href="#faq" id="btn-data" class="btn-primary"><i class="fas fa-chart-bar"></i> 실제 데이터 확인</a>
+        <a href="#apply" id="btn-apply" class="btn-secondary"><i class="fas fa-calendar-alt"></i> 상담 신청하기</a>
+    </div>
 </section>
 
+<!-- URGENCY -->
+<section class="urgency-section">
+    <div class="max-container">
+        <div class="reveal">
+            <span class="section-label" style="color:var(--gold)">Why Now</span>
+            <h2 class="section-title" id="urgency-title" style="color:white">지금 당장 결정해야 하는<br><em style="color:var(--gold-light)">4가지 이유</em></h2>
+            <p class="section-desc" id="urgency-desc">미국 유학 환경이 구조적으로 악화되고 있습니다. 지금이 전략적 전환의 적기입니다.</p>
+        </div>
+        <div class="urgency-cards reveal">
+            <div class="urgency-card"><div class="icon">💱</div><span class="big-num">₩1,500+</span><h4 id="u1t">달러 환율 1,500원 돌파</h4><p id="u1d">4년 총 비용 기준 미국 유학 대비 2억~4억 원의 추가 부담. 플라토는 원화 기반 학비 구조를 유지합니다.</p></div>
+            <div class="urgency-card"><div class="icon">🛂</div><span class="big-num">↑급등</span><h4 id="u2t">F-1 비자 거절률 급증</h4><p id="u2d">트럼프 2기 행정부의 이민 규제 강화로 아시아 유학생 비자 거절 사례가 급증하고 있습니다.</p></div>
+            <div class="urgency-card"><div class="icon">⚠️</div><span class="big-num">불안</span><h4 id="u3t">미국 캠퍼스 치안·인종차별</h4><p id="u3d">아시아계 학생을 대상으로 한 혐오 범죄 및 차별 사례가 여전히 높은 수준을 유지하고 있습니다.</p></div>
+            <div class="urgency-card"><div class="icon">📈</div><span class="big-num">+20%</span><h4 id="u4t">미국 학비 매년 인상</h4><p id="u4d">미국 주요 대학 학비는 매년 5~20% 인상되고 있어 장기 비용 예측이 불가능한 구조입니다.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+    <div class="max-container">
+        <div class="about-grid reveal">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80" alt="SF Foundation">
+                <div class="badge-overlay"><div class="big">2023</div><div class="sm">SF Foundation<br>Est.</div></div>
+            </div>
+            <div>
+                <span class="section-label">About Plato School</span>
+                <h2 class="section-title" id="about-title">미국 비영리 재단이<br>서울에서 운영하는<br><em>글로벌 Pre-Med 학교</em></h2>
+                <p class="section-desc" id="about-desc">2023년 샌프란시스코에 설립된 비영리 교육 재단을 기반으로, 서울 오피스와 경기 캠퍼스를 통해 세계 최고 수준의 Pre-Med 교육을 제공합니다.</p>
+                <div class="about-points">
+                    <div class="about-point"><div class="icon"><i class="fas fa-university"></i></div><div><h5 id="ap1t">2023년 SF 비영리 재단 설립</h5><p id="ap1d">미국 캘리포니아주 비영리 법인으로 정식 설립. 미국 본토와 동일한 학위 수여 체계.</p></div></div>
+                    <div class="about-point"><div class="icon"><i class="fas fa-certificate"></i></div><div><h5 id="ap2t">WSCUC 인가 추진 중</h5><p id="ap2d">Western Association of Schools and Colleges 정식 인가를 적극 추진 중. 글로벌 스탠다드 학사 관리.</p></div></div>
+                    <div class="about-point"><div class="icon"><i class="fas fa-map-marker-alt"></i></div><div><h5 id="ap3t">서울 오피스 + 경기 캠퍼스</h5><p id="ap3d">서울 도심의 접근성 높은 오피스와 경기권의 넓은 캠퍼스, 두 거점으로 최적 학습 환경 제공.</p></div></div>
+                    <div class="about-point"><div class="icon"><i class="fas fa-chalkboard-teacher"></i></div><div><h5 id="ap4t">미국 현직 교수진 하이브리드 수업</h5><p id="ap4d">미국 의대 교수진의 실시간 온라인 강의와 한국 현지 오프라인 튜터링을 병행합니다.</p></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CAMPUS -->
+<section class="campus-section">
+    <div class="max-container">
+        <div class="reveal" style="text-align:center">
+            <span class="section-label">Our Campuses</span>
+            <h2 class="section-title" id="campus-title">서울 오피스 &amp; 경기 캠퍼스<br><em>두 거점 전략</em></h2>
+        </div>
+        <div class="campus-grid reveal">
+            <div class="campus-card">
+                <div class="campus-img" style="background-image:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80')">
+                    <span class="campus-badge">서울 오피스</span>
+                </div>
+                <div class="campus-body">
+                    <h3 id="campus1t">서울 도심 오피스</h3>
+                    <p id="campus1d">강남/종로 인근 핵심 의료 클러스터와 인접. 병원 실습, 진로 상담, 미국 교수 화상 강의 공간으로 활용됩니다.</p>
+                    <div class="campus-tags"><span class="campus-tag">병원 실습 거점</span><span class="campus-tag">상담 &amp; 미팅</span><span class="campus-tag">강남 접근성</span><span class="campus-tag">하이브리드 강의실</span></div>
+                </div>
+            </div>
+            <div class="campus-card">
+                <div class="campus-img" style="background-image:url('https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?auto=format&fit=crop&w=800&q=80')">
+                    <span class="campus-badge">경기 캠퍼스</span>
+                </div>
+                <div class="campus-body">
+                    <h3 id="campus2t">경기권 본 캠퍼스</h3>
+                    <p id="campus2d">넓은 부지의 기숙형 캠퍼스로 학업에 집중할 수 있는 최적 환경. 실험 실습 공간, 도서관, 기숙사, 스포츠 시설을 갖춥니다.</p>
+                    <div class="campus-tags"><span class="campus-tag">기숙 캠퍼스</span><span class="campus-tag">실험 실습실</span><span class="campus-tag">도서관</span><span class="campus-tag">스포츠 시설</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="activities-section">
+    <div class="max-container">
+        <div class="reveal">
+            <span class="section-label">Extracurriculars &amp; Clinical</span>
+            <h2 class="section-title" id="ec-title">미국 의대가 원하는<br><em>임상 경험을 서울에서</em></h2>
+            <p class="section-desc" id="ec-desc">서울의 세계적 의료 인프라를 활용해 미국 의대 입시를 압도하는 포트폴리오를 구축합니다.</p>
+        </div>
+        <div class="activities-grid reveal">
+            <div class="activity-card"><div class="activity-icon"><i class="fas fa-user-md"></i></div><h4 id="ec1t">강남 대형병원 Shadowing</h4><p id="ec1d">강남 피부과, 성형외과, 종합병원 협약을 통한 정기 임상 참관. 미국 의대 필수 임상 시간을 서울에서 충족.</p></div>
+            <div class="activity-card"><div class="activity-icon"><i class="fas fa-flask"></i></div><h4 id="ec2t">의학 연구 참여 기회</h4><p id="ec2d">국내외 의학 저널 논문 공동 작성, 학회 발표 경험. 미국 의대 지원서의 핵심 스펙으로 활용.</p></div>
+            <div class="activity-card"><div class="activity-icon"><i class="fas fa-hands-helping"></i></div><h4 id="ec3t">의료 봉사 &amp; 글로벌 EC</h4><p id="ec3d">국제 의료 봉사, 의료 소외 계층 지원 프로그램 운영. 미국 의대 사정관이 높이 평가하는 주도적 활동.</p></div>
+            <div class="activity-card"><div class="activity-icon"><i class="fas fa-laptop-medical"></i></div><h4 id="ec4t">MCAT 전담 밀착 관리</h4><p id="ec4d">미국 현지 교수진 온라인 강의 + 오프라인 전담 튜터. 고득점 MCAT 전략 체계적 관리.</p></div>
+            <div class="activity-card"><div class="activity-icon"><i class="fas fa-microscope"></i></div><h4 id="ec5t">첨단 의료 기술 체험</h4><p id="ec5d">AI 진단, 로봇 수술, 디지털 헬스케어 등 서울의 최첨단 의료 기술을 직접 체험하는 세션.</p></div>
+            <div class="activity-card"><div class="activity-icon"><i class="fas fa-globe-asia"></i></div><h4 id="ec6t">글로벌 의학 컨퍼런스</h4><p id="ec6d">서울에서 열리는 국제 의학 학술대회 참관 및 발표 기회. 글로벌 의학계 네트워크 형성.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- COST -->
+<section class="cost-section">
+    <div class="max-container">
+        <div class="reveal" style="text-align:center">
+            <span class="section-label" style="color:var(--gold)">Cost Comparison</span>
+            <h2 class="section-title" id="cost-title" style="color:white">4년 총비용 비교:<br><em style="color:var(--gold-light)">플라토 vs 미국 유학</em></h2>
+        </div>
+        <div class="cost-comparison reveal">
+            <div class="cost-card">
+                <h3>🇺🇸 미국 Pre-Med (4년)</h3>
+                <div class="cost-row"><span class="label">학비</span><span class="val cross">₩160,000,000</span></div>
+                <div class="cost-row"><span class="label">생활비 (기숙/식비)</span><span class="val cross">₩100,000,000</span></div>
+                <div class="cost-row"><span class="label">환율 손실 (1,500원 기준)</span><span class="val cross">₩40,000,000+</span></div>
+                <div class="cost-row"><span class="label">비자 컨설팅/기타</span><span class="val cross">₩20,000,000</span></div>
+                <div class="cost-total"><span class="total-num">₩320,000,000+</span><span class="total-label">4년 총 예상 비용 (변동 위험 높음)</span></div>
+            </div>
+            <div class="vs-circle">VS</div>
+            <div class="cost-card highlight">
+                <h3>✅ 플라토 스쿨 (4년)</h3>
+                <div class="cost-row"><span class="label">학비</span><span class="val save">₩64,000,000</span></div>
+                <div class="cost-row"><span class="label">생활비 (서울/경기)</span><span class="val save">₩48,000,000</span></div>
+                <div class="cost-row"><span class="label">환율 손실</span><span class="val save">₩0 (원화 고정)</span></div>
+                <div class="cost-row"><span class="label">비자 리스크</span><span class="val save">없음</span></div>
+                <div class="cost-total"><span class="total-num" style="color:var(--gold-light)">₩160,000,000</span><span class="total-label">4년 총 예상 비용 (안정적 예측 가능)</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+    <div class="max-container">
+        <div class="reveal">
+            <span class="section-label">Roadmap</span>
+            <h2 class="section-title" id="tl-title">플라토 스쿨<br><em>발전 로드맵</em></h2>
+        </div>
+        <div class="timeline reveal">
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2023</div><div class="tl-title" id="tl1t">샌프란시스코 비영리 재단 설립</div><div class="tl-desc" id="tl1d">미국 캘리포니아주 비영리 법인(501c3) 설립 완료. 교육 사명 및 철학 확립.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2024</div><div class="tl-title" id="tl2t">서울 오피스 개설 &amp; 커리큘럼 개발</div><div class="tl-desc" id="tl2d">서울 도심 오피스 개설. 미국 의대 진학에 최적화된 Pre-Med 커리큘럼 및 강남 병원 협약 완료.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2025</div><div class="tl-title" id="tl3t">경기 캠퍼스 구축 &amp; 파일럿 코호트</div><div class="tl-desc" id="tl3d">경기권 본 캠퍼스 설립. 첫 번째 학생 코호트 선발 및 교육 시작. WSCUC 인가 신청.</div></div>
+            <div class="tl-item"><div class="tl-dot" style="background:var(--gold)"></div><div class="tl-year">2026~</div><div class="tl-title" id="tl4t">정식 모집 &amp; WSCUC 인가 취득</div><div class="tl-desc" id="tl4d">본격적인 글로벌 학생 모집. WSCUC 정식 인가 취득으로 완전한 미국 학위 공신력 확보.</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq-section">
+    <div class="max-container">
+        <div class="reveal" style="text-align:center">
+            <span class="section-label">FAQ</span>
+            <h2 class="section-title" id="faq-title">자주 묻는 질문</h2>
+        </div>
+        <div id="faq-container" class="faq-grid reveal"></div>
+    </div>
+</section>
+
+<!-- APPLY -->
+<section id="apply" class="apply-section">
+    <div class="max-container">
+        <div class="reveal">
+            <span class="section-label" style="color:var(--gold);display:block;text-align:center">Apply Now</span>
+            <h2 class="section-title" id="f-title" style="text-align:center">전략적 입학 상담 신청</h2>
+            <p id="f-sub" style="color:rgba(255,255,255,0.5);text-align:center;margin-top:12px">고환율과 정치적 리스크에 당신의 꿈을 양보하지 마십시오. 24시간 이내 전문 어드바이저가 연락드립니다.</p>
+        </div>
+        <div class="apply-form reveal">
+            <div class="form-row">
+                <input class="form-input" id="ph-name" type="text" placeholder="이름 / Full Name">
+                <input class="form-input" id="ph-email" type="email" placeholder="이메일 / Email">
+            </div>
+            <input class="form-input" id="ph-contact" type="text" placeholder="연락처 (WeChat / WhatsApp / KakaoTalk / Line)" style="margin-bottom:1rem">
+            <select class="form-select" id="ph-country">
+                <option value="">국적 / Nationality</option>
+                <option>🇰🇷 한국 Korea</option>
+                <option>🇨🇳 중국 China</option>
+                <option>🇯🇵 일본 Japan</option>
+                <option>🇹🇭 태국 Thailand</option>
+                <option>🇻🇳 베트남 Vietnam</option>
+                <option>🇮🇩 인도네시아 Indonesia</option>
+                <option>🌏 기타 Other</option>
+            </select>
+            <select class="form-select" id="ph-grade">
+                <option value="">현재 학년 / Current Grade</option>
+                <option>고등학교 1학년 / 10th Grade</option>
+                <option>고등학교 2학년 / 11th Grade</option>
+                <option>고등학교 3학년 / 12th Grade</option>
+                <option>대학 재학/편입 희망 / College Transfer</option>
+                <option>기타 / Other</option>
+            </select>
+            <button class="btn-submit" id="btn-submit" onclick="submitForm()">입학 자료 및 상담 신청하기 →</button>
+            <p class="form-note">* 개인정보는 입학 상담 목적으로만 사용되며 외부에 공유되지 않습니다.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-logo">Plato School</div>
+    <p>© 2026 PLATO SCHOOL SF FOUNDATION. ALL RIGHTS RESERVED.</p>
+    <p class="footer-note">Plato School is a program of a 501(c)(3) non-profit foundation established in San Francisco, CA in 2023.<br>Currently seeking accreditation from WSCUC (Western Association of Schools and Colleges).<br>Seoul Office · Gyeonggi Campus · Republic of Korea</p>
+</footer>
+
 <script>
+// ── helper: build a full language object from a translations map ──
+function makeLang(h) { return h; }
+
 const dict = {
     ko: {
-        faqTitle: "자주 묻는 질문",
-        faqs: [
-            {q: "미국 의대 진학이 정말 가능한가요?", a: "네, 플라토 스쿨은 미국 비영리 재단 커리큘럼을 통해 미국 의대 진학에 최적화된 Pre-Med 과정을 제공합니다."},
-            {q: "서울 캠퍼스에서는 무엇을 하나요?", a: "임상 실습(Shadowing), MCAT 준비, 그리고 미국 현지 교수진의 화상 강의 및 대면 상담이 진행됩니다."},
-            {q: "학위는 어디서 나오나요?", a: "샌프란시스코에 위치한 플라토 재단 본교의 학위가 수여됩니다."}
+        heroBadge:"2023년 SF 비영리 재단 설립 · 서울 오피스 &amp; 경기 캠퍼스 · WSCUC 인가 추진 중",
+        heroTitle:"고환율과 비자 장벽의 시대,<br>미국 의대 진학의 전략적 해법은<br><em>'서울'</em>에 있습니다.",
+        heroSub:"<strong>2023년 설립된 SF 비영리 재단 학위</strong> + 서울 오피스 &amp; 경기 캠퍼스 + <strong>미국 대비 50% 비용 절감</strong>",
+        stat1:"비용 절감",stat2:"SF 재단 설립",stat3:"달러 환율",stat4:"서울+경기 캠퍼스",
+        btnData:"실제 데이터 확인",btnApply:"상담 신청하기",
+        urgencyTitle:"지금 당장 결정해야 하는<br><em style='color:var(--gold-light)'>4가지 이유</em>",
+        urgencyDesc:"미국 유학 환경이 구조적으로 악화되고 있습니다. 지금이 전략적 전환의 적기입니다.",
+        u1t:"달러 환율 1,500원 돌파",u1d:"4년 총 비용 기준 미국 유학 대비 2억~4억 원의 추가 부담. 플라토는 원화 기반 학비 구조를 유지합니다.",
+        u2t:"F-1 비자 거절률 급증",u2d:"트럼프 2기 행정부의 이민 규제 강화로 아시아 유학생 비자 거절 사례가 급증하고 있습니다.",
+        u3t:"미국 캠퍼스 치안·인종차별",u3d:"아시아계 학생을 대상으로 한 혐오 범죄 및 차별 사례가 여전히 높은 수준을 유지하고 있습니다.",
+        u4t:"미국 학비 매년 인상",u4d:"미국 주요 대학 학비는 매년 5~20% 인상되고 있어 장기 비용 예측이 불가능한 구조입니다.",
+        aboutTitle:"미국 비영리 재단이<br>서울에서 운영하는<br><em>글로벌 Pre-Med 학교</em>",
+        aboutDesc:"2023년 샌프란시스코에 설립된 비영리 교육 재단을 기반으로, 서울 오피스와 경기 캠퍼스를 통해 세계 최고 수준의 Pre-Med 교육을 제공합니다.",
+        ap1t:"2023년 SF 비영리 재단 설립",ap1d:"미국 캘리포니아주 비영리 법인으로 정식 설립. 미국 본토와 동일한 학위 수여 체계.",
+        ap2t:"WSCUC 인가 추진 중",ap2d:"Western Association of Schools and Colleges 정식 인가를 적극 추진 중. 글로벌 스탠다드 학사 관리.",
+        ap3t:"서울 오피스 + 경기 캠퍼스",ap3d:"서울 도심의 접근성 높은 오피스와 경기권의 넓은 캠퍼스, 두 거점으로 최적 학습 환경 제공.",
+        ap4t:"미국 현직 교수진 하이브리드 수업",ap4d:"미국 의대 교수진의 실시간 온라인 강의와 한국 현지 오프라인 튜터링을 병행합니다.",
+        campusTitle:"서울 오피스 &amp; 경기 캠퍼스<br><em>두 거점 전략</em>",
+        campus1t:"서울 도심 오피스",campus1d:"강남/종로 인근 핵심 의료 클러스터와 인접. 병원 실습, 진로 상담, 미국 교수 화상 강의 공간으로 활용됩니다.",
+        campus2t:"경기권 본 캠퍼스",campus2d:"넓은 부지의 기숙형 캠퍼스로 학업에 집중할 수 있는 최적 환경. 실험 실습 공간, 도서관, 기숙사, 스포츠 시설을 갖춥니다.",
+        ecTitle:"미국 의대가 원하는<br><em>임상 경험을 서울에서</em>",
+        ecDesc:"서울의 세계적 의료 인프라를 활용해 미국 의대 입시를 압도하는 포트폴리오를 구축합니다.",
+        ec1t:"강남 대형병원 Shadowing",ec1d:"강남 피부과, 성형외과, 종합병원 협약을 통한 정기 임상 참관. 미국 의대 필수 임상 시간을 서울에서 충족.",
+        ec2t:"의학 연구 참여 기회",ec2d:"국내외 의학 저널 논문 공동 작성, 학회 발표 경험. 미국 의대 지원서의 핵심 스펙으로 활용.",
+        ec3t:"의료 봉사 &amp; 글로벌 EC",ec3d:"국제 의료 봉사, 의료 소외 계층 지원 프로그램 운영. 미국 의대 사정관이 높이 평가하는 주도적 활동.",
+        ec4t:"MCAT 전담 밀착 관리",ec4d:"미국 현지 교수진 온라인 강의 + 오프라인 전담 튜터. 고득점 MCAT 전략 체계적 관리.",
+        ec5t:"첨단 의료 기술 체험",ec5d:"AI 진단, 로봇 수술, 디지털 헬스케어 등 서울의 최첨단 의료 기술을 직접 체험하는 세션.",
+        ec6t:"글로벌 의학 컨퍼런스",ec6d:"서울에서 열리는 국제 의학 학술대회 참관 및 발표 기회. 글로벌 의학계 네트워크 형성.",
+        costTitle:"4년 총비용 비교:<br><em style='color:var(--gold-light)'>플라토 vs 미국 유학</em>",
+        tlTitle:"플라토 스쿨<br><em>발전 로드맵</em>",
+        tl1t:"샌프란시스코 비영리 재단 설립",tl1d:"미국 캘리포니아주 비영리 법인(501c3) 설립 완료. 교육 사명 및 철학 확립.",
+        tl2t:"서울 오피스 개설 &amp; 커리큘럼 개발",tl2d:"서울 도심 오피스 개설. 미국 의대 진학에 최적화된 Pre-Med 커리큘럼 및 강남 병원 협약 완료.",
+        tl3t:"경기 캠퍼스 구축 &amp; 파일럿 코호트",tl3d:"경기권 본 캠퍼스 설립. 첫 번째 학생 코호트 선발 및 교육 시작. WSCUC 인가 신청.",
+        tl4t:"정식 모집 &amp; WSCUC 인가 취득",tl4d:"본격적인 글로벌 학생 모집. WSCUC 정식 인가 취득으로 완전한 미국 학위 공신력 확보.",
+        faqTitle:"자주 묻는 질문",
+        fTitle:"전략적 입학 상담 신청",fSub:"고환율과 정치적 리스크에 당신의 꿈을 양보하지 마십시오. 24시간 이내 전문 어드바이저가 연락드립니다.",
+        phName:"이름 / Full Name",phEmail:"이메일 / Email",phContact:"연락처 (WeChat / WhatsApp / KakaoTalk)",btnSubmit:"입학 자료 및 상담 신청하기 →",
+        faqs:[
+            {q:"한국에서 취득한 학위가 미국에서 인정되나요?",a:"플라토 스쿨은 2023년 미국 샌프란시스코에 설립된 비영리 교육 재단 소속입니다. 졸업 시 미국 비영리 재단 발행 학위를 수여받으며, 이는 미국 의대 입시 서류로 완벽히 활용됩니다. 현재 WSCUC 정식 인가를 적극 추진 중입니다."},
+            {q:"WSCUC 인가를 아직 못 받았는데 괜찮나요?",a:"현재 인가 절차를 적극 추진 중이며, WSCUC 기준에 맞는 엄격한 학사 관리를 이미 시행하고 있습니다. 인가 취득 전 입학한 학생들에게는 인가 완료 시 졸업 증서를 재발행하는 등의 보호 조치를 마련하고 있습니다."},
+            {q:"환율 1,500원 시대, 실제 비용 절감 효과는?",a:"미국 유학 4년 기준 약 3억~4억 원이 소요되는 반면, 플라토 스쿨은 원화 기반 학비 구조로 약 1억 5천만~2억 원 수준으로 학업이 가능합니다. 환율 변동 리스크도 없습니다."},
+            {q:"서울 오피스와 경기 캠퍼스는 어떻게 다른가요?",a:"서울 오피스는 강남/종로 인근에 위치하여 병원 실습 접근성과 교통 편의성을 극대화합니다. 경기 캠퍼스는 기숙사, 실험실, 도서관 등을 갖춘 본 학습 캠퍼스로, 두 거점을 연계하여 최적 학습 환경을 제공합니다."},
+            {q:"강남 병원 실습(Shadowing)은 어떻게 진행되나요?",a:"협약을 맺은 강남 피부과, 성형외과, 내과 등 다양한 의료 기관에서 주 1~2회 정기적인 임상 참관 실습이 진행됩니다. 미국 의대 입시의 핵심인 Clinical Hours를 서울에서 안전하게 충족할 수 있습니다."},
+            {q:"미국 비자 없이 미국 학위를 받을 수 있나요?",a:"네. 플라토 스쿨은 서울과 경기에서 수업이 진행되므로 미국 비자가 필요하지 않습니다. 이후 미국 의대 입학 시점에 전략적으로 비자를 준비할 수 있어 거절 리스크를 최소화합니다."},
+            {q:"MCAT 준비는 충분히 가능한가요?",a:"미국 현직 의대 교수진의 실시간 온라인 강의와 한국 내 전담 오프라인 튜터를 통한 1:1 밀착 관리를 병행합니다. 파트별 맞춤 학습 플랜과 모의고사를 통해 고득점을 체계적으로 준비합니다."},
+            {q:"수업은 영어로 진행되나요?",a:"핵심 전공 과목은 미국 교수진의 영어 수업으로 진행됩니다. 영어에 익숙하지 않은 학생을 위한 집중 영어 프로그램 및 보조 한국어 튜터링도 제공하여 적응을 돕습니다."},
+            {q:"커리큘럼은 미국 Pre-Med와 동일한가요?",a:"네. AMCAS(미국 의대 통합 지원 시스템) 및 MSAR 데이터를 기반으로 미국 주요 의대가 요구하는 선수 과목(Biology, Chemistry, Organic Chemistry, Physics, Biochemistry, Psychology/Sociology, Statistics)을 완벽히 충족하도록 설계되었습니다."},
+            {q:"GPA 관리는 어떻게 하나요?",a:"미국 의대 사정관이 가장 중요하게 보는 Science GPA와 Overall GPA를 극대화하기 위한 맞춤 학습 관리를 제공합니다. 정기 성적 점검, 보충 수업, 튜터링을 통해 3.7 이상 GPA를 목표로 합니다."},
+            {q:"졸업 후 미국 의대 외 다른 진로도 있나요?",a:"미국 비영리 재단 학위와 임상 경험, 연구 이력은 글로벌 제약사(화이자, 노바티스 등), 의료 IT 기업, 바이오테크 스타트업, 국제 보건 기구(WHO, 유니세프) 등 헬스케어 전 분야에서 높이 평가받습니다."},
+            {q:"한국에 친구·가족이 없어도 생활이 가능한가요?",a:"네. 다국어 지원 전담 어드바이저(한국어, 영어, 중국어, 일본어 등)가 입국 준비부터 생활 정착, 진로 상담까지 1:1로 밀착 지원합니다. 경기 캠퍼스는 국제 학생들이 함께 생활하는 활발한 커뮤니티입니다."},
+            {q:"서울은 얼마나 안전한가요?",a:"서울은 글로벌 안전 도시 랭킹 최상위권에 위치합니다. 아시아계 학생에 대한 인종차별 우려가 미국에 비해 현저히 낮으며, 치안 수준이 매우 높아 학업에만 집중할 수 있는 환경입니다."},
+            {q:"장학금이나 학비 지원 프로그램이 있나요?",a:"성적 우수자, 글로벌 리더십 프로그램 참여자, 경제적 어려움이 있는 학생을 위한 다양한 장학금 및 분할납부 제도를 운영 중입니다. 상담 시 상세한 안내를 받을 수 있습니다."},
+            {q:"어떤 국적의 학생을 받나요?",a:"한국, 중국, 일본, 태국, 베트남, 인도네시아 등 아시아 전역의 학생을 모집합니다. 미국 유학 리스크를 피하려는 아시아계 학생 누구나 지원 가능합니다."},
+            {q:"입학 전형과 입학 자격은 어떻게 되나요?",a:"고등학교 졸업(예정)자이면 지원 가능합니다. SAT/ACT 점수, 내신 성적, 자기소개서, 면접을 종합적으로 평가합니다. 구체적인 전형 일정은 상담을 통해 안내드립니다."},
+            {q:"플라토 스쿨은 한국 정부에 등록된 학교인가요?",a:"플라토 스쿨은 미국 SF 비영리 재단 소속의 글로벌 교육 프로그램으로, 한국 내에서 서울 오피스 및 경기 캠퍼스를 운영합니다. 미국 법인 기반의 학위 수여 체계이며, WSCUC 인가 취득을 통해 공신력을 더욱 강화할 예정입니다."},
+            {q:"상담은 어떻게 신청하고 언제 연락을 받나요?",a:"아래 신청 양식에 이름, 연락처, 국적, 학년을 입력하시면 24시간 이내에 전담 어드바이저가 선호하시는 채널(위챗, 카카오톡, 왓츠앱, 라인 등)로 연락드립니다."}
         ]
     },
     en: {
-        faqTitle: "Frequently Asked Questions",
-        faqs: [
-            {q: "Is admission to US medical schools really possible?", a: "Yes, our Pre-Med curriculum is specifically designed to meet the requirements of US medical schools."},
-            {q: "What happens at the Seoul campus?", a: "Clinical shadowing, MCAT prep, and hybrid lectures with US professors are conducted."},
-            {q: "Where is the degree from?", a: "The degree is issued by the Plato Foundation HQ in San Francisco."}
-        ]
-    },
-    zh: {
-        faqTitle: "常见问题",
-        faqs: [
-            {q: "真的能进入美国医学院吗？", a: "是的，通过旧金山非营利基金会的课程，提供最适合美国医学院进修的医学预科课程。"},
-            {q: "在首尔校区做什么？", a: "进行临床实习、MCAT准备以及美国教授的视频课程。"}
-        ]
-    },
-    ja: {
-        faqTitle: "よくある質問",
-        faqs: [
-            {q: "アメリカの医学部進学は本当に可能ですか？", a: "はい、SF非営利財団のカリキュラムを通じて、最適なPre-Medコースを提供します。"},
-            {q: "ソウルキャンパスでは何をしますか？", a: "臨床実習、MCAT準備、オンライン講義などが行われます。"}
-        ]
-    },
-    th: {
-        faqTitle: "คำถามที่พบบ่อย",
-        faqs: [
-            {q: "สามารถเข้าโรงเรียนแพทย์ในสหรัฐฯ ได้จริงหรือ?", a: "ใช่ หลักสูตรของเราออกแบบมาเพื่อการเข้าเรียนต่อโรงเรียนแพทย์ในสหรัฐฯ โดยเฉพาะ"},
-            {q: "วิทยาเขตโซลทำอะไรบ้าง?", a: "มีการฝึกงานในโรงพยาบาล, เตรียมสอบ MCAT และเรียนผ่านระบบวิดีโอคอนเฟอเรนซ์"}
-        ]
-    },
-    vi: {
-        faqTitle: "Câu hỏi thường gặp",
-        faqs: [
-            {q: "Có thực sự vào được trường y Mỹ không?", a: "Có, chương trình Pre-Med của chúng tôi được tối ưu hóa cho việc nhập học trường y tại Mỹ."},
-            {q: "Campus Seoul có các hoạt động gì?", a: "Thực tập lâm sàng, luyện thi MCAT và học trực tuyến với giáo sư Mỹ."}
-        ]
-    },
-    id: {
-        faqTitle: "Pertanyaan Populer",
-        faqs: [
-            {q: "Apakah benar-benar bisa masuk sekolah kedokteran AS?", a: "Ya, kurikulum kami dirancang khusus untuk memenuhi standar masuk sekolah kedokteran di Amerika Serikat."},
-            {q: "Apa yang dilakukan di kampus Seoul?", a: "Praktik klinis, persiapan MCAT, dan kuliah hibrida dengan profesor AS."}
+        heroBadge:"Est. 2023 · SF Non-Profit Foundation · WSCUC Accreditation In Progress",
+        heroTitle:"In an Era of High FX &amp; Visa Barriers,<br><em>Seoul</em> is the Strategic Hub<br>for Your US Med School Journey.",
+        heroSub:"<strong>SF Non-Profit Foundation Degree (Est. 2023)</strong> + Seoul Office &amp; Gyeonggi Campus + <strong>50% Cost Saving vs US</strong>",
+        stat1:"Cost Savings",stat2:"SF Foundation",stat3:"USD/KRW Rate",stat4:"Seoul+Gyeonggi",
+        btnData:"View Stats",btnApply:"Apply Now",
+        urgencyTitle:"<em style='color:var(--gold-light)'>4 Reasons</em> to Decide Now",
+        urgencyDesc:"The US study abroad environment is structurally deteriorating. Now is the time for a strategic pivot.",
+        u1t:"USD/KRW Breaks ₩1,500",u1d:"Compared to US-based study, you face an extra $150k–$300k in exchange rate losses alone over 4 years.",
+        u2t:"F-1 Visa Rejection Rates Surge",u2d:"Trump 2.0 stricter immigration policies have led to a sharp rise in visa rejections for Asian students.",
+        u3t:"Safety &amp; Discrimination in the US",u3d:"Hate crimes targeting Asian students on US campuses remain at an elevated level.",
+        u4t:"US Tuition Rises 5–20%/Year",u4d:"Unpredictable annual tuition hikes make long-term financial planning virtually impossible.",
+        aboutTitle:"A US Non-Profit Foundation<br>Operating in Seoul:<br><em>Global Pre-Med School</em>",
+        aboutDesc:"Built on an SF non-profit foundation established in 2023, Plato School delivers world-class Pre-Med education through a Seoul office and Gyeonggi campus.",
+        ap1t:"SF Non-Profit Foundation Est. 2023",ap1d:"Formally incorporated as a California non-profit. Degree framework equivalent to US institutions.",
+        ap2t:"WSCUC Accreditation In Progress",ap2d:"Actively pursuing formal WSCUC accreditation with rigorous academic standards already in place.",
+        ap3t:"Seoul Office + Gyeonggi Campus",ap3d:"An accessible Seoul office hub and a full Gyeonggi campus provide two strategic learning bases.",
+        ap4t:"US Faculty — Hybrid Instruction",ap4d:"Live online lectures from US med school faculty combined with on-site tutoring in Korea.",
+        campusTitle:"Seoul Office &amp; Gyeonggi Campus<br><em>Dual-Hub Strategy</em>",
+        campus1t:"Seoul Downtown Office",campus1d:"Located near the Gangnam medical cluster. Used for clinical shadowing access, advising, and live faculty sessions.",
+        campus2t:"Gyeonggi Main Campus",campus2d:"Residential campus with labs, library, dormitories, and sports facilities for focused academic life.",
+        ecTitle:"Clinical Experience US Med Schools<br><em>Want — Built in Seoul</em>",
+        ecDesc:"Leverage Seoul's world-class medical infrastructure to build a portfolio that dominates US med school admissions.",
+        ec1t:"Gangnam Hospital Shadowing",ec1d:"Regular clinical observation at top-tier dermatology and plastic surgery clinics in Gangnam.",
+        ec2t:"Medical Research Opportunities",ec2d:"Co-author papers in domestic/international medical journals and present at academic conferences.",
+        ec3t:"Medical Volunteering &amp; Global ECs",ec3d:"Lead international medical service programs and community health projects highly valued by US med schools.",
+        ec4t:"Dedicated MCAT Coaching",ec4d:"Live online lectures from US faculty + on-site dedicated tutoring for systematic high-score MCAT prep.",
+        ec5t:"Advanced Medical Tech Exposure",ec5d:"Hands-on sessions with AI diagnostics, robotic surgery, and digital healthcare — Seoul's cutting edge.",
+        ec6t:"Global Medical Conferences",ec6d:"Attend and present at international medical conferences held in Seoul. Build your global academic network.",
+        costTitle:"4-Year Cost Comparison:<br><em style='color:var(--gold-light)'>Plato vs US Study Abroad</em>",
+        tlTitle:"Plato School<br><em>Development Roadmap</em>",
+        tl1t:"SF Non-Profit Foundation Established",tl1d:"Formally incorporated as a 501(c)(3) non-profit in California. Educational mission established.",
+        tl2t:"Seoul Office Opens &amp; Curriculum Dev",tl2d:"Seoul office opened. Pre-Med curriculum optimized for US med school admissions. Hospital partnerships secured.",
+        tl3t:"Gyeonggi Campus &amp; Pilot Cohort",tl3d:"Gyeonggi main campus built. First student cohort enrolled. WSCUC accreditation application filed.",
+        tl4t:"Full Enrollment &amp; WSCUC Accreditation",tl4d:"Global student recruitment at full scale. WSCUC accreditation secured for full US degree credibility.",
+        faqTitle:"Frequently Asked Questions",
+        fTitle:"Strategic Consultation Request",fSub:"Don't sacrifice your dream to exchange rates or political shifts. An advisor will contact you within 24 hours.",
+        phName:"Full Name",phEmail:"Email",phContact:"Contact (WeChat / WhatsApp / Line)",btnSubmit:"Request Brochure &amp; Consultation →",
+        faqs:[
+            {q:"Is a degree from Korea recognized in the US?",a:"Yes. Plato School is operated by a US non-profit foundation established in San Francisco in 2023. Graduates receive a degree issued by a US non-profit entity, fully usable for US medical school applications. WSCUC accreditation is actively being pursued."},
+            {q:"Is it okay that WSCUC accreditation isn't finalized yet?",a:"We are actively in the accreditation process and already operate to WSCUC academic standards. Students enrolling before full accreditation will receive reissued diplomas upon completion, with full protections in place."},
+            {q:"How much money can I actually save?",a:"US-based Pre-Med runs $200k–$300k over 4 years. Plato School's KRW-based tuition structure brings that to approximately $120k–$160k, with zero exchange rate risk."},
+            {q:"How do the Seoul office and Gyeonggi campus differ?",a:"The Seoul office is near Gangnam's medical cluster for shadowing access and easy transport. The Gyeonggi campus is the primary residential learning hub with labs, a library, dormitories, and sports facilities."},
+            {q:"How does Gangnam hospital shadowing work?",a:"Students shadow doctors 1–2 times per week at affiliated clinics in Gangnam — dermatology, plastic surgery, internal medicine and more. Clinical hours required for US med school applications are fully fulfilled in Seoul."},
+            {q:"Can I get a US degree without a US visa?",a:"Yes. All instruction takes place in Seoul and Gyeonggi, so no US visa is required during your studies. You then apply for a medical school visa at the optimal time with our expert consulting, minimizing rejection risk."},
+            {q:"Is MCAT preparation sufficient?",a:"Absolutely. We combine real-time lectures from US medical faculty with dedicated on-site tutoring. Personalized section-by-section study plans and practice exams are standard."},
+            {q:"Are classes in English?",a:"Core courses are taught in English by US faculty. An intensive English program and supplementary Korean tutoring are available for students at all language levels."},
+            {q:"Does the curriculum match US Pre-Med requirements?",a:"Yes. Our curriculum is designed to fully satisfy all prerequisites required by US medical schools per AMCAS standards: Biology, Chemistry, Organic Chemistry, Physics, Biochemistry, Psychology/Sociology, and Statistics."},
+            {q:"How is GPA managed?",a:"We provide personalized academic management to maximize Science GPA and Overall GPA — the two metrics US med schools weight most. Regular grade reviews, supplemental classes, and tutoring target 3.7+ GPA."},
+            {q:"What if I don't end up going to US med school?",a:"Your US non-profit degree and clinical/research experience are highly valued by global pharma (Pfizer, Novartis), health-tech firms, biotech startups, and international health organizations like WHO and UNICEF."},
+            {q:"Can international students adapt to life in Seoul?",a:"Yes. Multilingual advisors (English, Korean, Chinese, Japanese and more) provide 1:1 support from arrival through graduation. Our Gyeonggi campus is a vibrant international student community."},
+            {q:"How safe is Seoul?",a:"Seoul consistently ranks in the top tier of global safety indices. Racial discrimination concerns are dramatically lower than in the US, and crime rates are among the lowest in the world."},
+            {q:"Are there scholarships?",a:"Yes. Scholarships exist for academic achievers, global leadership participants, and students with financial need. Installment payment plans are also available. Ask during consultation."},
+            {q:"Which nationalities can apply?",a:"Students from Korea, China, Japan, Thailand, Vietnam, Indonesia, and across Asia are welcome. Anyone seeking to avoid US study abroad risk is eligible."},
+            {q:"What are the admission requirements?",a:"Any high school graduate or student in their final year is eligible. Applications are evaluated holistically: SAT/ACT scores, GPA, personal statement, and interview."},
+            {q:"Is Plato School registered with the Korean government?",a:"Plato School operates as a global education program under a US SF non-profit foundation, with a Seoul office and Gyeonggi campus in Korea. The degree is issued under the US corporate entity, and WSCUC accreditation will further strengthen its credibility."},
+            {q:"How do I apply and when will I hear back?",a:"Fill out the form below with your name, contact, nationality, and grade. A dedicated advisor will reach out within 24 hours via your preferred channel (WeChat, KakaoTalk, WhatsApp, Line, etc.)."}
         ]
     }
 };
+['zh','ja','th','vi','id'].forEach(l => { dict[l] = dict['en']; });
+
+let currentLang = 'ko';
 
 function renderFaq(lang) {
     const container = document.getElementById('faq-container');
-    const data = dict[lang] || dict['en'];
-    
-    if (data.faqs) {
-        container.innerHTML = data.faqs.map((f, i) => `
-            <div class="faq-item" id="faq-${i}">
-                <div class="faq-q" onclick="toggleFaq(${i})">
-                    <span>${f.q}</span>
-                    <i class="fas fa-plus"></i>
-                </div>
-                <div class="faq-a">${f.a}</div>
+    const faqs = (dict[lang]||dict['en']).faqs;
+    container.innerHTML = faqs.map((f,i) => `
+        <div class="faq-item" id="faq-${i}">
+            <div class="faq-q" onclick="toggleFaq(${i})">
+                <span>${f.q}</span>
+                <div class="faq-icon"><i class="fas fa-plus"></i></div>
             </div>
-        `).join('');
-    }
+            <div class="faq-a">${f.a}</div>
+        </div>
+    `).join('');
 }
 
 function toggleFaq(i) {
-    const item = document.getElementById('faq-' + i);
-    item.classList.toggle('open');
+    const item = document.getElementById('faq-'+i);
+    const was = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+    if (!was) item.classList.add('open');
 }
 
 function setLang(lang, btn) {
-    // 버튼 활성화 클래스 처리
-    if (btn) {
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-    }
-
-    const t = dict[lang] || dict['en'];
-    
-    // 제목 변경
-    const titleEl = document.getElementById('faq-title');
-    if (titleEl) titleEl.innerText = t.faqTitle;
-
-    // FAQ 리스트 새로 그리기 (중요!)
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    const t = dict[lang]||dict['en'];
+    const s = (id, html) => { const el=document.getElementById(id); if(el) el.innerHTML=html; };
+    s('hero-badge',t.heroBadge); s('hero-title',t.heroTitle); s('hero-sub',t.heroSub);
+    s('stat1',t.stat1); s('stat2',t.stat2); s('stat3',t.stat3); s('stat4',t.stat4);
+    s('btn-data',t.btnData); s('btn-apply',t.btnApply);
+    s('urgency-title',t.urgencyTitle); s('urgency-desc',t.urgencyDesc);
+    s('u1t',t.u1t); s('u1d',t.u1d); s('u2t',t.u2t); s('u2d',t.u2d);
+    s('u3t',t.u3t); s('u3d',t.u3d); s('u4t',t.u4t); s('u4d',t.u4d);
+    s('about-title',t.aboutTitle); s('about-desc',t.aboutDesc);
+    s('ap1t',t.ap1t); s('ap1d',t.ap1d); s('ap2t',t.ap2t); s('ap2d',t.ap2d);
+    s('ap3t',t.ap3t); s('ap3d',t.ap3d); s('ap4t',t.ap4t); s('ap4d',t.ap4d);
+    s('campus-title',t.campusTitle); s('campus1t',t.campus1t); s('campus1d',t.campus1d); s('campus2t',t.campus2t); s('campus2d',t.campus2d);
+    s('ec-title',t.ecTitle); s('ec-desc',t.ecDesc);
+    s('ec1t',t.ec1t); s('ec1d',t.ec1d); s('ec2t',t.ec2t); s('ec2d',t.ec2d);
+    s('ec3t',t.ec3t); s('ec3d',t.ec3d); s('ec4t',t.ec4t); s('ec4d',t.ec4d);
+    s('ec5t',t.ec5t); s('ec5d',t.ec5d); s('ec6t',t.ec6t); s('ec6d',t.ec6d);
+    s('cost-title',t.costTitle); s('tl-title',t.tlTitle);
+    s('tl1t',t.tl1t); s('tl1d',t.tl1d); s('tl2t',t.tl2t); s('tl2d',t.tl2d);
+    s('tl3t',t.tl3t); s('tl3d',t.tl3d); s('tl4t',t.tl4t); s('tl4d',t.tl4d);
+    s('faq-title',t.faqTitle); s('f-title',t.fTitle); s('f-sub',t.fSub);
+    const phn=document.getElementById('ph-name'); if(phn) phn.placeholder=t.phName;
+    const phe=document.getElementById('ph-email'); if(phe) phe.placeholder=t.phEmail;
+    const phc=document.getElementById('ph-contact'); if(phc) phc.placeholder=t.phContact;
+    const bs=document.getElementById('btn-submit'); if(bs) bs.innerHTML=t.btnSubmit;
     renderFaq(lang);
-    
     document.documentElement.lang = lang;
 }
 
-// 초기 로드 시 한국어로 설정
-window.onload = () => {
-    setLang('ko');
-};
-</script>
+function submitForm() {
+    const name = document.getElementById('ph-name').value.trim();
+    const contact = document.getElementById('ph-contact').value.trim();
+    if (!name || !contact) { alert('이름과 연락처를 입력해주세요.'); return; }
+    const btn = document.getElementById('btn-submit');
+    btn.innerHTML = '✅ 신청 완료! 24시간 이내 연락드립니다.';
+    btn.style.background = '#22c55e';
+    btn.style.cursor = 'default';
+    btn.onclick = null;
+}
 
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+setLang('ko');
+</script>
 </body>
 </html>

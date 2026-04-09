@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plato School | Global Pre-Med Program</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap');
+        body { font-family: 'Noto Sans KR', 'Noto Sans SC', 'Noto Sans JP', sans-serif; }
+        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-20 items-center">
+            <div class="text-2xl font-black text-blue-900 tracking-tighter">PLATO SCHOOL</div>
+            
+            <div class="flex items-center space-x-2">
+                <button onclick="setLanguage('ko')" class="px-2 py-1 text-sm border rounded hover:bg-gray-100">KR</button>
+                <button onclick="setLanguage('zh')" class="px-2 py-1 text-sm border rounded hover:bg-gray-100">中文</button>
+                <button onclick="setLanguage('en')" class="px-2 py-1 text-sm border rounded hover:bg-gray-100">EN</button>
+                <button onclick="setLanguage('ja')" class="px-2 py-1 text-sm border rounded hover:bg-gray-100">JP</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-gradient h-screen flex items-center justify-center text-white text-center pt-16">
+        <div class="max-w-5xl px-4">
+            <h1 id="hero-title" class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                미국 의대의 꿈, 서울에서 가장 전략적으로 시작하십시오.
+            </h1>
+            <p id="hero-sub" class="text-lg md:text-2xl mb-10 text-gray-200">
+                환율 1,500원 시대, 미국 본토 유학 대비 50% 비용 절감. <br>샌프란시스코 비영리 법인 기반의 혁신적 프리메드.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#apply" id="btn-guide" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-bold transition shadow-lg">입학 가이드북 신청</a>
+                <a href="#" id="btn-consult" class="bg-white/10 hover:bg-white/20 text-white border border-white px-8 py-4 rounded-full text-lg font-bold backdrop-blur-sm transition">1:1 실시간 상담</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 bg-gray-50 text-center">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-12">
+            <div class="p-8">
+                <div class="text-blue-600 text-5xl mb-6"><i class="fas fa-dollar-sign"></i></div>
+                <h3 id="card-1-title" class="text-2xl font-bold mb-4">환율 장벽 극복</h3>
+                <p id="card-1-desc" class="text-gray-600 leading-relaxed text-lg">연간 $25,000-$30,000의 학비. 미국 사립대 대비 압도적인 경제성.</p>
+            </div>
+            <div class="p-8">
+                <div class="text-blue-600 text-5xl mb-6"><i class="fas fa-certificate"></i></div>
+                <h3 id="card-2-title" class="text-2xl font-bold mb-4">미국 정식 학위</h3>
+                <p id="card-2-desc" class="text-gray-400 leading-relaxed text-lg">SF 비영리 법인 수여 학위. WASC(WSCUC) 인가 절차 진행 중.</p>
+            </div>
+            <div class="p-8">
+                <div class="text-blue-600 text-5xl mb-6"><i class="fas fa-shield-alt"></i></div>
+                <h3 id="card-3-title" class="text-2xl font-bold mb-4">안전한 서울 캠퍼스</h3>
+                <p id="card-3-desc" class="text-gray-600 leading-relaxed text-lg">최첨단 의료 인프라와 안전이 보장된 한국에서의 몰입 교육.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="apply" class="py-20 bg-blue-900 text-white">
+        <div class="max-w-xl mx-auto px-4 text-center">
+            <h2 id="form-title" class="text-3xl font-bold mb-4">입학 및 상담 신청</h2>
+            <p id="form-sub" class="mb-8 text-blue-100">글로벌 프리메드 과정에 대한 상세 정보를 보내드립니다.</p>
+            <form class="space-y-4 text-left">
+                <input type="text" id="ph-name" placeholder="성함 (Name)" class="w-full px-4 py-3 rounded-lg text-gray-900">
+                <input type="text" id="ph-contact" placeholder="연락처 (WeChat / Line / Phone)" class="w-full px-4 py-3 rounded-lg text-gray-900">
+                <button type="button" id="btn-submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-4 rounded-lg font-bold text-xl">신청하기</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center text-gray-400 text-xs">
+        <p>© 2026 PLATO SCHOOL SF FOUNDATION. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            ko: {
+                heroTitle: "미국 의대의 꿈, 서울에서 가장 전략적으로 시작하십시오.",
+                heroSub: "환율 1,500원 시대, 미국 본토 유학 대비 50% 비용 절감. 샌프란시스코 비영리 법인 기반의 혁신적 프리메드.",
+                btnGuide: "입학 가이드북 신청",
+                btnConsult: "1:1 실시간 상담",
+                card1Title: "환율 장벽 극복",
+                card1Desc: "연간 $25,000-$30,000의 학비. 미국 사립대 대비 압도적인 경제성.",
+                card2Title: "미국 정식 학위",
+                card2Desc: "SF 비영리 법인 수여 학위. WASC(WSCUC) 인가 절차 진행 중.",
+                card3Title: "안전한 서울 캠퍼스",
+                card3Desc: "최첨단 의료 인프라와 안전이 보장된 한국에서의 몰입 교육.",
+                formTitle: "입학 및 상담 신청",
+                formSub: "글로벌 프리메드 과정에 대한 상세 정보를 보내드립니다.",
+                phName: "성함 (Name)",
+                phContact: "연락처 (WeChat / Line / Phone)",
+                btnSubmit: "신청하기"
+            },
+            zh: {
+                heroTitle: "赴美医科梦想，从首尔开启最优化路径。",
+                heroSub: "1500韩元汇率时代，学费仅为美国本土的50%。旧金山非营利法人创办的创新医学预科课程。",
+                btnGuide: "申请招生指南",
+                btnConsult: "1:1 在线咨询",
+                card1Title: "突破汇率壁垒",
+                card1Desc: "年学费 $25,000-$30,000。相比美国私立大学具有压倒性经济优势。",
+                card2Title: "美国正规学位",
+                card2Desc: "旧金山非营利法人授予学位。WASC(WSCUC) 认证申请中。",
+                card3Title: "安全的首尔校区",
+                card3Desc: "依托韩国尖端医疗基础设施，在安全的环境中专注学习。",
+                formTitle: "入学与咨询申请",
+                formSub: "我们将向您发送全球医学预科课程的详细信息。",
+                phName: "姓名",
+                phContact: "联系方式 (WeChat / Line / 电话)",
+                btnSubmit: "立即申请"
+            },
+            en: {
+                heroTitle: "Your Path to American Med School Starts in Seoul.",
+                heroSub: "Strategic Pre-Med program based in SF Non-profit. Cut tuition by 50% compared to US-based studies.",
+                btnGuide: "Request Brochure",
+                btnConsult: "1:1 Consultation",
+                card1Title: "Affordable Excellence",
+                card1Desc: "Tuition $25k-$30k per year. Overcome high exchange rate barriers.",
+                card2Title: "US Degree Granted",
+                card2Desc: "Degree by SF Non-profit. WASC(WSCUC) accreditation in progress.",
+                card3Title: "Seoul Campus",
+                card3Desc: "Safety and world-class medical infrastructure in the heart of Asia.",
+                formTitle: "Inquiry & Application",
+                formSub: "Get detailed information about our Global Pre-Med program.",
+                phName: "Full Name",
+                phContact: "Contact (WeChat / Line / Phone)",
+                btnSubmit: "Submit Now"
+            },
+            ja: {
+                heroTitle: "米国医学部への夢、ソウルで最も戦略的に始めましょう。",
+                heroSub: "1,500ウォン為替時代、米本土留学対比で費用を50%節約。サンフランシスコ非営利法人による革新的なプリメド。",
+                btnGuide: "入学ガイドブック申請",
+                btnConsult: "1:1 リアルタイム相談",
+                card1Title: "為替の壁を克服",
+                card1Desc: "年間 $25,000-$30,000の学費。米国の私立大学に比べ圧倒的な経済性。",
+                card2Title: "米国正規学位",
+                card2Desc: "SF非営利法人授与の学位。WASC(WSCUC) 認可手続き進行中。",
+                card3Title: "安全なソウルキャンパス",
+                card3Desc: "最先端の医療インフラと安全が保障された韓国での没入教育。",
+                formTitle: "入学・相談申し込み",
+                formSub: "グローバル・プリメド課程に関する詳細情報をお送りします。",
+                phName: "お名前",
+                phContact: "連絡先 (WeChat / Line / 電話)",
+                btnSubmit: "申し込む"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.getElementById('hero-title').innerText = translations[lang].heroTitle;
+            document.getElementById('hero-sub').innerText = translations[lang].heroSub;
+            document.getElementById('btn-guide').innerText = translations[lang].btnGuide;
+            document.getElementById('btn-consult').innerText = translations[lang].btnConsult;
+            document.getElementById('card-1-title').innerText = translations[lang].card1Title;
+            document.getElementById('card-1-desc').innerText = translations[lang].card1Desc;
+            document.getElementById('card-2-title').innerText = translations[lang].card2Title;
+            document.getElementById('card-2-desc').innerText = translations[lang].card2Desc;
+            document.getElementById('card-3-title').innerText = translations[lang].card3Title;
+            document.getElementById('card-3-desc').innerText = translations[lang].card3Desc;
+            document.getElementById('form-title').innerText = translations[lang].formTitle;
+            document.getElementById('form-sub').innerText = translations[lang].formSub;
+            document.getElementById('ph-name').placeholder = translations[lang].phName;
+            document.getElementById('ph-contact').placeholder = translations[lang].phContact;
+            document.getElementById('btn-submit').innerText = translations[lang].btnSubmit;
+            
+            // HTML lang attribute update
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+</html>

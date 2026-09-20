@@ -32,7 +32,7 @@
         .lang-btn:hover, .lang-btn.active { background: var(--gold); border-color: var(--gold); color: var(--navy); }
 
         /* ALERT */
-        .alert-banner { background: linear-gradient(90deg, #7f1d1d, #991b1b, #7f1d1d); color: #fecaca; text-align: center; padding: 12px 2rem; font-size: 13px; font-weight: 600; letter-spacing: 0.03em; }
+        .alert-banner { background: linear-gradient(90deg, #0f2248, #16305f, #0f2248); color: #c8d7eb; text-align: center; padding: 12px 2rem; font-size: 13px; font-weight: 600; letter-spacing: 0.03em; }
         .alert-banner strong { color: #fff; }
 
         /* HERO */
@@ -199,9 +199,7 @@
 </head>
 <body>
 
-<div class="alert-banner">
-    <strong>⚠ 긴급 알림:</strong> 달러 환율 1,500원 돌파 · 미국 F-1 비자 거절률 급등 · 트럼프 2기 유학 규제 강화
-</div>
+<div class="alert-banner" id="stage-notice"><strong>현재 단계 안내:</strong> 미국 501(c)(3) 비영리법인 설립 완료 · 학점인정 파트너 대학 협정 및 WSCUC 절차는 진행 전 · 1기 개강 준비 단계입니다.</div>
 
 <nav>
     <div class="logo"><span>Plato</span> School <span class="logo-badge">SF · SEOUL</span></div>
@@ -430,11 +428,11 @@ function makeLang(h) { return h; }
 
 const dict = {
     ko: {
-        heroBadge:"미국 캘리포니아 501(c)(3) 비영리법인 · 서울 · WSCUC 인증 파트너 대학 학점 경로",
+        heroBadge:"미국 캘리포니아 501(c)(3) 비영리법인 설립 완료 · 서울 · 1기 개강 준비 단계",
         heroTitle:"고환율과 비자 장벽의 시대,<br>미국 의대로 가는 길은<br><em>서울</em>에서 시작됩니다.",
-        heroSub:"<strong>미국 501(c)(3) 비영리법인이 운영하는 Pre-Med 과정</strong> · 서울 학습 거점 · <strong>WSCUC 인증 파트너 대학 명의 성적표</strong>",
+        heroSub:"<strong>미국 501(c)(3) 비영리법인이 준비 중인 Pre-Med 과정</strong> · 서울 학습 거점 · <strong>미국 의대 진학을 목표로 한 3~4년 커리큘럼</strong>",
         stat1:"미국 대비 학비",
-        stat2:"미국 비영리법인",
+        stat2:"비영리법인 설립",
         stat3:"원-달러 환율",
         stat4:"졸업 후 진학 경로",
         btnData:"비용 비교 보기",
@@ -450,11 +448,11 @@ const dict = {
         u4t:"미국 학비의 연쇄 인상",
         u4d:"미국 주요 대학 학비는 매년 인상됩니다. 학부 비용을 낮출수록 의과대학원 4년에 쓸 재원이 남습니다.",
         aboutTitle:"미국 비영리법인이<br>서울에서 운영하는<br><em>Pre-Med 과정</em>",
-        aboutDesc:"플라토 스쿨은 2023년 미국 캘리포니아주에 설립된 501(c)(3) 비영리법인이 운영하는 Pre-Med 교육 프로그램입니다. 수업은 서울에서 진행되며, 이수 학점과 성적표는 WSCUC 인증을 받은 미국 파트너 대학 명의로 발행됩니다.",
+        aboutDesc:"플라토 스쿨은 2023년 미국 캘리포니아주에 설립된 501(c)(3) 비영리법인이 준비하고 있는 Pre-Med 교육 프로그램입니다. 법인 설립과 커리큘럼 개발은 완료했고, 수업은 서울에서 진행할 예정입니다. 학점인정 파트너 대학 협정은 현재 추진 중이며 아직 체결 전입니다.",
         ap1t:"미국 501(c)(3) 비영리법인",
         ap1d:"캘리포니아주 비영리법인으로 설립. IRS Form 990을 통해 재정이 공개되며, 잉여금은 배당되지 않고 교육에 재투자됩니다.",
-        ap2t:"파트너 대학 명의 학점·성적표",
-        ap2d:"플라토가 자체 인증을 받는 구조가 아닙니다. WSCUC 인증 미국 대학과의 학점인정 협정을 통해, 미국 의대 지원 시 제출하는 성적표가 해당 대학 명의로 발행됩니다.",
+        ap2t:"학점인정 파트너 대학 — 협정 추진 중",
+        ap2d:"플라토는 자체 인증 기관이 아니며 WSCUC 인증 학교도 아닙니다. WSCUC에 인증을 신청한 상태도 아닙니다. 목표 구조는 이미 WSCUC 인증을 보유한 미국 대학과 학점인정 협정을 맺어, 성적표가 그 대학 명의로 발행되도록 하는 것입니다. 협정 체결 전까지는 이 구조가 확정된 것이 아닙니다.",
         ap3t:"AMCAS 선수과목 전 과정 이수",
         ap3d:"미국 의대는 학교 명성보다 선수과목 이수 여부를 봅니다. 생물학·화학·유기화학·물리학·생화학·심리학·통계 전 과목을 AMCAS 기준으로 설계했습니다.",
         ap4t:"미국 교수진 하이브리드 수업",
@@ -495,10 +493,11 @@ const dict = {
         phEmail:"이메일 / Email",
         phContact:"연락처 (WeChat / WhatsApp / KakaoTalk)",
         btnSubmit:"입학 자료 및 상담 신청 →",
+        stageNotice:"<strong>현재 단계 안내:</strong> 미국 501(c)(3) 비영리법인 설립 완료 · 학점인정 파트너 대학 협정 및 WSCUC 절차는 진행 전 · 1기 개강 준비 단계입니다.",
         faqs:[
-            {q:"플라토는 어떤 학위를 주나요?",a:"플라토 자체가 학위를 수여하지는 않습니다. 플라토는 미국 501(c)(3) 비영리법인이 운영하는 Pre-Med 교육 프로그램이고, 이수 학점과 성적표는 WSCUC 인증을 받은 미국 파트너 대학 명의로 발행됩니다. 미국 의대에 제출하는 서류는 그 대학의 공식 성적표입니다."},
-            {q:"플라토가 WSCUC 인증을 받았나요?",a:"아닙니다. 플라토는 자체 인증 기관이 아니며 WSCUC 인증 학교도 아닙니다. 플라토의 구조는 이미 WSCUC 인증을 보유한 미국 대학과 학점인정 협정을 맺는 방식입니다. 이 차이를 정확히 이해하고 지원을 결정해 주십시오."},
-            {q:"그러면 미국 의대가 이 학점을 인정하나요?",a:"미국 의대는 지원자의 학교 명성보다 세 가지를 봅니다. AMCAS 선수과목을 이수했는지, MCAT 점수가 몇 점인지, 임상·연구 경험이 있는지입니다. 플라토는 이 세 가지를 모두 충족하도록 설계됐고, 성적표는 인증 대학 명의로 나갑니다."},
+            {q:"플라토는 어떤 학위를 주나요?",a:"현 시점에서 플라토는 학위를 수여하지 않습니다. 플라토는 미국 501(c)(3) 비영리법인이 준비 중인 Pre-Med 교육 프로그램입니다. 목표 구조는 WSCUC 인증 미국 대학과 학점인정 협정을 맺어 성적표가 그 대학 명의로 발행되게 하는 것이며, 해당 협정은 아직 체결되지 않았습니다."},
+            {q:"플라토가 WSCUC 인증을 받았나요?",a:"아닙니다. 플라토는 WSCUC 인증 학교가 아니며, 현재 WSCUC에 인증을 신청한 상태도 아닙니다. 어떤 형태로든 인증을 보유하고 있다고 안내드릴 수 없습니다. 이 점을 분명히 알고 결정해 주십시오."},
+            {q:"그러면 지금 지원해도 되나요?",a:"플라토는 1기 개강 전 준비 단계입니다. 파트너 대학 협정, 임상 참관 기관 협약, 개강 일정이 모두 확정 전입니다. 지금 문의를 남기시면 진행 상황을 먼저 공유해 드리고, 학점인정 구조가 확정된 뒤에 입학을 결정하실 수 있도록 안내합니다. 확정 전에 등록금을 요구하지 않습니다."},
             {q:"플라토는 한국 교육부 인가 학교인가요?",a:"아닙니다. 플라토는 한국 고등교육법상 대학이 아니며, 한국 학위를 수여하지 않습니다. 미국 법인이 운영하는 해외 교육 프로그램으로, 미국 대학이 해외에서 프로그램을 운영하는 것과 동일한 법적 형태입니다. 한국 의사 면허와는 관련이 없습니다."},
             {q:"졸업 후 진로는 미국 의대뿐인가요?",a:"아닙니다. 같은 커리큘럼에서 다섯 갈래로 나뉩니다. MD 의과대학원, DO 정골의학대학원, 치과대학원, 수의과대학원, 그리고 미국 동양의학대학원입니다. MCAT 점수와 적성에 따라 경로를 선택합니다."},
             {q:"수업은 어디서 진행되나요?",a:"서울입니다. 강남·서초 의료 클러스터 인근에 강의실과 실습 공간을 둡니다. 별도의 기숙형 캠퍼스는 현재 운영하지 않으며, 주거는 개별 안내합니다."},
@@ -517,11 +516,11 @@ const dict = {
         ]
     },
     en: {
-        heroBadge:"California 501(c)(3) non-profit · Seoul · Credit through a WSCUC-accredited partner university",
+        heroBadge:"California 501(c)(3) incorporated · Seoul · preparing the first cohort",
         heroTitle:"When the exchange rate<br>and the visa both work against you,<br>the road to US medicine starts in <em>Seoul</em>.",
-        heroSub:"<strong>A pre-medical programme run by a US 501(c)(3) non-profit</strong> · Taught in Seoul · <strong>Transcripts issued by a WSCUC-accredited partner university</strong>",
+        heroSub:"<strong>A pre-medical programme in preparation by a US 501(c)(3) non-profit</strong> · Taught in Seoul · <strong>A three to four year curriculum aimed at US medical school</strong>",
         stat1:"vs US tuition",
-        stat2:"US non-profit",
+        stat2:"non-profit incorporated",
         stat3:"KRW per USD",
         stat4:"graduate pathways",
         btnData:"Compare the cost",
@@ -537,11 +536,11 @@ const dict = {
         u4t:"US tuition rises every year",
         u4d:"Undergraduate costs compound annually. Every dollar not spent on the bachelor degree is a dollar still available for the four years of medical school that follow.",
         aboutTitle:"A US non-profit,<br>teaching in Seoul:<br><em>the pre-medical years</em>",
-        aboutDesc:"Plato School is a pre-medical programme operated by a 501(c)(3) non-profit incorporated in California in 2023. Classes are taught in Seoul, and coursework is recorded on a transcript issued by a WSCUC-accredited partner university in the United States.",
+        aboutDesc:"Plato School is a pre-medical programme being prepared by a 501(c)(3) non-profit incorporated in California in 2023. The entity and the curriculum are in place, and teaching is planned for Seoul. The credit-recognition agreement with a partner university is being pursued and has not yet been signed.",
         ap1t:"US 501(c)(3) non-profit",
         ap1d:"Incorporated in California. Finances are disclosed annually through IRS Form 990, and any surplus is reinvested in teaching rather than distributed.",
-        ap2t:"Credit and transcripts from an accredited partner",
-        ap2d:"Plato is not itself an accrediting body and is not WSCUC-accredited. It works through a credit-recognition agreement with a WSCUC-accredited US university, which issues the transcript submitted to medical schools.",
+        ap2t:"Partner university for credit — agreement in progress",
+        ap2d:"Plato is not an accrediting body, is not WSCUC-accredited, and has not applied to WSCUC. The intended structure is a credit-recognition agreement with a US university that already holds that accreditation, so that the transcript is issued in that university name. Until such an agreement is signed, that structure is an intention rather than a fact.",
         ap3t:"Every AMCAS prerequisite, completed",
         ap3d:"Admissions committees care less about the name on the transcript than whether the prerequisites were completed. Biology, chemistry, organic chemistry, physics, biochemistry, psychology, sociology and statistics are all built into the programme.",
         ap4t:"US faculty, taught in hybrid form",
@@ -582,10 +581,11 @@ const dict = {
         phEmail:"Email",
         phContact:"Contact (WeChat / WhatsApp / KakaoTalk)",
         btnSubmit:"Request information and advice →",
+        stageNotice:"<strong>Where we are today:</strong> the California 501(c)(3) is incorporated. The partner-university credit agreement and any WSCUC process have not begun. We are preparing for a first cohort.",
         faqs:[
-            {q:"What degree does Plato award?",a:"Plato does not itself award a degree. It is a pre-medical programme operated by a US 501(c)(3) non-profit, and coursework is recorded on a transcript issued by a WSCUC-accredited partner university in the United States. That university transcript is what medical schools receive."},
-            {q:"Is Plato WSCUC-accredited?",a:"No. Plato is not an accrediting body and is not itself accredited by WSCUC. It operates through a credit-recognition agreement with a US university that already holds that accreditation. Please be clear about this distinction before applying."},
-            {q:"Then will US medical schools accept the credit?",a:"Admissions committees weigh three things far more heavily than the name of the undergraduate institution: whether the AMCAS prerequisites were completed, what the MCAT score is, and what clinical and research experience exists. Plato is built around all three, and the transcript comes from an accredited university."},
+            {q:"What degree does Plato award?",a:"At this stage Plato does not award a degree. It is a pre-medical programme in preparation by a US 501(c)(3) non-profit. The intended structure is a credit-recognition agreement with a WSCUC-accredited US university, under which that university would issue the transcript. No such agreement has yet been signed."},
+            {q:"Is Plato WSCUC-accredited?",a:"No. Plato is not accredited by WSCUC and has not applied for that accreditation. We cannot represent ourselves as holding accreditation of any kind. Please take that into account before making any decision."},
+            {q:"Should I apply now, then?",a:"Plato is preparing for a first cohort. The partner university agreement, the clinical observation agreements and the start date are all still to be confirmed. If you get in touch now, we will share where things stand and let you decide once the credit structure is settled. We do not ask for tuition before that point."},
             {q:"Is Plato a school registered with the Korean Ministry of Education?",a:"No. Plato is not a university under Korean higher education law and does not confer a Korean degree. It operates as an overseas educational programme of a US corporation, the same legal form American universities use to run programmes abroad. It has no bearing on Korean medical licensure."},
             {q:"Is US medical school the only path after graduating?",a:"No. Five paths open from the same curriculum: MD medical school, DO osteopathic medicine, dental school, veterinary school, and graduate programmes in oriental medicine. Students choose based on MCAT performance and their own fit."},
             {q:"Where are classes held?",a:"In Seoul. Classrooms and practical space sit near the Gangnam and Seocho medical cluster. There is no residential campus at present; housing is arranged individually and we advise on options."},
@@ -941,6 +941,7 @@ function setLang(lang, btn) {
     // helper: set text content for plain text fields
     const st = (id, text) => { const el=document.getElementById(id); if(el) el.textContent=text; };
 
+    s('stage-notice', t.stageNotice);
     s('hero-badge', t.heroBadge);
     s('hero-title', t.heroTitle);
     s('hero-sub', t.heroSub);

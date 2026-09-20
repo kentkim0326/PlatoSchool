@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Michroma&family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -20,16 +20,18 @@
             --white: #f8f9ff;
             --gray: #8892a0;
             --slate: #e8edf4;
+            /* Brand display face. Drop Mokoto in here once the licensed web font is added. */
+            --font-brand: 'Michroma', 'DM Serif Display', sans-serif;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--white); color: var(--navy); overflow-x: hidden; scroll-behavior: smooth; }
 
         /* NAV */
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,22,40,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.2); display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 72px; }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--white); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
+        .logo { font-family: var(--font-brand); font-size: 1.05rem; letter-spacing: 0.12em; color: var(--white); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
         .logo-mark { height: 30px; width: auto; display: block; }
         .logo span { color: var(--gold); }
-        .logo-badge { font-family: 'Pretendard', sans-serif; font-size: 9px; font-weight: 700; background: var(--gold); color: var(--navy); padding: 2px 6px; border-radius: 3px; letter-spacing: 0.1em; }
+        .logo-badge { font-family: var(--font-brand); font-size: 9px; font-weight: 700; background: var(--gold); color: var(--navy); padding: 2px 6px; border-radius: 3px; letter-spacing: 0.1em; }
         .lang-switcher { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
         .lang-btn { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.65); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Pretendard', sans-serif; }
         .lang-btn:hover, .lang-btn.active { background: var(--gold); border-color: var(--gold); color: var(--navy); }

@@ -28,8 +28,8 @@
 
         /* NAV */
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,22,40,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.2); display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 72px; }
-        .logo { font-family: var(--font-brand); font-size: 1.05rem; letter-spacing: 0.12em; color: var(--white); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
-        .logo-mark { height: 30px; width: auto; display: block; }
+        .logo { text-decoration: none; font-size: 1.05rem; color: var(--white); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
+        .logo-img { height: 44px; width: auto; display: block; }
         .logo span { color: var(--gold); }
         .logo-badge { font-family: var(--font-brand); font-size: 9px; font-weight: 700; background: var(--gold); color: var(--navy); padding: 2px 6px; border-radius: 3px; letter-spacing: 0.1em; }
         .lang-switcher { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
@@ -207,7 +207,7 @@
 <div class="alert-banner" id="stage-notice"><strong>Where we are today:</strong> the California 501(c)(3) is incorporated. The partner-university credit agreement and any WSCUC process have not begun. We are preparing for a first cohort.</div>
 
 <nav>
-    <div class="logo"><img src="assets/logo-mark-gold.png" alt="" class="logo-mark"><span>Plato</span> School <span class="logo-badge">SF · SEOUL</span></div>
+    <a href="#" class="logo" aria-label="Plato School"><img src="assets/logo-nav.png" alt="Plato School" class="logo-img"><span class="logo-badge">SF · SEOUL</span></a>
     <div class="lang-switcher">
         <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
         <button class="lang-btn" onclick="setLang('ko',this)">KR</button>

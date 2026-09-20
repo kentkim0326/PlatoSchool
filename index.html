@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plato School — Pre-Med in Seoul for US Medical School</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -25,6 +27,7 @@
         /* NAV */
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,22,40,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.2); display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 72px; }
         .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--white); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
+        .logo-mark { height: 30px; width: auto; display: block; }
         .logo span { color: var(--gold); }
         .logo-badge { font-family: 'Pretendard', sans-serif; font-size: 9px; font-weight: 700; background: var(--gold); color: var(--navy); padding: 2px 6px; border-radius: 3px; letter-spacing: 0.1em; }
         .lang-switcher { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
@@ -202,7 +205,7 @@
 <div class="alert-banner" id="stage-notice"><strong>Where we are today:</strong> the California 501(c)(3) is incorporated. The partner-university credit agreement and any WSCUC process have not begun. We are preparing for a first cohort.</div>
 
 <nav>
-    <div class="logo"><span>Plato</span> School <span class="logo-badge">SF · SEOUL</span></div>
+    <div class="logo"><img src="assets/logo-mark-gold.png" alt="" class="logo-mark"><span>Plato</span> School <span class="logo-badge">SF · SEOUL</span></div>
     <div class="lang-switcher">
         <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
         <button class="lang-btn" onclick="setLang('ko',this)">KR</button>

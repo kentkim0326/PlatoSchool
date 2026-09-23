@@ -131,6 +131,19 @@
 
         /* ACTIVITIES */
         .activities-section { background: #f0f4fa; }
+        .tracks-section { background: var(--white); }
+        .tracks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .track-card { background: #f7f9fd; border-radius: 16px; padding: 26px 28px 28px; border: 1px solid rgba(10,22,40,0.07); transition: transform 0.3s, box-shadow 0.3s; }
+        .track-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(10,22,40,0.1); }
+        .track-status { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 11px; border-radius: 30px; margin-bottom: 14px; }
+        .track-status.ready { background: rgba(26,86,219,0.11); color: var(--blue); }
+        .track-status.prep { background: rgba(10,22,40,0.06); color: var(--gray); }
+        .track-head { display: flex; align-items: center; gap: 12px; margin-bottom: 0.9rem; }
+        .track-icon { width: 46px; height: 46px; flex: 0 0 46px; background: linear-gradient(135deg, var(--blue), #3b82f6); border-radius: 13px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.15rem; }
+        .track-icon.gold { background: linear-gradient(135deg, var(--gold), #e2c87e); }
+        .track-card h4 { font-size: 15px; font-weight: 700; line-height: 1.35; }
+        .track-card p { font-size: 13px; color: var(--gray); line-height: 1.7; }
+        .tracks-note { margin-top: 2.5rem; background: #fdf8ec; border: 1px solid rgba(201,168,76,0.35); border-left: 3px solid var(--gold); border-radius: 10px; padding: 20px 24px; font-size: 13px; line-height: 1.8; color: var(--navy); }
         .activities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
         .activity-card { background: var(--white); border-radius: 16px; padding: 28px; border: 1px solid rgba(10,22,40,0.07); transition: all 0.3s; position: relative; overflow: hidden; }
         .activity-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--blue-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
@@ -207,6 +220,7 @@
         @media (max-width: 900px) {
             .about-grid, .campus-grid, .faq-grid { grid-template-columns: 1fr; }
             .activities-grid { grid-template-columns: 1fr 1fr; }
+            .tracks-grid { grid-template-columns: 1fr 1fr; }
             .cost-comparison { grid-template-columns: 1fr; }
             .vs-circle { display: none; }
             .form-row { grid-template-columns: 1fr; }
@@ -214,6 +228,7 @@
         }
         @media (max-width: 600px) {
             .activities-grid { grid-template-columns: 1fr; }
+            .tracks-grid { grid-template-columns: 1fr; }
             nav { padding: 0 1rem; }
         }
     </style>
@@ -239,13 +254,13 @@
     <video id="hero-video" class="hero-video js-video" muted loop playsinline preload="none" poster="assets/hero-poster.jpg" data-src="assets/hero.mp4" data-src-mobile="assets/hero-mobile.mp4" aria-hidden="true"></video>
     <div class="hero-vignette"></div>
     <div id="hero-badge" class="hero-badge">California non-profit corporation &middot; Seoul &middot; Founded by a Harvard graduate &middot; Preparing the first cohort</div>
-    <h1 id="hero-title" class="hero-title">American pre-med now costs<br>$400,000 a child.<br>We built the <em>other</em> option.</h1>
+    <h1 id="hero-title" class="hero-title">An American degree now costs<br>$400,000 a child.<br>We built the <em>other</em> option.</h1>
     <p id="hero-sub" class="hero-sub"><strong>$42,000 a year, all-in, taught in Seoul</strong> &middot; Coursework recorded by a US partner institution &middot; <strong>And four years inside the half of the world your child will work in</strong></p>
     <div class="hero-stats">
         <div class="stat-pill"><span class="num">50%↓</span><span class="lbl" id="stat1">less than half the cost</span></div>
         <div class="stat-pill"><span class="num">2023</span><span class="lbl" id="stat2">US non-profit incorporated</span></div>
         <div class="stat-pill"><span class="num">₩1,500</span><span class="lbl" id="stat3">won per dollar — Seoul costs less to live in</span></div>
-        <div class="stat-pill"><span class="num">5</span><span class="lbl" id="stat4">graduate pathways</span></div>
+        <div class="stat-pill"><span class="num">7</span><span class="lbl" id="stat4">undergraduate tracks</span></div>
     </div>
     <div class="hero-cta">
         <a href="#faq" id="btn-data" class="btn-primary"><i class="fas fa-chart-bar"></i> See the arithmetic</a>
@@ -288,10 +303,31 @@
                     <div class="about-point"><div class="icon"><i class="fas fa-certificate"></i></div><div><h5 id="ap2t">Partner university for credit — agreement in progress</h5><p id="ap2d">Plato is not an accrediting body, is not WSCUC-accredited, and has not applied to WSCUC. The intended structure is a credit-recognition agreement with a US university that already holds that accreditation, so that the transcript is issued in that university name. Until such an agreement is signed, that structure is an intention rather than a fact.</p></div></div>
                     <div class="about-point"><div class="icon"><i class="fas fa-map-marker-alt"></i></div><div><h5 id="ap3t">Every AMCAS prerequisite, completed</h5><p id="ap3d">Admissions committees care less about the name on the transcript than whether the prerequisites were completed. Biology, chemistry, organic chemistry, physics, biochemistry, psychology, sociology and statistics are all built into the programme.</p></div></div>
                     <div class="about-point"><div class="icon"><i class="fas fa-chalkboard-teacher"></i></div><div><h5 id="ap4t">US faculty, taught in hybrid form</h5><p id="ap4d">Live instruction from US-based faculty is paired with resident instructors in Seoul who handle day-to-day academic support. All coursework is in English.</p></div></div>
-                    <div class="about-point"><div class="icon"><i class="fas fa-layer-group"></i></div><div><h5 id="ap5t">Three tracks, and internship placement</h5><p id="ap5d">Pre-medical is where the school began. Tracks in computing and AI, and in the life sciences and pharmaceutical subjects, are in preparation. Across every track we work to place students in internships with Korean companies &mdash; an objective, not yet a feature.</p></div></div>
+                    <div class="about-point"><div class="icon"><i class="fas fa-layer-group"></i></div><div><h5 id="ap5t">Seven tracks, and internship placement</h5><p id="ap5d">Pre-medical is where the school began and the only track whose curriculum is finished. Tracks in AI and computing, game development, the life sciences, pharmaceutical science, the music business and screen production are in preparation. Across every track we work to place students in internships with Korean companies &mdash; an objective, not yet a feature.</p></div></div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- TRACKS -->
+<section class="tracks-section">
+    <div class="max-container">
+        <div class="reveal">
+            <span class="section-label">Tracks</span>
+            <h2 class="section-title" id="trk-title">Seven ways through<br><em>the same four years</em></h2>
+            <p class="section-desc" id="trk-desc">Plato is an undergraduate school, so a track is a course of study and not a separate institution. Every student reads the same core &mdash; coursework in English, writing, quantitative reasoning &mdash; and then goes deep in one direction. Pre-medical is the track the school was designed around and the only one whose curriculum is finished. The rest are in preparation, and each card says so.</p>
+        </div>
+        <div class="tracks-grid reveal">
+            <div class="track-card"><span class="track-status ready" id="trk-ready">Curriculum complete</span><div class="track-head"><div class="track-icon"><i class="fas fa-stethoscope"></i></div><h4 id="t1t">Pre-Medical</h4></div><p id="t1d">Every AMCAS prerequisite, a two-year MCAT sequence, and clinical observation timetabled into the academic week rather than squeezed around it. Seoul holds one of the densest concentrations of teaching hospitals anywhere, and the Gangnam and Seocho cluster is a short journey from the classroom.</p></div>
+            <div class="track-card"><span class="track-status prep">In preparation</span><div class="track-head"><div class="track-icon"><i class="fas fa-microchip"></i></div><h4 id="t2t">AI &amp; Computing</h4></div><p id="t2d">Machine learning, systems and software engineering, read where the hardware is made. Korea produces a large share of the world&rsquo;s memory semiconductors, and the engineering employers that depend on them are inside the city rather than a flight away.</p></div>
+            <div class="track-card"><span class="track-status prep">In preparation</span><div class="track-head"><div class="track-icon"><i class="fas fa-gamepad"></i></div><h4 id="t3t">Game Development</h4></div><p id="t3d">Design, engine programming and production. Korea built one of the largest game industries in the world and was the first country to treat competitive play as a professional sport. The studios and the leagues are both here.</p></div>
+            <div class="track-card"><span class="track-status prep">In preparation</span><div class="track-head"><div class="track-icon"><i class="fas fa-dna"></i></div><h4 id="t4t">Bio &amp; Life Sciences</h4></div><p id="t4d">Molecular biology, genetics and laboratory method, with research placement as the point of the degree rather than a bonus attached to it. The Songdo biocluster, about an hour from the classroom, holds some of the largest biologics manufacturing capacity anywhere.</p></div>
+            <div class="track-card"><span class="track-status prep">In preparation</span><div class="track-head"><div class="track-icon"><i class="fas fa-pills"></i></div><h4 id="t5t">Pharmaceutical Sciences</h4></div><p id="t5d">Pharmacology, formulation, and the regulatory path a drug actually travels from laboratory to patient. Korea&rsquo;s contract manufacturing sector and its density of clinical trials give students something to study that is not only a textbook.</p></div>
+            <div class="track-card"><span class="track-status prep">In preparation</span><div class="track-head"><div class="track-icon gold"><i class="fas fa-music"></i></div><h4 id="t6t">K-Pop &amp; Music Business</h4></div><p id="t6d">Not performance training. The business behind it: A&amp;R, rights and publishing, touring and live operations, and how a Korean label builds an act for an audience that was never domestic. The industry that exports this music is headquartered in this city.</p></div>
+            <div class="track-card"><span class="track-status prep">In preparation</span><div class="track-head"><div class="track-icon gold"><i class="fas fa-clapperboard"></i></div><h4 id="t7t">Screen: K-Drama &amp; Film</h4></div><p id="t7d">Writing, production and post for the screen. Korean drama and film now reach a global audience through streaming distribution, and the production companies that make them work out of Seoul. Students read the craft and the rights structure together.</p></div>
+        </div>
+        <div class="tracks-note reveal" id="trk-note"><strong>What is settled and what is not.</strong> Only the pre-medical curriculum is complete. The other six tracks have a designed shape but no finished syllabus and no partner agreement specific to them. A student applying today is applying to the pre-medical track. We will open the others when they are ready and not before, and we would rather say that here than discover it with you in the second year.</div>
     </div>
 </section>
 
@@ -334,9 +370,9 @@
 <section class="activities-section">
     <div class="max-container">
         <div class="reveal">
-            <span class="section-label">Extracurriculars &amp; Clinical</span>
+            <span class="section-label">Pre-Medical Track &mdash; Extracurriculars &amp; Clinical</span>
             <h2 class="section-title" id="ec-title">The experience admissions<br><em>committees look for</em></h2>
-            <p class="section-desc" id="ec-desc">On a medical school application, clinical exposure and research carry as much weight as scores. Seoul makes both possible inside the undergraduate years rather than after them.</p>
+            <p class="section-desc" id="ec-desc">This section describes the pre-medical track. On a medical school application, clinical exposure and research carry as much weight as scores. Seoul makes both possible inside the undergraduate years rather than after them.</p>
         </div>
         <div class="activities-grid reveal">
             <div class="activity-card"><div class="activity-icon"><i class="fas fa-user-md"></i></div><h4 id="ec1t">Clinical shadowing</h4><p id="ec1d">Students observe consultations under the supervision of the attending physician. Korean medical law restricts unlicensed students to observation and learning, so no invasive procedures are performed. We state that limit plainly.</p></div>
@@ -454,12 +490,12 @@ function makeLang(h) { return h; }
 const dict = {
     ko: {
         heroBadge:"미국 캘리포니아 비영리법인 설립 완료 · 서울 · 1기 개강 준비 단계",
-        heroTitle:"고환율과 비자 장벽의 시대,<br>미국 의대로 가는 길은<br><em>서울</em>에서 시작됩니다.",
-        heroSub:"<strong>미국 비영리법인이 준비 중인 Pre-Med 과정</strong> · 서울 학습 거점 · <strong>미국 의대 진학을 목표로 한 3~4년 커리큘럼</strong>",
+        heroTitle:"미국 학부 4년에<br>40만 달러가 듭니다.<br>우리는 <em>다른 길</em>을 만들었습니다.",
+        heroSub:"<strong>연 42,000달러, 전액 포함, 서울에서 수학</strong> · 미국 파트너 기관이 학점을 기록 · <strong>그리고 자녀가 일하게 될 세계의 절반 안에서 보내는 4년</strong>",
         stat1:"미국 대비 학비",
         stat2:"비영리법인 설립",
         stat3:"원-달러 환율",
-        stat4:"졸업 후 진학 경로",
+        stat4:"학부 트랙",
         btnData:"비용 비교 보기",
         btnApply:"입학 상담 신청",
         urgencyTitle:"지금 결정을 미루기 어려운<br><em style='color:var(--gold-light)'>4가지 이유</em>",
@@ -482,15 +518,34 @@ const dict = {
         ap3d:"미국 의대는 학교 명성보다 선수과목 이수 여부를 봅니다. 생물학·화학·유기화학·물리학·생화학·심리학·통계 전 과목을 AMCAS 기준으로 설계했습니다.",
         ap4t:"미국 교수진 하이브리드 수업",
         ap4d:"미국 현지 교수의 실시간 강의와 서울 상주 강사의 오프라인 학습 관리를 병행합니다. 수업은 영어로 진행됩니다.",
-        ap5t:"세 개의 트랙, 그리고 인턴십",
-        ap5d:"프리메드는 학교가 시작된 자리입니다. 컴퓨팅·AI와 생명과학·제약 트랙도 준비 중입니다. 모든 트랙에서 한국 기업 인턴십 배치를 위해 노력합니다 — 이미 제공되는 기능이 아니라 목표입니다.",
+        ap5t:"일곱 개의 트랙, 그리고 인턴십",
+        ap5d:"프리메드는 학교가 시작된 자리이자 커리큘럼이 완성된 유일한 트랙입니다. AI·컴퓨팅, 게임 개발, 생명과학, 제약과학, 음악 비즈니스, 영상 제작 트랙이 준비 중입니다. 모든 트랙에서 한국 기업 인턴십 배치를 위해 노력합니다 — 이미 제공되는 기능이 아니라 목표입니다.",
+        trkTitle:"같은 4년을 지나는<br><em>일곱 개의 길</em>",
+        trkDesc:"플라토는 학부입니다. 트랙은 별도의 학교가 아니라 전공 과정입니다. 모든 학생이 같은 기초 &mdash; 영어 수업, 글쓰기, 정량적 사고 &mdash; 를 이수한 뒤 한 방향으로 깊이 들어갑니다. 프리메드는 학교가 설계된 출발점이자 커리큘럼이 완성된 유일한 트랙입니다. 나머지는 준비 중이며, 각 카드에 그대로 적어 두었습니다.",
+        trkNote:"<strong>확정된 것과 아닌 것.</strong> 커리큘럼이 완성된 것은 프리메드뿐입니다. 나머지 여섯 트랙은 설계는 되어 있으나 확정된 강의계획서도, 해당 트랙에 특화된 파트너 협정도 없습니다. 지금 지원하시는 분은 프리메드 트랙에 지원하시는 것입니다. 나머지는 준비가 끝났을 때 열겠습니다. 2학년에 가서 함께 알게 되는 것보다, 여기서 미리 말씀드리는 편이 낫다고 봅니다.",
+        trkReady:"커리큘럼 완성",
+        trkPrep:"준비 중",
+        t1t:"프리메드 (의예)",
+        t1d:"AMCAS 선수과목 전 과목, 2년에 걸친 MCAT 과정, 그리고 학기 일정 안에 편성된 임상 참관. 서울은 세계에서 교육병원 밀도가 가장 높은 도시 중 하나이며, 강남·서초 의료 클러스터가 강의실에서 가깝습니다.",
+        t2t:"AI·컴퓨팅",
+        t2d:"머신러닝, 시스템, 소프트웨어 공학을 하드웨어가 만들어지는 곳에서 배웁니다. 한국은 세계 메모리 반도체의 큰 몫을 생산하며, 그에 의존하는 엔지니어링 기업들이 비행기를 타야 하는 거리가 아니라 같은 도시 안에 있습니다.",
+        t3t:"게임 개발",
+        t3d:"기획, 엔진 프로그래밍, 프로덕션. 한국은 세계 최대 규모의 게임 산업 중 하나를 만들었고, 경쟁 게임을 프로 스포츠로 다룬 최초의 나라입니다. 개발사도 리그도 모두 여기 있습니다.",
+        t4t:"생명과학",
+        t4d:"분자생물학, 유전학, 실험 방법론. 연구실 배치가 부가 혜택이 아니라 학위의 핵심입니다. 강의실에서 한 시간 거리의 송도 바이오클러스터는 세계 최대급 바이오의약품 생산 능력을 갖고 있습니다.",
+        t5t:"제약과학",
+        t5d:"약리학, 제형, 그리고 신약이 실험실에서 환자에게 도달하기까지 실제로 거치는 규제 경로. 한국의 위탁생산 산업과 높은 임상시험 밀도가, 교과서 말고도 들여다볼 대상을 줍니다.",
+        t6t:"K-POP·음악 비즈니스",
+        t6d:"퍼포먼스 훈련이 아닙니다. 그 뒤의 사업입니다. A&amp;R, 저작권과 퍼블리싱, 투어와 공연 운영, 그리고 한국 레이블이 처음부터 국내용이 아닌 아티스트를 만들어내는 방식. 이 음악을 수출하는 산업의 본사가 이 도시에 있습니다.",
+        t7t:"영상: K-드라마·영화",
+        t7d:"극본, 제작, 후반작업. 한국 드라마와 영화는 이제 스트리밍 유통을 통해 전 세계 관객에게 닿고, 그것을 만드는 제작사들이 서울에서 일합니다. 학생은 창작과 권리 구조를 함께 배웁니다.",
         campusTitle:"서울이라는 입지가<br><em>만드는 차이</em>",
         campus1t:"서울 학습 거점",
         campus1d:"강남·서초 의료 클러스터 인근에 강의실과 실습 공간을 둡니다. 임상 참관 기관과의 이동 거리가 짧아 학사 일정에 임상 시간을 넣기 쉽습니다.",
         campus2t:"세계적 의료 인프라와의 근접성",
         campus2d:"서울은 세계 최상위권 병원이 밀집한 도시입니다. 차로 한 시간 거리에 주한미군 의료 체계가 있어, 영어 기반 의료 환경을 경험할 기회도 열려 있습니다.",
         ecTitle:"미국 의대가 보는<br><em>경험을 서울에서</em>",
-        ecDesc:"미국 의대 지원서에서 임상 경험과 연구 이력은 점수만큼 중요합니다. 서울의 의료 인프라를 활용해 이 둘을 학부 과정 안에서 쌓습니다.",
+        ecDesc:"이 항목은 프리메드 트랙에 관한 내용입니다. 미국 의대 지원서에서 임상 경험과 연구 이력은 점수만큼 중요합니다. 서울의 의료 인프라를 활용해 이 둘을 학부 과정 안에서 쌓습니다.",
         ec1t:"임상 참관 (Clinical Shadowing)",
         ec1d:"협약 의료기관에서 담당 의사의 지도 아래 진료를 참관합니다. 한국 의료법상 학생은 관찰과 학습에 한정되며, 침습적 시술은 수행하지 않습니다.",
         ec2t:"연구 참여와 논문",
@@ -545,12 +600,12 @@ const dict = {
     },
     en: {
         heroBadge:"California non-profit corporation &middot; Seoul &middot; Founded by a Harvard graduate &middot; Preparing the first cohort",
-        heroTitle:"American pre-med now costs<br>$400,000 a child.<br>We built the <em>other</em> option.",
+        heroTitle:"An American degree now costs<br>$400,000 a child.<br>We built the <em>other</em> option.",
         heroSub:"<strong>$42,000 a year, all-in, taught in Seoul</strong> &middot; Coursework recorded by a US partner institution &middot; <strong>And four years inside the half of the world your child will work in</strong>",
         stat1:"less than half the cost",
         stat2:"US non-profit incorporated",
         stat3:"won per dollar — Seoul costs less to live in",
-        stat4:"graduate pathways",
+        stat4:"undergraduate tracks",
         btnData:"See the arithmetic",
         btnApply:"Talk to us",
         urgencyTitle:"Four things American families<br><em style='color:var(--gold-light)'>already know</em>",
@@ -573,15 +628,34 @@ const dict = {
         ap3d:"Admissions committees care less about the name on the transcript than whether the prerequisites were completed. Biology, chemistry, organic chemistry, physics, biochemistry, psychology, sociology and statistics are all built into the programme.",
         ap4t:"US faculty, taught in hybrid form",
         ap4d:"Live instruction from US-based faculty is paired with resident instructors in Seoul who handle day-to-day academic support. All coursework is in English.",
-        ap5t:"Three tracks, and internship placement",
-        ap5d:"Pre-medical is where the school began. Tracks in computing and AI, and in the life sciences and pharmaceutical subjects, are in preparation. Across every track we work to place students in internships with Korean companies &mdash; an objective, not yet a feature.",
+        ap5t:"Seven tracks, and internship placement",
+        ap5d:"Pre-medical is where the school began and the only track whose curriculum is finished. Tracks in AI and computing, game development, the life sciences, pharmaceutical science, the music business and screen production are in preparation. Across every track we work to place students in internships with Korean companies &mdash; an objective, not yet a feature.",
+        trkTitle:"Seven ways through<br><em>the same four years</em>",
+        trkDesc:"Plato is an undergraduate school, so a track is a course of study and not a separate institution. Every student reads the same core &mdash; coursework in English, writing, quantitative reasoning &mdash; and then goes deep in one direction. Pre-medical is the track the school was designed around and the only one whose curriculum is finished. The rest are in preparation, and each card says so.",
+        trkNote:"<strong>What is settled and what is not.</strong> Only the pre-medical curriculum is complete. The other six tracks have a designed shape but no finished syllabus and no partner agreement specific to them. A student applying today is applying to the pre-medical track. We will open the others when they are ready and not before, and we would rather say that here than discover it with you in the second year.",
+        trkReady:"Curriculum complete",
+        trkPrep:"In preparation",
+        t1t:"Pre-Medical",
+        t1d:"Every AMCAS prerequisite, a two-year MCAT sequence, and clinical observation timetabled into the academic week rather than squeezed around it. Seoul holds one of the densest concentrations of teaching hospitals anywhere, and the Gangnam and Seocho cluster is a short journey from the classroom.",
+        t2t:"AI &amp; Computing",
+        t2d:"Machine learning, systems and software engineering, read where the hardware is made. Korea produces a large share of the world&rsquo;s memory semiconductors, and the engineering employers that depend on them are inside the city rather than a flight away.",
+        t3t:"Game Development",
+        t3d:"Design, engine programming and production. Korea built one of the largest game industries in the world and was the first country to treat competitive play as a professional sport. The studios and the leagues are both here.",
+        t4t:"Bio &amp; Life Sciences",
+        t4d:"Molecular biology, genetics and laboratory method, with research placement as the point of the degree rather than a bonus attached to it. The Songdo biocluster, about an hour from the classroom, holds some of the largest biologics manufacturing capacity anywhere.",
+        t5t:"Pharmaceutical Sciences",
+        t5d:"Pharmacology, formulation, and the regulatory path a drug actually travels from laboratory to patient. Korea&rsquo;s contract manufacturing sector and its density of clinical trials give students something to study that is not only a textbook.",
+        t6t:"K-Pop &amp; Music Business",
+        t6d:"Not performance training. The business behind it: A&amp;R, rights and publishing, touring and live operations, and how a Korean label builds an act for an audience that was never domestic. The industry that exports this music is headquartered in this city.",
+        t7t:"Screen: K-Drama &amp; Film",
+        t7d:"Writing, production and post for the screen. Korean drama and film now reach a global audience through streaming distribution, and the production companies that make them work out of Seoul. Students read the craft and the rights structure together.",
         campusTitle:"What the city itself<br><em>makes possible</em>",
         campus1t:"Teaching base in Seoul",
         campus1d:"Classrooms and laboratory space sit beside the Gangnam and Seocho medical cluster. Short travel times to partner sites mean clinical hours can be timetabled into the academic week rather than squeezed around it.",
         campus2t:"Beside world-class medical infrastructure",
         campus2d:"Seoul holds one of the densest concentrations of leading hospitals anywhere. The US military medical system in Korea sits about an hour away, opening the possibility of clinical exposure conducted entirely in English.",
         ecTitle:"The experience admissions<br><em>committees look for</em>",
-        ecDesc:"On a medical school application, clinical exposure and research carry as much weight as scores. Seoul makes both possible inside the undergraduate years rather than after them.",
+        ecDesc:"This section describes the pre-medical track. On a medical school application, clinical exposure and research carry as much weight as scores. Seoul makes both possible inside the undergraduate years rather than after them.",
         ec1t:"Clinical shadowing",
         ec1d:"Students observe consultations under the supervision of the attending physician. Korean medical law restricts unlicensed students to observation and learning, so no invasive procedures are performed. We state that limit plainly.",
         ec2t:"Research and publication",
@@ -638,12 +712,12 @@ const dict = {
     // ─── CHINESE ────────────────────────────────────────────────────────────
     zh: {
         heroBadge:"美国加州 非营利法人已设立 · 首尔 · 首届招生筹备阶段",
-        heroTitle:"在高汇率与签证壁垒的时代，<br>通往美国医学院的路<br>从<em>首尔</em>开始。",
-        heroSub:"<strong>由美国 非营利法人筹办的 Pre-Med 课程</strong> · 首尔教学基地 · <strong>以美国医学院升学为目标的三至四年课程</strong>",
+        heroTitle:"美国本科四年<br>要花四十万美元。<br>我们做了<em>另一个</em>选择。",
+        heroSub:"<strong>每年 42,000 美元，全包，在首尔就读</strong> · 学分由美国合作机构记录 · <strong>以及在孩子将来工作的那半个世界里度过的四年</strong>",
         stat1:"相较美国学费",
         stat2:"非营利法人设立",
         stat3:"韩元兑美元",
-        stat4:"毕业后升学路径",
+        stat4:"本科方向",
         btnData:"查看费用对比",
         btnApply:"申请入学咨询",
         urgencyTitle:"难以再拖延的<br><em style='color:var(--gold-light)'>四个理由</em>",
@@ -666,15 +740,34 @@ const dict = {
         ap3d:"美国医学院看重的不是校名，而是先修课程是否完成。生物、化学、有机化学、物理、生物化学、心理学、社会学与统计学均按 AMCAS 标准纳入课程。",
         ap4t:"美国师资混合授课",
         ap4d:"由美国在职教授实时授课，搭配首尔常驻讲师负责日常学习管理。全部课程以英语进行。",
-        ap5t:"三个方向，以及实习",
-        ap5d:"医预科是学校起步之处。计算与人工智能、生命科学与制药方向正在筹备。在所有方向上，我们都努力为学生安排韩国企业实习——这是目标，而非已提供的服务。",
+        ap5t:"七个方向，以及实习",
+        ap5d:"医预科是学校起步之处，也是唯一课程体系已经完成的方向。人工智能与计算、游戏开发、生命科学、制药科学、音乐产业与影视制作方向正在筹备。在所有方向上，我们都努力为学生安排韩国企业实习——这是目标，而非已提供的服务。",
+        trkTitle:"同样的四年<br><em>七种走法</em>",
+        trkDesc:"柏拉图学院是本科院校，方向是修读路径，而不是另一所学校。所有学生修读同一套核心课程 &mdash; 英语授课、写作、量化思维 &mdash; 之后再往一个方向深入。医预科是学校最初设计的方向，也是唯一课程体系已经完成的方向。其余方向仍在筹备，每张卡片都如实标注。",
+        trkNote:"<strong>哪些已确定，哪些还没有。</strong> 课程体系完成的只有医预科。其余六个方向已有设计框架，但没有定稿的教学大纲，也没有针对该方向的合作协议。今天提出申请，申请的是医预科方向。其余方向准备好了我们才会开设，不会提前。与其到第二年才一起发现，不如现在在这里说清楚。",
+        trkReady:"课程已完成",
+        trkPrep:"筹备中",
+        t1t:"医预科",
+        t1d:"AMCAS 全部先修课程、为期两年的 MCAT 课程，以及排入学期课表内的临床观摩。首尔是全球教学医院密度最高的城市之一，江南与瑞草医疗集群离教室很近。",
+        t2t:"人工智能与计算",
+        t2d:"机器学习、系统与软件工程，在硬件被制造出来的地方修读。韩国生产了全球相当大份额的存储半导体，依赖这些芯片的工程类雇主就在城内，而不在一趟航班之外。",
+        t3t:"游戏开发",
+        t3d:"策划、引擎程序与制作。韩国建立了世界最大的游戏产业之一，也是最早把竞技对战当作职业体育来对待的国家。开发公司与联赛都在这里。",
+        t4t:"生物与生命科学",
+        t4d:"分子生物学、遗传学与实验方法，研究室安排是学位的核心，而不是附赠。距教室约一小时的松岛生物集群，拥有全球规模最大的生物药生产能力之一。",
+        t5t:"制药科学",
+        t5d:"药理学、制剂，以及一款新药从实验室走到病人手中真正要走的监管路径。韩国的委托生产产业与临床试验密度，让学生有教科书之外可以研究的对象。",
+        t6t:"K-Pop 与音乐产业",
+        t6d:"不是表演训练，而是背后的生意：A&amp;R、版权与出版、巡演与现场运营，以及韩国厂牌如何为一个从一开始就不以本土为目标的听众打造艺人。输出这些音乐的产业，总部就在这座城市。",
+        t7t:"影视：韩剧与电影",
+        t7d:"剧本、制作与后期。韩国剧集与电影如今通过流媒体发行触达全球观众，制作这些作品的公司就在首尔办公。学生同时学习创作与版权结构。",
         campusTitle:"首尔这座城市<br><em>所带来的差异</em>",
         campus1t:"首尔教学基地",
         campus1d:"教室与实习空间设于江南、瑞草医疗集群附近。与临床见习机构距离短，临床时数可以排进学期课表，而不是挤在课外。",
         campus2t:"紧邻世界级医疗基础设施",
         campus2d:"首尔是全球顶尖医院最密集的城市之一。驻韩美军医疗体系距此约一小时车程，也为全程英语的临床接触提供了可能。",
         ecTitle:"美国医学院看重的<br><em>经历，在首尔累积</em>",
-        ecDesc:"在医学院申请中，临床接触与研究经历的分量不亚于分数。首尔的医疗基础设施让这两项可以在本科阶段完成，而不是毕业之后。",
+        ecDesc:"本节说明的是医预科方向。在医学院申请中，临床接触与研究经历的分量不亚于分数。首尔的医疗基础设施让这两项可以在本科阶段完成，而不是毕业之后。",
         ec1t:"临床见习",
         ec1d:"在主治医师指导下观摩诊疗。依韩国医疗法，无执照学生仅限于观察与学习，不进行侵入性操作。我们把这条界线明确写出来。",
         ec2t:"研究参与与论文",
@@ -731,12 +824,12 @@ const dict = {
     // ─── JAPANESE ───────────────────────────────────────────────────────────
     ja: {
         heroBadge:"米国カリフォルニア州 非営利法人 設立済 · ソウル · 第1期開講準備中",
-        heroTitle:"円換算でも重い学費と<br>ビザの壁の時代に、<br>米国医学部への道は<em>ソウル</em>から。",
-        heroSub:"<strong>米国 非営利法人が準備中の Pre-Med 課程</strong> · ソウル学習拠点 · <strong>米国の医学部進学を目指す3〜4年カリキュラム</strong>",
+        heroTitle:"米国の学部4年に<br>40万ドル。<br>私たちは<em>別の道</em>を作りました。",
+        heroSub:"<strong>年間42,000ドル、すべて込みで、ソウルで学ぶ</strong> · 単位は米国の提携機関が記録 · <strong>そして、お子さんが働くことになる世界の半分の中で過ごす4年間</strong>",
         stat1:"米国比の学費",
         stat2:"非営利法人設立",
         stat3:"ウォン／ドル",
-        stat4:"卒業後の進学経路",
+        stat4:"学部トラック",
         btnData:"費用を比較する",
         btnApply:"入学相談を申し込む",
         urgencyTitle:"先送りしにくい<br><em style='color:var(--gold-light)'>4つの理由</em>",
@@ -759,15 +852,34 @@ const dict = {
         ap3d:"米国の医学部が見るのは校名よりも必修科目の履修です。生物学・化学・有機化学・物理学・生化学・心理学・社会学・統計学を AMCAS 基準で組み込んでいます。",
         ap4t:"米国教員によるハイブリッド授業",
         ap4d:"米国現地の教授によるリアルタイム講義と、ソウル常駐講師による日々の学習管理を併用します。授業はすべて英語です。",
-        ap5t:"三つのトラック、そしてインターンシップ",
-        ap5d:"プレメドは学校が始まった場所です。コンピューティング・AI、生命科学・製薬のトラックも準備中です。すべてのトラックで韓国企業のインターンシップ配置に努めます — すでに提供している機能ではなく、目標です。",
+        ap5t:"七つのトラック、そしてインターンシップ",
+        ap5d:"プレメドは学校が始まった場所であり、カリキュラムが完成している唯一のトラックです。AI・コンピューティング、ゲーム開発、生命科学、製薬科学、音楽ビジネス、映像制作のトラックが準備中です。すべてのトラックで韓国企業のインターンシップ配置に努めます — すでに提供している機能ではなく、目標です。",
+        trkTitle:"同じ4年間を通る<br><em>七つの道</em>",
+        trkDesc:"プラトは学部課程です。トラックは別の学校ではなく、専攻の履修過程を指します。すべての学生が同じ基礎 &mdash; 英語による授業、ライティング、定量的思考 &mdash; を修めたうえで、一つの方向に深く進みます。プレメドは学校が設計された出発点であり、カリキュラムが完成している唯一のトラックです。残りは準備中で、各カードにそのまま記しています。",
+        trkNote:"<strong>決まっていること、まだ決まっていないこと。</strong> カリキュラムが完成しているのはプレメドだけです。他の六つのトラックは設計はありますが、確定したシラバスも、そのトラック固有の提携協定もありません。今お申し込みになる方は、プレメドトラックに出願することになります。他は準備が整ってから開きます。2年目にご一緒に気づくより、ここで先に申し上げます。",
+        trkReady:"カリキュラム完成",
+        trkPrep:"準備中",
+        t1t:"プレメド（医進）",
+        t1d:"AMCAS の必修科目すべて、2年にわたる MCAT カリキュラム、そして学期の時間割の中に組み込まれた臨床見学。ソウルは教育病院の密度が世界でも有数の都市であり、江南・瑞草の医療クラスターは教室から近い距離にあります。",
+        t2t:"AI・コンピューティング",
+        t2d:"機械学習、システム、ソフトウェア工学を、ハードウェアが作られている場所で学びます。韓国は世界のメモリ半導体の大きな割合を生産しており、それに依存する工学系の雇用先が、飛行機ではなく同じ都市の中にあります。",
+        t3t:"ゲーム開発",
+        t3d:"企画、エンジンプログラミング、プロダクション。韓国は世界最大級のゲーム産業を築き、競技プレイをプロスポーツとして扱った最初の国です。開発会社もリーグも、どちらもここにあります。",
+        t4t:"生命科学",
+        t4d:"分子生物学、遺伝学、実験手法。研究室配属が学位の中心であり、おまけではありません。教室から約1時間の松島バイオクラスターは、世界最大級のバイオ医薬品製造能力を持ちます。",
+        t5t:"製薬科学",
+        t5d:"薬理学、製剤、そして新薬が研究室から患者に届くまでに実際にたどる規制の道筋。韓国の受託製造産業と臨床試験の密度が、教科書以外に見るべき対象を与えます。",
+        t6t:"K-POP・音楽ビジネス",
+        t6d:"パフォーマンスの訓練ではありません。その背後の事業です。A&amp;R、著作権とパブリッシング、ツアーとライブ運営、そして韓国のレーベルが最初から国内向けではない聴衆に向けてアーティストを作り上げる方法。この音楽を輸出する産業の本社が、この都市にあります。",
+        t7t:"映像：韓国ドラマ・映画",
+        t7d:"脚本、製作、ポストプロダクション。韓国のドラマと映画は今やストリーミング流通を通じて世界の観客に届き、それを作る制作会社がソウルで働いています。学生は創作と権利構造を併せて学びます。",
         campusTitle:"ソウルという立地が<br><em>生む違い</em>",
         campus1t:"ソウル学習拠点",
         campus1d:"江南・瑞草の医療クラスター近くに教室と実習スペースを置きます。臨床見学先までの移動が短く、臨床時間を学期の時間割に組み込めます。",
         campus2t:"世界水準の医療インフラのそばで",
         campus2d:"ソウルは世界有数の病院が密集する都市です。在韓米軍の医療体制が車で約1時間の距離にあり、英語で完結する臨床接触の可能性も開かれています。",
         ecTitle:"米国の医学部が見る<br><em>経験をソウルで</em>",
-        ecDesc:"医学部の出願では、臨床経験と研究歴が点数に劣らない重みを持ちます。ソウルの医療インフラを使い、その両方を学部在学中に積み上げます。",
+        ecDesc:"この項目はプレメドトラックについての内容です。医学部の出願では、臨床経験と研究歴が点数に劣らない重みを持ちます。ソウルの医療インフラを使い、その両方を学部在学中に積み上げます。",
         ec1t:"臨床見学（シャドーイング）",
         ec1d:"担当医の指導のもとで診療を見学します。韓国の医療法により無免許の学生は観察と学習に限られ、侵襲的な処置は行いません。その線引きを明示します。",
         ec2t:"研究参加と論文",
@@ -824,12 +936,12 @@ const dict = {
     // ─── THAI ───────────────────────────────────────────────────────────────
     th: {
         heroBadge:"นิติบุคคลไม่แสวงหากำไร แคลิฟอร์เนีย · โซล · เตรียมเปิดรุ่นแรก",
-        heroTitle:"ในยุคที่ค่าเงินและวีซ่า<br>ต่างเป็นอุปสรรค<br>เส้นทางสู่แพทย์อเมริกันเริ่มที่<em>โซล</em>",
-        heroSub:"<strong>หลักสูตรเตรียมแพทย์ที่ดำเนินการโดยนิติบุคคลไม่แสวงหากำไร ของสหรัฐฯ</strong> · ฐานการเรียนในโซล · <strong>หลักสูตร 3-4 ปี มุ่งสู่โรงเรียนแพทย์ในสหรัฐฯ</strong>",
+        heroTitle:"ปริญญาตรีในสหรัฐฯ<br>สี่ปี ราคา 400,000 ดอลลาร์<br>เราสร้าง<em>ทางเลือกอีกทาง</em>",
+        heroSub:"<strong>ปีละ 42,000 ดอลลาร์ รวมทุกอย่าง เรียนที่โซล</strong> · หน่วยกิตบันทึกโดยสถาบันพันธมิตรในสหรัฐฯ · <strong>และสี่ปีในครึ่งหนึ่งของโลกที่ลูกคุณจะไปทำงาน</strong>",
         stat1:"เทียบค่าเล่าเรียนสหรัฐฯ",
         stat2:"จดทะเบียนนิติบุคคล",
         stat3:"วอนต่อดอลลาร์",
-        stat4:"เส้นทางหลังจบ",
+        stat4:"สายการเรียน",
         btnData:"เปรียบเทียบค่าใช้จ่าย",
         btnApply:"ขอคำปรึกษาการสมัคร",
         urgencyTitle:"สี่เหตุผลที่<br><em style='color:var(--gold-light)'>ยากจะเลื่อนออกไป</em>",
@@ -852,15 +964,34 @@ const dict = {
         ap3d:"โรงเรียนแพทย์ในสหรัฐฯ ให้น้ำหนักกับการเรียนครบวิชาบังคับมากกว่าชื่อสถาบัน ชีววิทยา เคมี เคมีอินทรีย์ ฟิสิกส์ ชีวเคมี จิตวิทยา สังคมวิทยา และสถิติ ถูกจัดไว้ตามเกณฑ์ AMCAS ทั้งหมด",
         ap4t:"อาจารย์สหรัฐฯ สอนแบบผสมผสาน",
         ap4d:"การบรรยายสดจากอาจารย์ในสหรัฐฯ ควบคู่กับผู้สอนประจำในโซลที่ดูแลการเรียนรายวัน ทุกวิชาใช้ภาษาอังกฤษ",
-        ap5t:"สามสายการเรียน และการฝึกงาน",
-        ap5d:"สายเตรียมแพทย์คือจุดเริ่มต้นของโรงเรียน สายคอมพิวเตอร์และ AI และสายวิทยาศาสตร์ชีวภาพและเภสัชกรรม กำลังเตรียมการ ในทุกสายเราพยายามจัดหาการฝึกงานกับบริษัทเกาหลี — เป็นเป้าหมาย ไม่ใช่สิ่งที่มีให้อยู่แล้ว",
+        ap5t:"เจ็ดสายการเรียน และการฝึกงาน",
+        ap5d:"สายเตรียมแพทย์คือจุดเริ่มต้นของโรงเรียน และเป็นสายเดียวที่หลักสูตรเสร็จสมบูรณ์ สาย AI และคอมพิวเตอร์ การพัฒนาเกม วิทยาศาสตร์ชีวภาพ เภสัชศาสตร์ ธุรกิจดนตรี และการผลิตภาพยนตร์ กำลังเตรียมการ ในทุกสายเราพยายามจัดหาการฝึกงานกับบริษัทเกาหลี — เป็นเป้าหมาย ไม่ใช่สิ่งที่มีให้อยู่แล้ว",
+        trkTitle:"เจ็ดเส้นทาง<br><em>ในสี่ปีเดียวกัน</em>",
+        trkDesc:"พลาโตเป็นสถาบันระดับปริญญาตรี สายการเรียนจึงเป็นเส้นทางการศึกษา ไม่ใช่สถาบันแยกต่างหาก นักศึกษาทุกคนเรียนแกนกลางเดียวกัน &mdash; รายวิชาภาษาอังกฤษ การเขียน การคิดเชิงปริมาณ &mdash; แล้วจึงลงลึกไปในทิศทางเดียว สายเตรียมแพทย์คือสายที่โรงเรียนออกแบบขึ้นมาตั้งแต่ต้น และเป็นสายเดียวที่หลักสูตรเสร็จสมบูรณ์ สายอื่นยังอยู่ระหว่างเตรียมการ และเราระบุไว้บนการ์ดแต่ละใบ",
+        trkNote:"<strong>อะไรแน่นอนแล้ว และอะไรยังไม่แน่นอน</strong> หลักสูตรที่เสร็จสมบูรณ์มีเพียงสายเตรียมแพทย์ อีกหกสายมีโครงร่างที่ออกแบบไว้แล้ว แต่ยังไม่มีประมวลรายวิชาที่สรุปแล้ว และไม่มีข้อตกลงกับพันธมิตรที่เจาะจงกับสายนั้น ผู้ที่สมัครวันนี้คือผู้สมัครเข้าสายเตรียมแพทย์ สายอื่นเราจะเปิดเมื่อพร้อม ไม่ใช่ก่อนหน้านั้น และเราขอบอกไว้ตรงนี้ ดีกว่าไปรู้พร้อมกันในปีที่สอง",
+        trkReady:"หลักสูตรเสร็จสมบูรณ์",
+        trkPrep:"อยู่ระหว่างเตรียมการ",
+        t1t:"สายเตรียมแพทย์",
+        t1d:"วิชาบังคับก่อนของ AMCAS ครบทุกวิชา หลักสูตร MCAT สองปี และการสังเกตการณ์ทางคลินิกที่จัดไว้ในตารางเรียนประจำภาค ไม่ใช่เบียดแทรกเข้าไปทีหลัง โซลมีความหนาแน่นของโรงพยาบาลโรงเรียนแพทย์สูงที่สุดแห่งหนึ่งของโลก และคลัสเตอร์คังนัม-ซอโชอยู่ห่างจากห้องเรียนไม่ไกล",
+        t2t:"AI และคอมพิวเตอร์",
+        t2d:"การเรียนรู้ของเครื่อง ระบบ และวิศวกรรมซอฟต์แวร์ เรียนในที่ที่ฮาร์ดแวร์ถูกผลิตขึ้นจริง เกาหลีผลิตเซมิคอนดักเตอร์หน่วยความจำเป็นสัดส่วนใหญ่ของโลก และนายจ้างสายวิศวกรรมที่พึ่งพาสิ่งนี้อยู่ในเมืองเดียวกัน ไม่ใช่ห่างออกไปหนึ่งเที่ยวบิน",
+        t3t:"การพัฒนาเกม",
+        t3d:"การออกแบบ การเขียนโปรแกรมเอนจิน และการผลิต เกาหลีสร้างอุตสาหกรรมเกมที่ใหญ่ที่สุดแห่งหนึ่งของโลก และเป็นประเทศแรกที่ถือว่าการแข่งขันเกมเป็นกีฬาอาชีพ ทั้งสตูดิโอและลีกอยู่ที่นี่",
+        t4t:"ชีววิทยาและวิทยาศาสตร์ชีวภาพ",
+        t4d:"ชีววิทยาโมเลกุล พันธุศาสตร์ และระเบียบวิธีในห้องปฏิบัติการ โดยการเข้าห้องวิจัยคือแก่นของปริญญา ไม่ใช่ของแถม คลัสเตอร์ชีวภาพซงโด ห่างจากห้องเรียนราวหนึ่งชั่วโมง มีกำลังการผลิตชีววัตถุขนาดใหญ่ที่สุดแห่งหนึ่งของโลก",
+        t5t:"เภสัชศาสตร์",
+        t5d:"เภสัชวิทยา การตั้งตำรับ และเส้นทางการกำกับดูแลที่ยาต้องผ่านจริงตั้งแต่ห้องปฏิบัติการจนถึงผู้ป่วย อุตสาหกรรมรับจ้างผลิตของเกาหลีและความหนาแน่นของการทดลองทางคลินิก ให้สิ่งที่นักศึกษาศึกษาได้นอกเหนือจากตำรา",
+        t6t:"K-Pop และธุรกิจดนตรี",
+        t6d:"ไม่ใช่การฝึกเป็นศิลปิน แต่คือธุรกิจที่อยู่เบื้องหลัง: A&amp;R ลิขสิทธิ์และการจัดพิมพ์ ทัวร์และงานแสดงสด และวิธีที่ค่ายเกาหลีสร้างศิลปินสำหรับผู้ฟังที่ไม่เคยเป็นแค่ในประเทศ อุตสาหกรรมที่ส่งออกดนตรีนี้มีสำนักงานใหญ่อยู่ในเมืองนี้",
+        t7t:"จอภาพ: ซีรีส์และภาพยนตร์เกาหลี",
+        t7d:"การเขียนบท การผลิต และงานหลังการถ่ายทำ ซีรีส์และภาพยนตร์เกาหลีเข้าถึงผู้ชมทั่วโลกผ่านการจัดจำหน่ายแบบสตรีมมิง และบริษัทผู้สร้างทำงานอยู่ในโซล นักศึกษาเรียนทั้งงานฝีมือและโครงสร้างสิทธิไปพร้อมกัน",
         campusTitle:"ความต่างที่<br><em>เมืองโซลสร้างขึ้น</em>",
         campus1t:"ฐานการเรียนในโซล",
         campus1d:"ห้องเรียนและพื้นที่ปฏิบัติการตั้งอยู่ใกล้คลัสเตอร์การแพทย์คังนัมและซอโช ระยะทางสั้นทำให้จัดชั่วโมงคลินิกเข้าไปในตารางเรียนได้จริง",
         campus2t:"อยู่ติดโครงสร้างพื้นฐานทางการแพทย์ระดับโลก",
         campus2d:"โซลเป็นเมืองที่มีโรงพยาบาลชั้นนำหนาแน่นที่สุดแห่งหนึ่งของโลก ระบบการแพทย์ของกองทัพสหรัฐฯ ในเกาหลีอยู่ห่างราวหนึ่งชั่วโมง เปิดความเป็นไปได้ของประสบการณ์คลินิกที่ใช้ภาษาอังกฤษทั้งหมด",
         ecTitle:"ประสบการณ์ที่กรรมการรับเข้ามองหา<br><em>สร้างได้ที่โซล</em>",
-        ecDesc:"ในใบสมัครโรงเรียนแพทย์ ประสบการณ์คลินิกและงานวิจัยมีน้ำหนักไม่น้อยกว่าคะแนน โครงสร้างพื้นฐานของโซลทำให้ทั้งสองอย่างเกิดขึ้นได้ระหว่างเรียนปริญญาตรี",
+        ecDesc:"หัวข้อนี้อธิบายสายเตรียมแพทย์ ในใบสมัครโรงเรียนแพทย์ ประสบการณ์คลินิกและงานวิจัยมีน้ำหนักไม่น้อยกว่าคะแนน โครงสร้างพื้นฐานของโซลทำให้ทั้งสองอย่างเกิดขึ้นได้ระหว่างเรียนปริญญาตรี",
         ec1t:"การสังเกตการณ์ทางคลินิก",
         ec1d:"นักศึกษาสังเกตการตรวจรักษาภายใต้การกำกับของแพทย์เจ้าของไข้ กฎหมายการแพทย์เกาหลีจำกัดให้ผู้ไม่มีใบอนุญาตทำได้เพียงการสังเกตและเรียนรู้ จึงไม่มีหัตถการรุกล้ำใดๆ เราระบุขอบเขตนี้ไว้ชัดเจน",
         ec2t:"การมีส่วนร่วมในงานวิจัย",
@@ -917,12 +1048,12 @@ const dict = {
     // ─── VIETNAMESE ─────────────────────────────────────────────────────────
     vi: {
         heroBadge:"Pháp nhân phi lợi nhuận California · Seoul · Chuẩn bị khóa đầu tiên",
-        heroTitle:"Khi tỷ giá và rào cản thị thực<br>cùng chống lại bạn,<br>con đường tới y khoa Mỹ bắt đầu từ <em>Seoul</em>.",
-        heroSub:"<strong>Chương trình dự bị y khoa do một pháp nhân phi lợi nhuận của Hoa Kỳ chuẩn bị</strong> · Cơ sở học tập tại Seoul · <strong>Chương trình 3-4 năm hướng tới trường y Hoa Kỳ</strong>",
+        heroTitle:"Bốn năm đại học Mỹ<br>nay tốn 400.000 đô la.<br>Chúng tôi dựng <em>lối khác</em>.",
+        heroSub:"<strong>42.000 đô la một năm, trọn gói, học tại Seoul</strong> · Tín chỉ được một cơ sở đối tác Hoa Kỳ ghi nhận · <strong>Và bốn năm bên trong nửa thế giới mà con bạn sẽ làm việc</strong>",
         stat1:"so với học phí Mỹ",
         stat2:"pháp nhân đã thành lập",
         stat3:"won trên đô la",
-        stat4:"hướng đi sau tốt nghiệp",
+        stat4:"hướng học cử nhân",
         btnData:"So sánh chi phí",
         btnApply:"Đăng ký tư vấn tuyển sinh",
         urgencyTitle:"Bốn lý do khiến<br><em style='color:var(--gold-light)'>khó trì hoãn thêm</em>",
@@ -945,15 +1076,34 @@ const dict = {
         ap3d:"Hội đồng tuyển sinh quan tâm việc hoàn tất môn tiên quyết hơn là tên trường. Sinh học, hóa học, hóa hữu cơ, vật lý, hóa sinh, tâm lý học, xã hội học và thống kê đều được đưa vào theo chuẩn AMCAS.",
         ap4t:"Giảng viên Hoa Kỳ, giảng dạy kết hợp",
         ap4d:"Bài giảng trực tiếp từ giảng viên tại Hoa Kỳ kết hợp với giảng viên thường trú tại Seoul phụ trách hỗ trợ học tập hằng ngày. Toàn bộ chương trình bằng tiếng Anh.",
-        ap5t:"Ba hướng học, và thực tập",
-        ap5d:"Dự bị y khoa là nơi trường bắt đầu. Hướng máy tính và AI, cùng khoa học sự sống và dược phẩm, đang được chuẩn bị. Ở mọi hướng, chúng tôi nỗ lực sắp xếp thực tập tại doanh nghiệp Hàn Quốc &mdash; là mục tiêu, chưa phải điều đã có.",
+        ap5t:"Bảy hướng học, và thực tập",
+        ap5d:"Dự bị y khoa là nơi trường bắt đầu và là hướng duy nhất có chương trình đã hoàn chỉnh. Các hướng AI và máy tính, phát triển trò chơi, khoa học sự sống, khoa học dược phẩm, kinh doanh âm nhạc và sản xuất màn ảnh đang được chuẩn bị. Ở mọi hướng, chúng tôi nỗ lực sắp xếp thực tập tại doanh nghiệp Hàn Quốc &mdash; là mục tiêu, chưa phải điều đã có.",
+        trkTitle:"Bảy lối đi<br><em>qua cùng bốn năm</em>",
+        trkDesc:"Plato là một trường đại học bậc cử nhân, nên một hướng học là một lộ trình học tập chứ không phải một cơ sở riêng. Mọi sinh viên đều học cùng phần cốt lõi &mdash; các môn bằng tiếng Anh, viết, tư duy định lượng &mdash; rồi mới đi sâu vào một hướng. Dự bị y khoa là hướng mà trường được thiết kế quanh nó, và là hướng duy nhất có chương trình đã hoàn chỉnh. Những hướng còn lại đang được chuẩn bị, và mỗi thẻ đều ghi rõ điều đó.",
+        trkNote:"<strong>Điều gì đã chắc chắn và điều gì chưa.</strong> Chỉ chương trình dự bị y khoa là hoàn chỉnh. Sáu hướng còn lại đã có hình hài thiết kế nhưng chưa có đề cương hoàn tất và chưa có thỏa thuận đối tác riêng cho hướng đó. Người nộp đơn hôm nay là nộp vào hướng dự bị y khoa. Chúng tôi sẽ mở những hướng khác khi chúng sẵn sàng, không sớm hơn, và chúng tôi muốn nói điều đó ở đây hơn là cùng bạn phát hiện ra vào năm thứ hai.",
+        trkReady:"Chương trình đã hoàn chỉnh",
+        trkPrep:"Đang chuẩn bị",
+        t1t:"Dự bị y khoa",
+        t1d:"Toàn bộ môn tiên quyết của AMCAS, lộ trình MCAT hai năm, và quan sát lâm sàng được xếp thẳng vào thời khóa biểu học kỳ chứ không chen vào bên lề. Seoul có mật độ bệnh viện giảng dạy thuộc hàng cao nhất thế giới, và cụm Gangnam &ndash; Seocho chỉ cách lớp học một quãng ngắn.",
+        t2t:"AI và Máy tính",
+        t2d:"Học máy, hệ thống và kỹ thuật phần mềm, học ngay nơi phần cứng được làm ra. Hàn Quốc sản xuất một phần lớn chất bán dẫn nhớ của thế giới, và những nhà tuyển dụng kỹ thuật phụ thuộc vào chúng nằm trong cùng thành phố chứ không cách một chuyến bay.",
+        t3t:"Phát triển trò chơi",
+        t3d:"Thiết kế, lập trình engine và sản xuất. Hàn Quốc đã dựng nên một trong những ngành game lớn nhất thế giới và là nước đầu tiên coi thi đấu điện tử là một môn thể thao chuyên nghiệp. Cả studio lẫn các giải đấu đều ở đây.",
+        t4t:"Sinh học và Khoa học sự sống",
+        t4d:"Sinh học phân tử, di truyền học và phương pháp phòng thí nghiệm, với việc vào phòng nghiên cứu là trọng tâm của tấm bằng chứ không phải phần thưởng kèm theo. Cụm công nghệ sinh học Songdo, cách lớp học khoảng một giờ, nắm giữ một trong những năng lực sản xuất sinh phẩm lớn nhất thế giới.",
+        t5t:"Khoa học dược phẩm",
+        t5d:"Dược lý, bào chế, và con đường pháp quy mà một loại thuốc thực sự phải đi từ phòng thí nghiệm tới người bệnh. Ngành sản xuất theo hợp đồng của Hàn Quốc và mật độ thử nghiệm lâm sàng cho sinh viên thứ để nghiên cứu ngoài sách giáo khoa.",
+        t6t:"K-Pop và Kinh doanh âm nhạc",
+        t6d:"Không phải đào tạo biểu diễn, mà là công việc kinh doanh phía sau: A&amp;R, bản quyền và xuất bản, lưu diễn và vận hành show, và cách một hãng đĩa Hàn Quốc xây dựng nghệ sĩ cho một khán giả chưa bao giờ chỉ là trong nước. Ngành xuất khẩu thứ âm nhạc này đặt trụ sở tại chính thành phố này.",
+        t7t:"Màn ảnh: Phim truyền hình và điện ảnh Hàn",
+        t7d:"Viết kịch bản, sản xuất và hậu kỳ. Phim truyền hình và điện ảnh Hàn Quốc nay đến với khán giả toàn cầu qua phát hành trực tuyến, và các công ty sản xuất làm ra chúng đặt văn phòng ở Seoul. Sinh viên học cả nghề lẫn cấu trúc bản quyền.",
         campusTitle:"Điều mà chính thành phố này<br><em>tạo ra</em>",
         campus1t:"Cơ sở học tập tại Seoul",
         campus1d:"Phòng học và không gian thực hành nằm cạnh cụm y tế Gangnam và Seocho. Khoảng cách ngắn tới các cơ sở thực hành cho phép xếp giờ lâm sàng vào thời khóa biểu thay vì chen vào ngoài giờ.",
         campus2t:"Bên cạnh hạ tầng y tế đẳng cấp thế giới",
         campus2d:"Seoul là một trong những nơi tập trung bệnh viện hàng đầu dày đặc nhất thế giới. Hệ thống y tế của quân đội Hoa Kỳ tại Hàn Quốc cách khoảng một giờ xe, mở ra khả năng tiếp xúc lâm sàng hoàn toàn bằng tiếng Anh.",
         ecTitle:"Trải nghiệm mà hội đồng tuyển sinh<br><em>tìm kiếm</em>",
-        ecDesc:"Trong hồ sơ vào trường y, kinh nghiệm lâm sàng và nghiên cứu có trọng lượng không kém điểm số. Hạ tầng y tế của Seoul khiến cả hai điều đó khả thi ngay trong những năm đại học.",
+        ecDesc:"Phần này mô tả hướng dự bị y khoa. Trong hồ sơ vào trường y, kinh nghiệm lâm sàng và nghiên cứu có trọng lượng không kém điểm số. Hạ tầng y tế của Seoul khiến cả hai điều đó khả thi ngay trong những năm đại học.",
         ec1t:"Quan sát lâm sàng",
         ec1d:"Sinh viên quan sát buổi khám dưới sự giám sát của bác sĩ điều trị. Luật y tế Hàn Quốc giới hạn người chưa có giấy phép ở mức quan sát và học tập, nên không thực hiện thủ thuật xâm lấn nào. Chúng tôi nêu rõ giới hạn đó.",
         ec2t:"Tham gia nghiên cứu",
@@ -1074,6 +1224,10 @@ function setLang(lang, btn) {
     s('campus1t', t.campus1t); s('campus1d', t.campus1d);
     s('campus2t', t.campus2t); s('campus2d', t.campus2d);
 
+    s('trk-title', t.trkTitle); s('trk-desc', t.trkDesc); s('trk-note', t.trkNote);
+    st('trk-ready', t.trkReady);
+    document.querySelectorAll('.track-status.prep').forEach(function(e){ e.textContent = t.trkPrep; });
+    for (var ti = 1; ti <= 7; ti++) { s('t'+ti+'t', t['t'+ti+'t']); s('t'+ti+'d', t['t'+ti+'d']); }
     s('ec-title', t.ecTitle); s('ec-desc', t.ecDesc);
     s('ec1t', t.ec1t); s('ec1d', t.ec1d); s('ec2t', t.ec2t); s('ec2d', t.ec2d);
     s('ec3t', t.ec3t); s('ec3d', t.ec3d); s('ec4t', t.ec4t); s('ec4d', t.ec4d);

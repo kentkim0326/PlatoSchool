@@ -44,6 +44,17 @@
         .hero { min-height: 100vh; background: linear-gradient(160deg, rgba(10,22,40,0.97) 0%, rgba(15,34,72,0.95) 50%, rgba(26,86,219,0.15) 100%), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1920&q=80') center/cover; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 2rem 80px; position: relative; overflow: hidden; }
         .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(26,86,219,0.12) 0%, transparent 60%), radial-gradient(ellipse at 70% 20%, rgba(201,168,76,0.08) 0%, transparent 50%); }
         .hero::after { content: 'PLATO'; position: absolute; font-family: 'DM Serif Display', serif; font-size: 28vw; font-weight: 400; color: rgba(255,255,255,0.022); top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; }
+        .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+        .hero-vignette { position: absolute; inset: 0; z-index: 1; background: linear-gradient(160deg, rgba(10,22,40,0.88) 0%, rgba(15,34,72,0.80) 50%, rgba(10,22,40,0.86) 100%); }
+        .hero::before, .hero::after { z-index: 2; }
+        .hero > *:not(.hero-video):not(.hero-vignette) { position: relative; z-index: 3; }
+        @media (max-width: 768px) {
+            .hero { min-height: 0; justify-content: flex-start; padding: 88px 1.25rem 56px; }
+            .hero-video { position: relative; inset: auto; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 10px; margin-bottom: 1.9rem; }
+            .hero-vignette { display: none; }
+            .hero::after { display: none; }
+        }
+        @media (prefers-reduced-motion: reduce) { .hero-video { display: none; } }
         .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.4); color: var(--gold-light); padding: 8px 20px; border-radius: 40px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2rem; position: relative; animation: fadeSlideDown 0.8s ease forwards; }
         .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: blink 1.5s ease-in-out infinite; }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
@@ -220,6 +231,8 @@
 
 <!-- HERO -->
 <section class="hero">
+    <video id="hero-video" class="hero-video" muted loop playsinline preload="none" poster="assets/hero-poster.jpg" aria-hidden="true"></video>
+    <div class="hero-vignette"></div>
     <div id="hero-badge" class="hero-badge">California non-profit corporation &middot; Seoul &middot; Founded by a Harvard graduate &middot; Preparing the first cohort</div>
     <h1 id="hero-title" class="hero-title">American pre-med now costs<br>$400,000 a child.<br>We built the <em>other</em> option.</h1>
     <p id="hero-sub" class="hero-sub"><strong>$42,000 a year, all-in, taught in Seoul</strong> &middot; Coursework recorded by a US partner institution &middot; <strong>And four years inside the half of the world your child will work in</strong></p>
@@ -1090,6 +1103,17 @@ const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+(function initHeroVideo(){
+    var v = document.getElementById('hero-video');
+    if (!v) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    v.src = window.matchMedia('(max-width: 768px)').matches
+        ? 'assets/hero-mobile.mp4'
+        : 'assets/hero.mp4';
+    var p = v.play();
+    if (p && p.catch) p.catch(function(){});
+})();
 
 setLang('en');
 </script>

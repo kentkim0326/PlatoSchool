@@ -55,6 +55,11 @@
             .hero::after { display: none; }
         }
         @media (prefers-reduced-motion: reduce) { .hero-video { display: none; } }
+        .section-video { position: relative; width: 100%; aspect-ratio: 21 / 9; max-height: 300px; overflow: hidden; border-radius: 12px; margin-bottom: 3rem; background: var(--navy); }
+        .section-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .section-video::after { content: ''; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(10,22,40,0.55) 0%, rgba(15,34,72,0.30) 60%, rgba(10,22,40,0.50) 100%); pointer-events: none; }
+        @media (max-width: 768px) { .section-video { aspect-ratio: 16 / 9; max-height: none; border-radius: 10px; margin-bottom: 2rem; } }
+        @media (prefers-reduced-motion: reduce) { .section-video { display: none; } }
         .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.4); color: var(--gold-light); padding: 8px 20px; border-radius: 40px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2rem; position: relative; animation: fadeSlideDown 0.8s ease forwards; }
         .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: blink 1.5s ease-in-out infinite; }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
@@ -231,7 +236,7 @@
 
 <!-- HERO -->
 <section class="hero">
-    <video id="hero-video" class="hero-video" muted loop playsinline preload="none" poster="assets/hero-poster.jpg" aria-hidden="true"></video>
+    <video id="hero-video" class="hero-video js-video" muted loop playsinline preload="none" poster="assets/hero-poster.jpg" data-src="assets/hero.mp4" data-src-mobile="assets/hero-mobile.mp4" aria-hidden="true"></video>
     <div class="hero-vignette"></div>
     <div id="hero-badge" class="hero-badge">California non-profit corporation &middot; Seoul &middot; Founded by a Harvard graduate &middot; Preparing the first cohort</div>
     <h1 id="hero-title" class="hero-title">American pre-med now costs<br>$400,000 a child.<br>We built the <em>other</em> option.</h1>
@@ -293,6 +298,9 @@
 <!-- CAMPUS -->
 <section class="campus-section">
     <div class="max-container">
+        <div class="section-video reveal">
+            <video class="js-video" muted loop playsinline preload="none" poster="assets/campus-poster.jpg" data-src="assets/campus.mp4" data-src-mobile="assets/campus-mobile.mp4" aria-hidden="true"></video>
+        </div>
         <div class="reveal" style="text-align:center">
             <span class="section-label">Our Campuses</span>
             <h2 class="section-title" id="campus-title">What the city itself<br><em>makes possible</em></h2>
@@ -1104,15 +1112,28 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-(function initHeroVideo(){
-    var v = document.getElementById('hero-video');
-    if (!v) return;
+(function initSectionVideos(){
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    v.src = window.matchMedia('(max-width: 768px)').matches
-        ? 'assets/hero-mobile.mp4'
-        : 'assets/hero.mp4';
-    var p = v.play();
-    if (p && p.catch) p.catch(function(){});
+    var mobile = window.matchMedia('(max-width: 768px)').matches;
+    var vids = document.querySelectorAll('video.js-video');
+    if (!vids.length) return;
+    function load(v) {
+        if (v.dataset.loaded) return;
+        v.dataset.loaded = '1';
+        v.src = (mobile && v.dataset.srcMobile) ? v.dataset.srcMobile : v.dataset.src;
+        var p = v.play();
+        if (p && p.catch) p.catch(function(){});
+    }
+    if (!('IntersectionObserver' in window)) {
+        Array.prototype.forEach.call(vids, load);
+        return;
+    }
+    var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+            if (e.isIntersecting) { load(e.target); io.unobserve(e.target); }
+        });
+    }, { rootMargin: '300px' });
+    Array.prototype.forEach.call(vids, function(v){ io.observe(v); });
 })();
 
 setLang('en');

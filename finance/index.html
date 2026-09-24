@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Finance Track — Plato School</title>
+    <meta name="description" content="An undergraduate finance track in Gwanggyo, in the Seoul Capital Area. Four years of scheduled Bloomberg Terminal time, the Bloomberg Market Concepts certificate, and unpaid placements with Korean limited and general partners. In preparation.">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Michroma&family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a1628; --navy-mid: #0f2248; --blue: #1a56db; --blue-light: #3b82f6;
+            --gold: #c9a84c; --gold-light: #f0d27a; --white: #f8f9ff; --gray: #8892a0; --slate: #e8edf4;
+            --font-brand: 'Michroma', 'DM Serif Display', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--white); color: var(--navy); overflow-x: hidden; scroll-behavior: smooth; }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,22,40,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.2); display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 72px; }
+        .logo { text-decoration: none; font-size: 1.05rem; color: var(--white); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
+        .logo-img { height: 44px; width: auto; display: block; }
+        .logo-badge { font-family: var(--font-brand); font-size: 9px; font-weight: 700; background: var(--gold); color: var(--navy); padding: 2px 6px; border-radius: 3px; letter-spacing: 0.1em; }
+        .lang-switcher { display: flex; gap: 6px; }
+        .lang-btn { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.65); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Pretendard', sans-serif; }
+        .lang-btn:hover, .lang-btn.active { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+
+        section { padding: 88px 2rem; }
+        .max-container { max-width: 1060px; margin: 0 auto; }
+        .section-label { font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; display: block; }
+        .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.9rem, 3.6vw, 2.7rem); line-height: 1.22; margin-bottom: 1.2rem; color: var(--navy); }
+        .section-title em { font-style: italic; color: var(--blue); }
+        p.body { color: #4a5768; font-size: 1rem; line-height: 1.85; margin-bottom: 1.1rem; }
+        p.body strong { color: var(--navy); font-weight: 700; }
+
+        .fin-hero { background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 55%, #16203c 100%); color: var(--white); padding: 150px 2rem 88px; position: relative; overflow: hidden; }
+        .fin-hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 75% 20%, rgba(201,168,76,0.10) 0%, transparent 55%); pointer-events: none; }
+        .fin-hero .max-container { position: relative; z-index: 1; }
+        .fin-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.4); color: var(--gold-light); padding: 7px 18px; border-radius: 40px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.8rem; }
+        .fin-hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1.2; margin-bottom: 1.3rem; }
+        .fin-hero h1 em { font-style: italic; color: var(--gold-light); }
+        .fin-hero .lede { color: rgba(205,218,236,0.9); font-size: clamp(1rem, 1.6vw, 1.12rem); line-height: 1.8; max-width: 700px; }
+
+        .slab { background: var(--navy); color: var(--white); padding: 26px 30px; border-radius: 12px; margin: 2rem 0; font-size: 1.02rem; line-height: 1.75; }
+        .slab strong { color: var(--gold-light); }
+        .note { background: #f0f4fa; border-left: 3px solid var(--blue); padding: 20px 24px; border-radius: 8px; margin: 1.6rem 0; font-size: 0.94rem; line-height: 1.8; color: #3d4a5c; }
+        .warn { background: #fdf8ec; border: 1px solid rgba(201,168,76,0.4); border-left: 3px solid var(--gold); padding: 20px 24px; border-radius: 8px; margin: 1.6rem 0; font-size: 0.94rem; line-height: 1.8; color: var(--navy); }
+        .warn strong, .note strong { font-weight: 800; }
+
+        .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-top: 2rem; }
+        .step { background: #fff; border: 1px solid rgba(10,22,40,0.08); border-radius: 14px; padding: 24px 26px; }
+        .step .n { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--gold); line-height: 1; margin-bottom: 10px; display: block; }
+        .step h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+        .step p { font-size: 13.5px; color: var(--gray); line-height: 1.75; }
+
+        table.dense { width: 100%; border-collapse: collapse; margin: 1.6rem 0; font-size: 14px; }
+        table.dense th { background: var(--navy); color: #fff; text-align: left; padding: 11px 14px; font-weight: 700; font-size: 12.5px; }
+        table.dense td { padding: 11px 14px; border-bottom: 1px solid var(--slate); vertical-align: top; }
+        table.dense tr:nth-child(even) td { background: #f7f9fd; }
+        table.dense tr.us td { background: rgba(201,168,76,0.16) !important; font-weight: 700; }
+
+        ul.plain { margin: 1rem 0 1.4rem 1.2rem; }
+        ul.plain li { margin-bottom: 0.7rem; font-size: 0.97rem; line-height: 1.8; color: #4a5768; }
+        ul.plain li strong { color: var(--navy); }
+
+        .closing { background: var(--navy); color: var(--white); }
+        .closing .section-title { color: var(--white); }
+        .closing p.body { color: rgba(205,218,236,0.85); }
+        .btn-primary { background: var(--gold); color: var(--navy); padding: 15px 32px; border-radius: 8px; font-size: 15px; font-weight: 800; text-decoration: none; transition: all 0.25s; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-secondary { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.3); padding: 15px 32px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+        .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+        footer { background: #060d18; color: rgba(255,255,255,0.4); padding: 34px 2rem; text-align: center; font-size: 12.5px; line-height: 1.9; }
+        footer a { color: var(--gold); text-decoration: none; }
+
+        @media (max-width: 760px) {
+            nav { padding: 0 1rem; height: 64px; }
+            .logo-img { height: 36px; }
+            section { padding: 60px 1.25rem; }
+            .fin-hero { padding: 110px 1.25rem 60px; }
+            .steps { grid-template-columns: 1fr; }
+            table.dense { font-size: 12.5px; }
+            table.dense th, table.dense td { padding: 9px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" class="logo" aria-label="Plato School"><img src="/assets/logo-nav.png" alt="Plato School" class="logo-img"><span class="logo-badge">SF · SEOUL</span></a>
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+        <button class="lang-btn" onclick="setLang('ko',this)">KR</button>
+        <button class="lang-btn" onclick="setLang('zh',this)">中文</button>
+        <button class="lang-btn" onclick="setLang('ja',this)">JP</button>
+        <button class="lang-btn" onclick="setLang('th',this)">TH</button>
+        <button class="lang-btn" onclick="setLang('vi',this)">VN</button>
+    </div>
+</nav>
+
+<header class="fin-hero">
+    <div class="max-container">
+        <div class="fin-badge" id="badge">In preparation &middot; Not yet open</div>
+        <h1 id="h1">A finance degree read inside<br><em>an Asian capital market</em></h1>
+        <p class="lede" id="lede"></p>
+    </div>
+</header>
+
+<section>
+    <div class="max-container">
+        <span class="section-label" id="l1">What a student does</span>
+        <h2 class="section-title" id="t1"></h2>
+        <p class="body" id="p1"></p>
+        <div class="steps">
+            <div class="step"><span class="n">1</span><h4 id="s1t"></h4><p id="s1d"></p></div>
+            <div class="step"><span class="n">2</span><h4 id="s2t"></h4><p id="s2d"></p></div>
+            <div class="step"><span class="n">3</span><h4 id="s3t"></h4><p id="s3d"></p></div>
+            <div class="step"><span class="n">4</span><h4 id="s4t"></h4><p id="s4d"></p></div>
+        </div>
+    </div>
+</section>
+
+<section style="background:#f0f4fa">
+    <div class="max-container">
+        <span class="section-label" id="l2">The terminal</span>
+        <h2 class="section-title" id="t2"></h2>
+        <p class="body" id="p2a"></p>
+        <table class="dense">
+            <thead><tr><th id="th0"></th><th id="th1"></th><th id="th2"></th><th id="th3"></th></tr></thead>
+            <tbody>
+                <tr><td id="r1a"></td><td>12</td><td id="r1c"></td><td>667</td></tr>
+                <tr><td id="r2a"></td><td>20+</td><td id="r2c"></td><td id="r2d"></td></tr>
+                <tr><td id="r3a"></td><td>42</td><td id="r3c"></td><td id="r3d"></td></tr>
+                <tr class="us"><td id="r4a"></td><td>3</td><td>20</td><td>6.7</td></tr>
+                <tr class="us"><td id="r5a"></td><td>3</td><td>60</td><td>20</td></tr>
+            </tbody>
+        </table>
+        <div class="slab" id="slab"></div>
+        <p class="body" id="p2b" style="font-size:0.88rem;color:var(--gray)"></p>
+    </div>
+</section>
+
+<section>
+    <div class="max-container">
+        <span class="section-label" id="l3">The placement</span>
+        <h2 class="section-title" id="t3"></h2>
+        <p class="body" id="p3a"></p>
+        <p class="body" id="p3b"></p>
+        <div class="warn" id="guard"></div>
+    </div>
+</section>
+
+<section style="background:#f0f4fa">
+    <div class="max-container">
+        <span class="section-label" id="l4">Plainly</span>
+        <h2 class="section-title" id="t4"></h2>
+        <p class="body" id="p4"></p>
+        <ul class="plain" id="nots"></ul>
+    </div>
+</section>
+
+<section class="closing">
+    <div class="max-container">
+        <h2 class="section-title" id="t5"></h2>
+        <p class="body" id="p5"></p>
+        <div class="cta-row">
+            <a class="btn-primary" id="cta1" href="mailto:kentkim@gmail.com?subject=Plato%20School%20%E2%80%94%20finance%20track"><i class="fas fa-envelope"></i> <span id="cta1t"></span></a>
+            <a class="btn-secondary" id="cta2" href="/"><i class="fas fa-arrow-left"></i> <span id="cta2t"></span></a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p id="foot"></p>
+</footer>
+
+<script>
+const D = {
+en:{badge:"In preparation &middot; not yet open",
+h1:"A finance degree read inside<br><em>an Asian capital market</em>",
+lede:"Investment analysis, fund structures and how capital actually moves &mdash; taught in Gwanggyo, thirty minutes from Seoul, where Korea&rsquo;s institutional investors and venture firms are. Students take unpaid placements with Korean limited and general partners during the undergraduate years rather than after them.",
+l1:"What a student does",t1:"Four years, and what fills them",
+p1:"The track is designed for the sons and daughters of people who allocate and manage capital &mdash; not for who their parents are, but for what those families already understand and what they usually lack. They know what a fund is before the first lecture. What they have rarely had is four years inside a market that is not their own. Korea is the third-largest economy in Asia and the least understood by American and European allocators. That gap is the reason for this track.",
+s1t:"Reads the discipline",s1d:"Investment analysis, accounting, corporate finance, fund structures, and the mechanics of how money is raised, deployed and returned. Taught in English by US-based faculty with resident instructors.",
+s2t:"Sits inside a market",s2d:"Korea&rsquo;s institutional investors and venture firms are in the same metropolitan area as the campus. Pangyo is fifteen minutes away by rail, Seoul thirty.",
+s3t:"Takes an unpaid placement",s3d:"With a domestic limited or general partner, timetabled into the academic year rather than crammed into a summer. This is the point of the track, not an extra.",
+s4t:"Leaves with a relationship",s4d:"Not only a transcript. Four years among people who will still be in that market in twenty years.",
+l2:"The terminal",t2:"Terminals are common.<br><em>This density is not</em>",
+p2a:"More than a thousand academic institutions worldwide hold Bloomberg Terminals, so having them is not a claim worth making. The number worth making is the division. Scheduled Terminal time runs through all four years, and the <strong>Bloomberg Market Concepts</strong> certificate is taken in the first year &mdash; a credential a recruiter already recognises.",
+th0:"",th1:"Terminals",th2:"Students",th3:"Per terminal",
+r1a:"San Diego State, Fowler College of Business",r1c:"8,000+ undergraduates",
+r2a:"Newcastle University Business School",r2c:"several thousand",r2d:"several hundred",
+r3a:"Coventry University &mdash; largest academic trading floor in Europe",r3c:"several thousand",r3d:"several hundred",
+r4a:"Plato, finance track first cohort",r5a:"Plato, track at capacity",
+slab:"At a large business school the Terminal is a facility a student books when a course requires it. For a cohort of twenty it is closer to <strong>a desk</strong>. We do not claim to be the first or the only school to timetable it across four years &mdash; that cannot be verified against a thousand institutions &mdash; but the arithmetic above is ours to state.",
+p2b:"Sources: Bloomberg reported more than 1,000 academic institutions with Terminals in April 2025. SDSU Fowler College of Business enrolled more than 8,000 undergraduates in autumn 2025 and its Financial Markets Lab holds 12 Terminals. Newcastle University Business School lists over 20. Coventry University describes its 42-terminal trading floor as the largest academic one in Europe.",
+l3:"The placement",t3:"Why the Korean side<br><em>wants this too</em>",
+p3a:"The arrangement works only because both ends want it. A Korean fund taking a student from an overseas allocator family is not doing a favour; it is meeting the other side of a market it has spent a decade trying to reach. Introductions to overseas allocators are the scarcest thing in Korean asset management and cannot be bought.",
+p3b:"That is why we expect placements to be available. It is also why we are careful about how they are arranged.",
+guard:"<strong>How placements will be arranged, and how they will not.</strong> A school that admits the children of people in finance, then places them with firms that may one day transact with the school or its backers, stands near something that can go wrong. Admission is decided on published criteria by people with no fundraising role, and a family&rsquo;s standing does not buy a place. Where a relationship exists between a family and the school or its investors, it is disclosed in writing to both sides. No placement is ever offered as consideration for a commitment of any kind. Where a family is connected to a sovereign fund or a public pension, we take legal advice before admitting.",
+l4:"Plainly",t4:"What is not settled yet",
+p4:"Every document this school produces carries this list in the same words, so that nothing found later is a surprise.",
+nots:["<strong>The track is not open.</strong> Finance has a designed shape but no finished syllabus and no partner agreement of its own. A student applying today applies to the pre-medical track, the only one whose curriculum is complete.",
+"<strong>Accreditation.</strong> Plato is not accredited by WSCUC or any recognised body and has not applied. The intended structure is a credit-recognition agreement with an already-accredited US university. No such agreement has been executed.",
+"<strong>Enrolment.</strong> No students have been admitted. The school is in design.",
+"<strong>Terminals.</strong> Three seats are planned. Whether Bloomberg extends academic pricing to a programme without accreditation is an open question we have put to them directly.",
+"<strong>Placements.</strong> We hold no agreement with any named fund and will not print a name we have not earned. Placements are unpaid; paid internships require work authorisation tied to visa status, which is unresolved.",
+"<strong>Residency.</strong> Plato cannot issue D-2 student visas on its own. A concurrent-enrolment structure with a Korean partner university is being built to provide eligibility."],
+t5:"How to start a conversation",
+p5:"If this is interesting, write and say so. We will tell you where the track stands, what we have not solved, and when we expect it to open. If you would rather shape it than wait for it, that is the more useful conversation and the one we would prefer to have.",
+cta1t:"Write to Kent Kim",cta2t:"Back to Plato School",
+foot:"Plato School is a programme of a non-profit corporation incorporated in California in 2023, based in Gwanggyo, Suwon, Republic of Korea. Plato is not an accrediting body, holds no accreditation, and confers no degree at this time. This page describes a programme in preparation and is not an offer of admission or of employment. <a href='/'>platoschool.us</a>"},
+
+ko:{badge:"준비 중 &middot; 아직 열리지 않았습니다",
+h1:"아시아 자본시장 안에서<br><em>읽는 파이낸스 학부</em>",
+lede:"투자 분석, 펀드 구조, 그리고 자본이 실제로 어떻게 움직이는지를 가르칩니다. 장소는 서울에서 30분 거리의 광교, 한국의 기관투자자와 벤처캐피털이 있는 곳입니다. 학생은 학부 4년이 끝난 뒤가 아니라 그 안에서 국내 LP·GP의 무급 실무를 경험합니다.",
+l1:"학생은 무엇을 하는가",t1:"4년, 그리고 그 안을 채우는 것",
+p1:"이 트랙은 자본을 배분하고 운용하는 분들의 자제를 염두에 두고 설계했습니다. 부모가 누구인지 때문이 아니라, 그 가정이 이미 이해하고 있는 것과 대개 갖지 못한 것 때문입니다. 그 학생들은 첫 강의 전에 이미 펀드가 무엇인지 압니다. 좀처럼 가지지 못한 것은 자기 시장이 아닌 곳에서 보낸 4년입니다. 한국은 아시아에서 세 번째로 큰 경제이면서 미국과 유럽의 출자자들이 가장 모르는 시장입니다. 그 간극이 이 트랙의 이유입니다.",
+s1t:"학문을 배웁니다",s1d:"투자 분석, 회계, 기업재무, 펀드 구조, 그리고 돈이 모이고 투입되고 회수되는 과정의 법과 실무. 미국 교수진이 영어로 강의하고 상주 강사가 함께합니다.",
+s2t:"시장 안에 앉습니다",s2d:"한국의 기관투자자와 벤처캐피털이 캠퍼스와 같은 수도권 안에 있습니다. 판교까지 전철로 15분, 서울까지 30분입니다.",
+s3t:"무급 실무를 경험합니다",s3d:"국내 LP 또는 GP에서, 여름방학에 밀어 넣는 것이 아니라 학사 일정 안에 편성됩니다. 이것이 트랙에 덧붙인 것이 아니라 트랙의 핵심입니다.",
+s4t:"관계를 갖고 나옵니다",s4d:"성적표만이 아닙니다. 20년 뒤에도 그 시장에 있을 사람들 사이에서 4년을 보냅니다.",
+l2:"터미널",t2:"터미널은 흔합니다.<br><em>이 밀도는 아닙니다</em>",
+p2a:"전 세계 1,000개가 넘는 대학이 블룸버그 터미널을 보유하고 있습니다. 그러니 「우리는 블룸버그가 있다」는 할 만한 주장이 아닙니다. 할 만한 것은 나눗셈입니다. 예약제 터미널 시간이 네 해 내내 이어지고, <strong>블룸버그 마켓 콘셉트(BMC)</strong> 인증은 1학년에 마칩니다 &mdash; 채용담당자가 이미 아는 자격입니다.",
+th0:"",th1:"터미널",th2:"학생",th3:"1대당",
+r1a:"샌디에이고주립대 Fowler 경영대",r1c:"학부 8,000명 이상",
+r2a:"뉴캐슬대 경영대",r2c:"수천 명",r2d:"수백 명",
+r3a:"코번트리대 &mdash; 유럽 최대 학술 트레이딩 플로어",r3c:"수천 명",r3d:"수백 명",
+r4a:"플라토 파이낸스 1기",r5a:"플라토 정원 도달 시",
+slab:"큰 경영대에서 터미널은 수업이 필요할 때 예약하는 시설입니다. 20명 기수에서는 <strong>책상</strong>에 가깝습니다. 4년 내내 시간표에 넣는 최초나 유일한 학교라고는 주장하지 않습니다 &mdash; 1,000개 기관을 상대로 검증할 수 없기 때문입니다 &mdash; 다만 위의 나눗셈은 우리가 말할 수 있는 것입니다.",
+p2b:"출처: 블룸버그는 2025년 4월 기준 1,000곳이 넘는 대학이 터미널을 보유하고 있다고 밝혔습니다. SDSU Fowler 경영대는 2025년 가을 학부생 8,000명 이상이 재학했고 금융시장랩에 터미널 12대를 둡니다. 뉴캐슬대 경영대는 20대 이상, 코번트리대는 42대 트레이딩 플로어를 유럽 최대 학술 시설로 소개합니다.",
+l3:"실무 배치",t3:"한국 쪽도<br><em>이것을 원하는 이유</em>",
+p3a:"양쪽이 모두 원해야만 성립하는 구조입니다. 해외 출자자 가정의 학생을 받는 국내 운용사는 호의를 베푸는 것이 아닙니다. 10년째 닿으려 해 온 시장의 반대편을 만나는 것입니다. 해외 출자자와의 접점은 한국 자산운용업에서 가장 희소하고, 돈으로 살 수 없습니다.",
+p3b:"그래서 실무 자리가 열릴 것으로 봅니다. 동시에 그래서 그 자리를 어떻게 마련하는지에 신중합니다.",
+guard:"<strong>실무 배치를 어떻게 마련하고, 어떻게 마련하지 않는가.</strong> 금융업에 있는 분들의 자제를 입학시키고, 그 학생을 언젠가 학교나 그 투자자와 거래할 수 있는 회사에 배치하는 학교는 잘못될 수 있는 것 가까이에 서 있습니다. 입학은 공개된 기준에 따라 펀드레이징에 관여하지 않는 사람이 결정하며, 가정의 위치가 자리를 사지 못합니다. 가정과 학교 또는 그 투자자 사이에 관계가 있으면 양측에 서면으로 공개합니다. 어떤 배치도 어떤 종류의 약정에 대한 대가로 제시되지 않습니다. 가정이 국부펀드나 공적연금과 연결된 경우 입학 전에 법률 자문을 받습니다.",
+l4:"있는 그대로",t4:"아직 확정되지 않은 것",
+p4:"이 학교가 만드는 모든 문서에 같은 표현으로 이 목록을 싣습니다. 나중에 알게 되는 어떤 것도 놀라움이 되지 않도록.",
+nots:["<strong>트랙이 열리지 않았습니다.</strong> 파이낸스는 설계는 되어 있으나 확정된 강의계획서도, 이 트랙의 파트너 협정도 없습니다. 지금 지원하시면 커리큘럼이 완성된 유일한 트랙인 프리메드에 지원하시는 것입니다.",
+"<strong>인증.</strong> 플라토는 WSCUC를 비롯한 어떤 공인 기관의 인증도 받지 않았고 신청하지도 않았습니다. 목표 구조는 이미 인증을 보유한 미국 대학과의 학점인정 협정이며, 해당 협정은 체결되지 않았습니다.",
+"<strong>재학생.</strong> 선발된 학생이 없습니다. 학교는 설계 단계입니다.",
+"<strong>터미널.</strong> 3석을 계획하고 있습니다. 인증받지 않은 과정에도 블룸버그가 학술 가격을 적용하는지는 아직 열린 질문이며, 블룸버그에 직접 문의했습니다.",
+"<strong>실무 배치.</strong> 어떤 특정 운용사와도 협약이 없으며, 얻지 못한 이름은 적지 않습니다. 배치는 무급입니다. 유급 인턴십은 체류자격에 따른 취업 허가가 필요하고 그것은 아직 해결되지 않았습니다.",
+"<strong>체류.</strong> 플라토는 자체적으로 D-2 학생비자를 발급할 수 없습니다. 자격을 제공할 국내 파트너 대학과의 공동수학 구조를 구축 중입니다."],
+t5:"대화를 시작하는 법",
+p5:"관심이 가신다면 그렇게 말씀해 주십시오. 트랙이 실제로 어디까지 와 있는지, 무엇을 아직 풀지 못했는지, 언제 열릴 것으로 보는지 말씀드리겠습니다. 기다리기보다 함께 만들어 주실 생각이시라면 그것이 더 쓸모 있는 대화이고, 저희가 바라는 대화입니다.",
+cta1t:"김형섭에게 메일 보내기",cta2t:"플라토 스쿨로 돌아가기",
+foot:"플라토 스쿨은 2023년 미국 캘리포니아주에 설립된 비영리법인의 교육 프로그램이며, 대한민국 경기도 수원시 광교에 있습니다. 플라토는 인증기관이 아니고, 어떤 인증도 보유하지 않으며, 현재 학위를 수여하지 않습니다. 이 페이지는 준비 중인 과정을 설명하는 것이며 입학이나 고용의 청약이 아닙니다. <a href='/'>platoschool.us</a>"}
+};
+
+D.zh={badge:"筹备中 &middot; 尚未开设",
+h1:"在亚洲资本市场内部<br><em>修读的金融本科</em>",
+lede:"投资分析、基金结构，以及资本实际如何流动——在距首尔三十分钟的光教授课，韩国的机构投资者与创投公司就在这里。学生在本科四年之内，而非毕业之后，到韩国的 LP 与 GP 进行无薪实务。",
+l1:"学生做什么",t1:"四年，以及填满它的东西",
+p1:"这个方向是为配置与管理资本者的子女设计的——不是因为父母是谁，而是因为这些家庭已经理解什么、通常又缺少什么。他们在第一堂课之前就知道基金是什么。他们很少拥有的，是在一个不属于自己的市场里度过的四年。韩国是亚洲第三大经济体，也是美欧配置者最不了解的市场。这个落差就是这个方向存在的理由。",
+s1t:"修读学科",s1d:"投资分析、会计、公司金融、基金结构，以及资金募集、投入与返还的实际机制。由美国师资以英语授课，配合常驻讲师。",
+s2t:"坐在市场之内",s2d:"韩国的机构投资者与创投公司与校区同在一个都会圈。到板桥乘轨道交通十五分钟，到首尔三十分钟。",
+s3t:"进行无薪实务",s3d:"在本地 LP 或 GP，排入学年课表，而不是塞进暑假。这是这个方向的核心，不是附加项。",
+s4t:"带着关系毕业",s4d:"不只是一份成绩单。四年时间处在二十年后仍会在这个市场里的人当中。",
+l2:"终端",t2:"终端很常见。<br><em>这个密度不常见</em>",
+p2a:"全球一千多所高校拥有彭博终端，所以「我们有彭博」不是值得一提的主张。值得一提的是除法。预约制终端时段贯穿四年，<strong>彭博市场概念（BMC）</strong>认证在一年级完成——招聘方已经认得的资格。",
+th0:"",th1:"终端",th2:"学生",th3:"每台对应",
+r1a:"圣地亚哥州立大学 Fowler 商学院",r1c:"本科八千人以上",
+r2a:"纽卡斯尔大学商学院",r2c:"数千人",r2d:"数百人",
+r3a:"考文垂大学——欧洲最大学术交易大厅",r3c:"数千人",r3d:"数百人",
+r4a:"柏拉图 金融方向 首届",r5a:"柏拉图 方向满员时",
+slab:"在大型商学院，终端是学生在课程需要时预约的设施。对二十人的一届来说，它更接近<strong>一张书桌</strong>。我们不宣称自己是第一所或唯一一所把它排进四年课表的学校——这无法对照一千所机构去验证——但上面的除法是我们可以说的。",
+p2b:"资料来源：彭博于 2025 年 4 月表示超过 1,000 所高校拥有终端。SDSU Fowler 商学院 2025 年秋季本科生超过 8,000 人，其金融市场实验室有 12 台终端。纽卡斯尔大学商学院列出 20 台以上。考文垂大学称其 42 台终端的交易大厅为欧洲最大的学术交易大厅。",
+l3:"实务安排",t3:"韩国一方<br><em>为何也想要这件事</em>",
+p3a:"这个安排只有在两端都想要时才成立。接收海外配置者家庭学生的韩国基金并不是在施恩，而是在与一个它花了十年想要触及的市场的另一端相遇。与海外配置者的接点是韩国资产管理业最稀缺的东西，而且买不到。",
+p3b:"所以我们预期实务岗位会存在。也正因如此，我们对这些岗位如何安排格外谨慎。",
+guard:"<strong>实务岗位如何安排，以及如何不安排。</strong>一所录取金融从业者子女、再把他们安排到未来可能与学校或其出资人交易的公司的学校，站在可能出错的东西旁边。录取由不承担募资职责的人依公开标准决定，家庭的地位买不到名额。家庭与学校或其投资人之间若存在关系，会以书面向双方披露。任何岗位都不会作为任何形式承诺的对价被提出。家庭若与主权基金或公共退休基金相关，我们会在录取前取得法律意见。",
+l4:"如实说明",t4:"尚未确定的事",
+p4:"这所学校制作的每一份文件都以相同措辞附上这份清单，好让日后发现的任何事都不构成意外。",
+nots:["<strong>这个方向尚未开设。</strong>金融方向已有设计框架，但没有定稿的教学大纲，也没有属于它的合作协议。今天提出申请，申请的是课程体系唯一已完成的医预科方向。",
+"<strong>认证。</strong>柏拉图未获 WSCUC 或任何认可机构的认证，也未提出申请。目标结构是与已获认证的美国大学签署学分互认协议，该协议尚未签署。",
+"<strong>在校生。</strong>尚未录取学生。学校处于设计阶段。",
+"<strong>终端。</strong>计划三台。彭博是否会向未获认证的项目提供学术定价，是一个尚未解答的问题，我们已直接向其询问。",
+"<strong>实务岗位。</strong>我们与任何具名基金都没有协议，也不会写出尚未取得的名称。岗位为无薪；有薪实习需要与居留资格相应的就业许可，该问题尚未解决。",
+"<strong>居留。</strong>柏拉图无法自行签发 D-2 学生签证。正在与韩国合作大学建立联合注册结构以提供资格。"],
+t5:"如何开始一次对话",
+p5:"如果你觉得有意思，写信告诉我们。我们会说明这个方向实际进展到哪里、还有什么没有解决、预计何时开设。如果你宁愿参与塑造而不是等待，那是更有用的对话，也是我们更希望进行的对话。",
+cta1t:"写信给 Kent Kim",cta2t:"返回柏拉图学校",
+foot:"柏拉图学校是 2023 年于美国加州设立的非营利法人的教育项目，位于大韩民国京畿道水原市光教。柏拉图不是认证机构，未持有任何认证，目前不授予学位。本页描述的是筹备中的项目，不构成录取或聘用要约。<a href='/'>platoschool.us</a>"};
+
+D.ja={badge:"準備中 &middot; まだ開いていません",
+h1:"アジアの資本市場の中で<br><em>学ぶファイナンス学部</em>",
+lede:"投資分析、ファンドの仕組み、そして資本が実際にどう動くのかを教えます。場所はソウルから30分の光教、韓国の機関投資家とベンチャーキャピタルがあるところです。学生は学部の4年が終わった後ではなく、その中で国内の LP・GP の無給実務を経験します。",
+l1:"学生は何をするか",t1:"4年間、そしてそれを満たすもの",
+p1:"このトラックは、資本を配分し運用する方々のご子女を念頭に設計しました。親が誰かではなく、その家庭がすでに理解していることと、たいてい持っていないもののためです。その学生は最初の講義の前からファンドが何かを知っています。めったに持てなかったのは、自分の市場ではない場所で過ごす4年間です。韓国はアジア第三の経済でありながら、米欧の配分者が最も知らない市場です。その隔たりがこのトラックの理由です。",
+s1t:"学問を修めます",s1d:"投資分析、会計、コーポレートファイナンス、ファンドの仕組み、そして資金が集まり投じられ戻るまでの実務。米国の教員が英語で講義し、常駐講師が伴走します。",
+s2t:"市場の中に座ります",s2d:"韓国の機関投資家とベンチャーキャピタルがキャンパスと同じ首都圏にあります。板橋まで鉄道で15分、ソウルまで30分です。",
+s3t:"無給の実務に就きます",s3d:"国内の LP または GP で、夏休みに押し込むのではなく学期の時間割に組み込まれます。これはトラックに付け足したものではなく、その中心です。",
+s4t:"関係を持って出ます",s4d:"成績証明書だけではありません。20年後もその市場にいる人々の中で4年を過ごします。",
+l2:"端末",t2:"端末はありふれています。<br><em>この密度はそうではありません</em>",
+p2a:"世界で1,000を超える大学がブルームバーグ端末を保有しています。ですから「我々にはブルームバーグがある」は言う価値のある主張ではありません。言う価値があるのは割り算です。予約制の端末時間が4年間を通して続き、<strong>ブルームバーグ・マーケット・コンセプト（BMC）</strong>認証は1年次に取得します &mdash; 採用担当者がすでに知っている資格です。",
+th0:"",th1:"端末",th2:"学生",th3:"1台あたり",
+r1a:"サンディエゴ州立大学 Fowler ビジネススクール",r1c:"学部生8,000名以上",
+r2a:"ニューカッスル大学ビジネススクール",r2c:"数千名",r2d:"数百名",
+r3a:"コベントリー大学 &mdash; 欧州最大の学術トレーディングフロア",r3c:"数千名",r3d:"数百名",
+r4a:"プラト ファイナンス1期",r5a:"プラト 定員到達時",
+slab:"大規模なビジネススクールでは、端末は授業が必要とするときに学生が予約する設備です。20名の期にとっては<strong>机</strong>に近いものです。4年間の時間割に組み込む最初の、あるいは唯一の学校だとは主張しません &mdash; 1,000の機関を相手に検証できないからです &mdash; ただし上の割り算は私たちが言えることです。",
+p2b:"出典：ブルームバーグは2025年4月時点で1,000を超える大学が端末を保有していると発表しました。SDSU Fowler ビジネススクールは2025年秋に学部生8,000名以上が在籍し、金融市場ラボに端末12台を置いています。ニューカッスル大学ビジネススクールは20台以上、コベントリー大学は42台のトレーディングフロアを欧州最大の学術施設として紹介しています。",
+l3:"実務配置",t3:"韓国側も<br><em>これを望む理由</em>",
+p3a:"両端が望んではじめて成り立つ仕組みです。海外の配分者家庭の学生を受け入れる韓国のファンドは、恩を施しているのではありません。10年かけて届こうとしてきた市場の反対側に出会っているのです。海外の配分者との接点は韓国の資産運用業で最も希少で、お金では買えません。",
+p3b:"だから実務の席は開くと見ています。そして同時に、その席をどう用意するかに慎重です。",
+guard:"<strong>実務配置をどう用意し、どう用意しないか。</strong>金融業にいる方々のご子女を入学させ、その学生をいずれ学校やその出資者と取引しうる会社に配置する学校は、間違いが起こりうるものの近くに立っています。入学は資金調達に関与しない者が公開された基準に従って決定し、家庭の立場が席を買うことはありません。家庭と学校またはその投資家との間に関係がある場合は、双方に書面で開示します。いかなる配置も、いかなる約束の対価としても提示されません。家庭がソブリンファンドや公的年金と関係する場合は、入学前に法的助言を得ます。",
+l4:"ありのままに",t4:"まだ決まっていないこと",
+p4:"この学校が作るすべての文書に、同じ言葉でこの一覧を載せます。後から分かることが驚きにならないように。",
+nots:["<strong>トラックは開いていません。</strong>ファイナンスは設計はありますが、確定したシラバスも、このトラック固有の提携協定もありません。今お申し込みになると、カリキュラムが完成している唯一のトラックであるプレメドへの出願となります。",
+"<strong>認証。</strong>プラトは WSCUC をはじめいかなる認定機関の認証も受けておらず、申請もしていません。目指す構造はすでに認証を持つ米国の大学との単位認定協定で、その協定はまだ締結されていません。",
+"<strong>在籍者。</strong>入学者はいません。学校は設計段階です。",
+"<strong>端末。</strong>3台を計画しています。認証のない課程にブルームバーグが学術価格を適用するかは未解決の問いで、直接問い合わせています。",
+"<strong>実務配置。</strong>特定のファンドとの協定はなく、得ていない名前は記しません。配置は無給です。有給インターンシップには在留資格に応じた就労許可が必要で、これは未解決です。",
+"<strong>在留。</strong>プラトは単独で D-2 学生ビザを発給できません。資格を提供する韓国の提携大学との併修構造を構築中です。"],
+t5:"対話の始め方",
+p5:"ご関心があれば、そうお書きください。トラックが実際にどこまで来ているか、まだ解けていないことは何か、いつ開くと見ているかをお伝えします。待つより一緒に作りたいとお考えなら、それがより有用な対話であり、私たちが望む対話です。",
+cta1t:"Kent Kim に書く",cta2t:"プラトースクールに戻る",
+foot:"プラトースクールは2023年に米国カリフォルニア州で設立された非営利法人の教育プログラムで、大韓民国京畿道水原市光教にあります。プラトは認証機関ではなく、いかなる認証も保有せず、現在学位を授与しません。本ページは準備中の課程を説明するものであり、入学または雇用の申込みではありません。<a href='/'>platoschool.us</a>"};
+
+D.th={badge:"อยู่ระหว่างเตรียมการ &middot; ยังไม่เปิด",
+h1:"ปริญญาตรีการเงินที่เรียน<br><em>ภายในตลาดทุนเอเชีย</em>",
+lede:"การวิเคราะห์การลงทุน โครงสร้างกองทุน และการเคลื่อนตัวของทุนจริง สอนที่กวังกโย ห่างจากโซลสามสิบนาที ที่ซึ่งนักลงทุนสถาบันและบริษัทร่วมลงทุนของเกาหลีตั้งอยู่ นักศึกษาฝึกงานแบบไม่มีค่าตอบแทนกับ LP และ GP ในประเทศระหว่างสี่ปีปริญญาตรี ไม่ใช่หลังจากนั้น",
+l1:"นักศึกษาทำอะไร",t1:"สี่ปี และสิ่งที่เติมเต็มมัน",
+p1:"สายนี้ออกแบบมาสำหรับบุตรหลานของผู้ที่จัดสรรและบริหารทุน ไม่ใช่เพราะพ่อแม่เป็นใคร แต่เพราะสิ่งที่ครอบครัวเหล่านั้นเข้าใจอยู่แล้วและสิ่งที่มักขาด พวกเขารู้ว่ากองทุนคืออะไรก่อนเข้าเรียนคาบแรก สิ่งที่พวกเขาแทบไม่เคยมีคือสี่ปีภายในตลาดที่ไม่ใช่ของตนเอง เกาหลีเป็นเศรษฐกิจใหญ่อันดับสามของเอเชียและเป็นตลาดที่ผู้จัดสรรทุนอเมริกันและยุโรปเข้าใจน้อยที่สุด ช่องว่างนั้นคือเหตุผลของสายนี้",
+s1t:"เรียนวิชา",s1d:"การวิเคราะห์การลงทุน การบัญชี การเงินองค์กร โครงสร้างกองทุน และกลไกการระดม ลงทุน และคืนทุน สอนเป็นภาษาอังกฤษโดยอาจารย์จากสหรัฐฯ ร่วมกับผู้สอนประจำ",
+s2t:"นั่งอยู่ในตลาด",s2d:"นักลงทุนสถาบันและบริษัทร่วมลงทุนของเกาหลีอยู่ในเขตเมืองเดียวกับวิทยาเขต พันกโยห่างสิบห้านาทีโดยรถไฟ โซลสามสิบนาที",
+s3t:"ฝึกงานแบบไม่มีค่าตอบแทน",s3d:"กับ LP หรือ GP ในประเทศ จัดเข้าตารางเรียนประจำปี ไม่ใช่ยัดเข้าช่วงปิดเทอม นี่คือแก่นของสายนี้ ไม่ใช่ของแถม",
+s4t:"จบออกไปพร้อมความสัมพันธ์",s4d:"ไม่ใช่แค่ใบแสดงผลการเรียน สี่ปีท่ามกลางผู้คนที่ยังจะอยู่ในตลาดนั้นอีกยี่สิบปีข้างหน้า",
+l2:"เทอร์มินัล",t2:"เทอร์มินัลเป็นของธรรมดา<br><em>ความหนาแน่นนี้ไม่ใช่</em>",
+p2a:"สถาบันการศึกษาทั่วโลกกว่าหนึ่งพันแห่งมีเทอร์มินัลบลูมเบิร์ก การมีมันจึงไม่ใช่ข้ออ้างที่ควรพูด สิ่งที่ควรพูดคือการหาร ชั่วโมงเทอร์มินัลแบบจองล่วงหน้าดำเนินตลอดสี่ปี และใบรับรอง <strong>Bloomberg Market Concepts (BMC)</strong> สอบผ่านในปีแรก ซึ่งเป็นคุณวุฒิที่ฝ่ายสรรหารู้จักอยู่แล้ว",
+th0:"",th1:"เทอร์มินัล",th2:"นักศึกษา",th3:"ต่อหนึ่งเครื่อง",
+r1a:"San Diego State, Fowler College of Business",r1c:"ปริญญาตรีกว่า 8,000 คน",
+r2a:"Newcastle University Business School",r2c:"หลายพันคน",r2d:"หลายร้อยคน",
+r3a:"Coventry University &mdash; ฟลอร์เทรดดิ้งทางวิชาการใหญ่ที่สุดในยุโรป",r3c:"หลายพันคน",r3d:"หลายร้อยคน",
+r4a:"พลาโต สายการเงิน รุ่นแรก",r5a:"พลาโต เมื่อเต็มจำนวน",
+slab:"ในคณะบริหารธุรกิจขนาดใหญ่ เทอร์มินัลคือสิ่งอำนวยความสะดวกที่นักศึกษาจองเมื่อรายวิชาต้องการ สำหรับรุ่นละยี่สิบคน มันใกล้เคียงกับ<strong>โต๊ะทำงาน</strong>มากกว่า เราไม่อ้างว่าเป็นโรงเรียนแรกหรือแห่งเดียวที่จัดมันเข้าตารางตลอดสี่ปี เพราะตรวจสอบกับสถาบันหนึ่งพันแห่งไม่ได้ แต่การหารข้างต้นเป็นสิ่งที่เราพูดได้",
+p2b:"แหล่งที่มา: บลูมเบิร์กระบุเมื่อเมษายน 2025 ว่ามีสถาบันการศึกษากว่า 1,000 แห่งที่มีเทอร์มินัล SDSU Fowler College of Business มีนักศึกษาปริญญาตรีกว่า 8,000 คนในฤดูใบไม้ร่วง 2025 และห้องปฏิบัติการตลาดการเงินมีเทอร์มินัล 12 เครื่อง Newcastle University Business School ระบุมากกว่า 20 เครื่อง Coventry University เรียกฟลอร์เทรดดิ้ง 42 เครื่องของตนว่าใหญ่ที่สุดในยุโรปในเชิงวิชาการ",
+l3:"การฝึกงาน",t3:"เหตุใดฝ่ายเกาหลี<br><em>ก็ต้องการสิ่งนี้เช่นกัน</em>",
+p3a:"ข้อตกลงนี้เกิดขึ้นได้เพราะทั้งสองฝ่ายต้องการ กองทุนเกาหลีที่รับนักศึกษาจากครอบครัวผู้จัดสรรทุนต่างประเทศไม่ได้ทำบุญคุณให้ใคร แต่กำลังพบอีกด้านหนึ่งของตลาดที่พยายามเข้าถึงมาสิบปี การแนะนำให้รู้จักผู้จัดสรรทุนต่างประเทศเป็นสิ่งที่หายากที่สุดในวงการบริหารสินทรัพย์เกาหลี และซื้อไม่ได้",
+p3b:"เราจึงคาดว่าจะมีที่ฝึกงาน และด้วยเหตุผลเดียวกันนั้น เราจึงระมัดระวังว่าที่เหล่านั้นถูกจัดมาอย่างไร",
+guard:"<strong>การฝึกงานจะถูกจัดอย่างไร และจะไม่ถูกจัดอย่างไร</strong> โรงเรียนที่รับบุตรหลานของผู้อยู่ในแวดวงการเงิน แล้วส่งพวกเขาไปยังบริษัทที่วันหนึ่งอาจทำธุรกรรมกับโรงเรียนหรือผู้สนับสนุน ย่อมยืนอยู่ใกล้สิ่งที่อาจผิดพลาด การรับเข้าตัดสินตามเกณฑ์ที่เผยแพร่โดยผู้ไม่มีบทบาทด้านการระดมทุน และฐานะของครอบครัวไม่อาจซื้อที่นั่งได้ หากมีความสัมพันธ์ระหว่างครอบครัวกับโรงเรียนหรือผู้ลงทุน จะเปิดเผยเป็นลายลักษณ์อักษรต่อทั้งสองฝ่าย ไม่มีการเสนอที่ฝึกงานเป็นค่าตอบแทนของข้อผูกพันใด ๆ หากครอบครัวเกี่ยวพันกับกองทุนความมั่งคั่งแห่งชาติหรือกองทุนบำเหน็จบำนาญสาธารณะ เราจะขอคำปรึกษาทางกฎหมายก่อนรับเข้า",
+l4:"ตามตรง",t4:"สิ่งที่ยังไม่แน่นอน",
+p4:"เอกสารทุกฉบับที่โรงเรียนนี้จัดทำจะมีรายการนี้ด้วยถ้อยคำเดียวกัน เพื่อไม่ให้สิ่งที่พบภายหลังเป็นเรื่องน่าประหลาดใจ",
+nots:["<strong>สายนี้ยังไม่เปิด</strong> สายการเงินมีโครงร่างที่ออกแบบไว้ แต่ยังไม่มีประมวลรายวิชาที่สรุปแล้ว และไม่มีข้อตกลงพันธมิตรของตนเอง ผู้ที่สมัครวันนี้คือผู้สมัครเข้าสายเตรียมแพทย์ ซึ่งเป็นสายเดียวที่หลักสูตรเสร็จสมบูรณ์",
+"<strong>การรับรอง</strong> พลาโตไม่ได้รับการรับรองจาก WSCUC หรือหน่วยงานใด และยังไม่ได้ยื่นขอ โครงสร้างที่มุ่งหวังคือข้อตกลงเทียบโอนหน่วยกิตกับมหาวิทยาลัยสหรัฐฯ ที่ได้รับการรับรองแล้ว ซึ่งยังไม่ได้ลงนาม",
+"<strong>นักศึกษา</strong> ยังไม่มีผู้ได้รับการตอบรับ โรงเรียนอยู่ในขั้นออกแบบ",
+"<strong>เทอร์มินัล</strong> วางแผนไว้สามเครื่อง บลูมเบิร์กจะให้ราคาสำหรับสถาบันการศึกษาแก่หลักสูตรที่ยังไม่ได้รับการรับรองหรือไม่ ยังเป็นคำถามเปิดที่เราสอบถามไปโดยตรงแล้ว",
+"<strong>การฝึกงาน</strong> เราไม่มีข้อตกลงกับกองทุนใดที่ระบุชื่อ และจะไม่พิมพ์ชื่อที่เรายังไม่ได้มา การฝึกงานไม่มีค่าตอบแทน ส่วนการฝึกงานแบบมีค่าตอบแทนต้องมีใบอนุญาตทำงานตามสถานะวีซ่า ซึ่งยังไม่ได้ข้อยุติ",
+"<strong>การพำนัก</strong> พลาโตออกวีซ่านักเรียน D-2 ด้วยตนเองไม่ได้ กำลังสร้างโครงสร้างลงทะเบียนร่วมกับมหาวิทยาลัยพันธมิตรเกาหลีเพื่อให้มีคุณสมบัติ"],
+t5:"เริ่มต้นบทสนทนาอย่างไร",
+p5:"หากสนใจ โปรดเขียนมาบอกเรา เราจะเล่าว่าสายนี้ไปถึงไหนแล้ว อะไรที่เรายังแก้ไม่ได้ และคาดว่าจะเปิดเมื่อใด หากคุณอยากร่วมสร้างมากกว่ารอคอย นั่นคือบทสนทนาที่มีประโยชน์กว่า และเป็นบทสนทนาที่เราอยากมี",
+cta1t:"เขียนถึง Kent Kim",cta2t:"กลับไปยังพลาโตสคูล",
+foot:"พลาโตสคูลเป็นโครงการของนิติบุคคลไม่แสวงหากำไรที่จดทะเบียนในรัฐแคลิฟอร์เนียเมื่อปี 2023 ตั้งอยู่ที่กวังกโย ซูวอน สาธารณรัฐเกาหลี พลาโตไม่ใช่หน่วยงานรับรอง ไม่ได้ถือการรับรองใด และขณะนี้ไม่ได้ให้ปริญญา หน้านี้อธิบายหลักสูตรที่อยู่ระหว่างเตรียมการ และไม่ใช่ข้อเสนอรับเข้าศึกษาหรือการจ้างงาน <a href='/'>platoschool.us</a>"};
+
+D.vi={badge:"Đang chuẩn bị &middot; chưa mở",
+h1:"Một tấm bằng tài chính học<br><em>bên trong thị trường vốn châu Á</em>",
+lede:"Phân tích đầu tư, cấu trúc quỹ, và cách vốn thực sự dịch chuyển &mdash; giảng dạy tại Gwanggyo, cách Seoul ba mươi phút, nơi đặt các nhà đầu tư tổ chức và công ty đầu tư mạo hiểm của Hàn Quốc. Sinh viên thực tập không lương tại các LP và GP trong nước ngay trong bốn năm đại học chứ không phải sau đó.",
+l1:"Sinh viên làm gì",t1:"Bốn năm, và những gì lấp đầy chúng",
+p1:"Hướng học này được thiết kế cho con cái của những người phân bổ và quản lý vốn &mdash; không phải vì cha mẹ họ là ai, mà vì những gì các gia đình đó đã hiểu và những gì họ thường thiếu. Họ biết quỹ là gì trước buổi học đầu tiên. Thứ họ hiếm khi có là bốn năm bên trong một thị trường không phải của mình. Hàn Quốc là nền kinh tế lớn thứ ba châu Á và là thị trường mà giới phân bổ vốn Mỹ và châu Âu hiểu ít nhất. Khoảng cách đó là lý do của hướng học này.",
+s1t:"Học chuyên ngành",s1d:"Phân tích đầu tư, kế toán, tài chính doanh nghiệp, cấu trúc quỹ, và cơ chế gọi vốn, giải ngân và hoàn vốn. Giảng dạy bằng tiếng Anh bởi giảng viên Hoa Kỳ cùng đội ngũ thường trú.",
+s2t:"Ngồi bên trong thị trường",s2d:"Các nhà đầu tư tổ chức và công ty đầu tư mạo hiểm Hàn Quốc nằm cùng vùng đô thị với cơ sở. Pangyo cách mười lăm phút đi tàu, Seoul ba mươi phút.",
+s3t:"Thực tập không lương",s3d:"Tại một LP hoặc GP trong nước, xếp vào lịch năm học chứ không nhồi vào kỳ nghỉ hè. Đây là trọng tâm của hướng học, không phải phần thêm.",
+s4t:"Ra trường với một mối quan hệ",s4d:"Không chỉ một bảng điểm. Bốn năm giữa những người hai mươi năm nữa vẫn còn ở thị trường đó.",
+l2:"Terminal",t2:"Terminal là chuyện thường.<br><em>Mật độ này thì không</em>",
+p2a:"Hơn một nghìn cơ sở học thuật trên thế giới có Bloomberg Terminal, nên việc có chúng không phải một tuyên bố đáng nói. Điều đáng nói là phép chia. Giờ dùng terminal theo lịch đặt trước kéo dài suốt bốn năm, và chứng chỉ <strong>Bloomberg Market Concepts (BMC)</strong> hoàn thành trong năm thứ nhất &mdash; một chứng chỉ nhà tuyển dụng đã biết.",
+th0:"",th1:"Terminal",th2:"Sinh viên",th3:"Mỗi máy",
+r1a:"San Diego State, Fowler College of Business",r1c:"hơn 8.000 sinh viên đại học",
+r2a:"Newcastle University Business School",r2c:"vài nghìn",r2d:"vài trăm",
+r3a:"Coventry University &mdash; sàn giao dịch học thuật lớn nhất châu Âu",r3c:"vài nghìn",r3d:"vài trăm",
+r4a:"Plato, khóa đầu hướng tài chính",r5a:"Plato, khi đủ chỉ tiêu",
+slab:"Ở một trường kinh doanh lớn, terminal là cơ sở vật chất sinh viên đặt chỗ khi môn học yêu cầu. Với một khóa hai mươi người, nó gần với <strong>một chiếc bàn làm việc</strong> hơn. Chúng tôi không tuyên bố là trường đầu tiên hay duy nhất xếp nó vào thời khóa biểu suốt bốn năm &mdash; điều đó không thể kiểm chứng trước một nghìn cơ sở &mdash; nhưng phép tính ở trên là điều chúng tôi có thể nói.",
+p2b:"Nguồn: Bloomberg cho biết hơn 1.000 cơ sở học thuật có Terminal tính đến tháng 4 năm 2025. SDSU Fowler College of Business có hơn 8.000 sinh viên đại học vào mùa thu 2025 và phòng thí nghiệm thị trường tài chính của trường có 12 Terminal. Newcastle University Business School liệt kê hơn 20 máy. Coventry University mô tả sàn giao dịch 42 máy của mình là sàn học thuật lớn nhất châu Âu.",
+l3:"Thực tập",t3:"Vì sao phía Hàn Quốc<br><em>cũng muốn điều này</em>",
+p3a:"Thỏa thuận này chỉ thành khi cả hai phía đều muốn. Một quỹ Hàn Quốc nhận sinh viên từ gia đình nhà phân bổ vốn nước ngoài không phải đang ban ơn; họ đang gặp phía bên kia của một thị trường mà họ đã mất một thập kỷ cố tiếp cận. Được giới thiệu với các nhà phân bổ vốn nước ngoài là thứ khan hiếm nhất trong ngành quản lý tài sản Hàn Quốc, và không mua được.",
+p3b:"Vì vậy chúng tôi tin sẽ có chỗ thực tập. Và cũng chính vì vậy chúng tôi thận trọng về cách những chỗ đó được sắp xếp.",
+guard:"<strong>Thực tập sẽ được sắp xếp thế nào, và sẽ không thế nào.</strong> Một trường nhận con cái của người trong ngành tài chính, rồi đưa họ tới các công ty một ngày nào đó có thể giao dịch với trường hoặc với nhà đầu tư của trường, đang đứng gần một điều có thể trở nên sai trái. Việc tuyển sinh do những người không đảm nhận vai trò gọi vốn quyết định theo tiêu chí công bố, và vị thế của một gia đình không mua được một suất. Nếu tồn tại mối quan hệ giữa một gia đình với trường hoặc nhà đầu tư của trường, điều đó được công bố bằng văn bản cho cả hai phía. Không suất thực tập nào được đưa ra như đối giá cho bất kỳ cam kết nào. Nếu một gia đình có liên hệ với quỹ đầu tư quốc gia hoặc quỹ hưu trí công, chúng tôi xin tư vấn pháp lý trước khi tuyển.",
+l4:"Nói thẳng",t4:"Những gì chưa chắc chắn",
+p4:"Mọi tài liệu trường này tạo ra đều mang danh sách này bằng đúng những chữ ấy, để không điều gì phát hiện về sau trở thành bất ngờ.",
+nots:["<strong>Hướng học chưa mở.</strong> Tài chính đã có hình hài thiết kế nhưng chưa có đề cương hoàn tất và chưa có thỏa thuận đối tác riêng. Người nộp đơn hôm nay là nộp vào hướng dự bị y khoa, hướng duy nhất có chương trình hoàn chỉnh.",
+"<strong>Kiểm định.</strong> Plato không được WSCUC hay bất kỳ tổ chức công nhận nào kiểm định và chưa nộp đơn. Cấu trúc hướng tới là thỏa thuận công nhận tín chỉ với một đại học Hoa Kỳ đã được kiểm định. Thỏa thuận đó chưa được ký.",
+"<strong>Tuyển sinh.</strong> Chưa có sinh viên nào được nhận. Trường đang trong giai đoạn thiết kế.",
+"<strong>Terminal.</strong> Dự kiến ba máy. Việc Bloomberg có áp dụng giá học thuật cho một chương trình chưa được kiểm định hay không là câu hỏi còn bỏ ngỏ mà chúng tôi đã hỏi trực tiếp.",
+"<strong>Thực tập.</strong> Chúng tôi không có thỏa thuận với bất kỳ quỹ nào được nêu tên và sẽ không in một cái tên chưa giành được. Thực tập là không lương; thực tập có lương đòi hỏi giấy phép lao động gắn với thị thực, điều chưa được giải quyết.",
+"<strong>Cư trú.</strong> Plato không thể tự cấp thị thực du học D-2. Một cấu trúc ghi danh song song với đại học đối tác Hàn Quốc đang được xây dựng để tạo điều kiện."],
+t5:"Bắt đầu một cuộc trò chuyện thế nào",
+p5:"Nếu điều này thú vị, hãy viết cho chúng tôi. Chúng tôi sẽ cho bạn biết hướng học đang ở đâu, chúng tôi chưa giải quyết được gì, và dự kiến khi nào mở. Nếu bạn muốn góp phần định hình nó hơn là chờ đợi, đó là cuộc trò chuyện hữu ích hơn và là cuộc trò chuyện chúng tôi mong muốn.",
+cta1t:"Viết cho Kent Kim",cta2t:"Trở lại Plato School",
+foot:"Plato School là chương trình của một pháp nhân phi lợi nhuận thành lập tại California năm 2023, đặt tại Gwanggyo, Suwon, Hàn Quốc. Plato không phải tổ chức kiểm định, không nắm giữ kiểm định nào, và hiện không cấp bằng. Trang này mô tả một chương trình đang chuẩn bị và không phải lời mời nhập học hay tuyển dụng. <a href='/'>platoschool.us</a>"};
+
+function setLang(lang, btn) {
+    var t = D[lang] || D.en;
+    document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    document.documentElement.lang = lang;
+
+    var s = function(id, html) { var el = document.getElementById(id); if (el) el.innerHTML = html; };
+    ['badge','h1','lede','l1','t1','p1','s1t','s1d','s2t','s2d','s3t','s3d','s4t','s4d',
+     'l2','t2','p2a','th0','th1','th2','th3','r1a','r1c','r2a','r2c','r2d','r3a','r3c','r3d',
+     'r4a','r5a','slab','p2b','l3','t3','p3a','p3b','guard','l4','t4','p4',
+     't5','p5','cta1t','cta2t','foot'].forEach(function(k){ s(k, t[k]); });
+
+    var ul = document.getElementById('nots');
+    if (ul) ul.innerHTML = t.nots.map(function(x){ return '<li>' + x + '</li>'; }).join('');
+}
+
+(function init(){
+    var saved = (navigator.language || 'en').slice(0,2).toLowerCase();
+    var pick = D[saved] ? saved : 'en';
+    var btns = document.querySelectorAll('.lang-btn');
+    var order = ['en','ko','zh','ja','th','vi'];
+    setLang(pick, btns[order.indexOf(pick)]);
+})();
+</script>
+</body>
+</html>
